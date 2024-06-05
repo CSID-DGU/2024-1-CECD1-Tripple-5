@@ -98,4 +98,7 @@ dependencies {
     // timber
     implementation("com.jakewharton.timber:timber:5.0.1")
 
+    // Immutable
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7")
+
 }
