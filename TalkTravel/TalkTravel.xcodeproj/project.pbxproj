@@ -9,21 +9,65 @@
 /* Begin PBXBuildFile section */
 		367425632C12033600E122C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425622C12033600E122C9 /* AppDelegate.swift */; };
 		367425652C12033600E122C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425642C12033600E122C9 /* SceneDelegate.swift */; };
-		367425672C12033600E122C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425662C12033600E122C9 /* ViewController.swift */; };
-		3674256A2C12033600E122C9 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 367425692C12033600E122C9 /* Base */; };
 		3674256C2C12033900E122C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3674256B2C12033900E122C9 /* Assets.xcassets */; };
 		3674256F2C12033900E122C9 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 3674256E2C12033900E122C9 /* Base */; };
+		3674257D2C120A7400E122C9 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3674257C2C120A7400E122C9 /* TabbarController.swift */; };
+		367425852C120B1C00E122C9 /* RecommendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425842C120B1C00E122C9 /* RecommendVC.swift */; };
+		367425872C120B2D00E122C9 /* RecommendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425862C120B2D00E122C9 /* RecommendViewModel.swift */; };
+		3674258B2C120B4300E122C9 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3674258A2C120B4300E122C9 /* ChatVC.swift */; };
+		3674258D2C120B5300E122C9 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3674258C2C120B5300E122C9 /* ChatViewModel.swift */; };
+		367425912C120B7200E122C9 /* TravelPlanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425902C120B7200E122C9 /* TravelPlanVC.swift */; };
+		367425932C120B8200E122C9 /* TravelPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425922C120B8200E122C9 /* TravelPlanViewModel.swift */; };
+		367425972C120BA500E122C9 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425962C120BA500E122C9 /* ProfileVC.swift */; };
+		367425992C120BAD00E122C9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425982C120BAD00E122C9 /* ProfileViewModel.swift */; };
+		3674259B2C120D0B00E122C9 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3674259A2C120D0B00E122C9 /* Colors.xcassets */; };
+		367425A62C120FFA00E122C9 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3674259D2C120FFA00E122C9 /* Pretendard-Thin.otf */; };
+		367425A72C120FFA00E122C9 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3674259E2C120FFA00E122C9 /* Pretendard-Bold.otf */; };
+		367425A82C120FFA00E122C9 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3674259F2C120FFA00E122C9 /* Pretendard-Black.otf */; };
+		367425A92C120FFA00E122C9 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 367425A02C120FFA00E122C9 /* Pretendard-ExtraBold.otf */; };
+		367425AA2C120FFA00E122C9 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 367425A12C120FFA00E122C9 /* Pretendard-ExtraLight.otf */; };
+		367425AB2C120FFA00E122C9 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 367425A22C120FFA00E122C9 /* Pretendard-Regular.otf */; };
+		367425AC2C120FFA00E122C9 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 367425A32C120FFA00E122C9 /* Pretendard-Medium.otf */; };
+		367425AD2C120FFA00E122C9 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 367425A42C120FFA00E122C9 /* Pretendard-Light.otf */; };
+		367425AE2C120FFA00E122C9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 367425A52C120FFA00E122C9 /* Pretendard-SemiBold.otf */; };
+		367425B12C12143900E122C9 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425B02C12143900E122C9 /* UIFont+.swift */; };
+		367425B42C12163600E122C9 /* UIWindow+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425B32C12163600E122C9 /* UIWindow+.swift */; };
+		367425B72C1216B300E122C9 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425B62C1216B300E122C9 /* AppConstants.swift */; };
+		367425BA2C12173C00E122C9 /* TabbarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425B92C12173C00E122C9 /* TabbarType.swift */; };
+		367425BC2C121B4300E122C9 /* Pretendard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425BB2C121B4300E122C9 /* Pretendard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3674255F2C12033600E122C9 /* TalkTravel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TalkTravel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		367425622C12033600E122C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		367425642C12033600E122C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		367425662C12033600E122C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		367425692C12033600E122C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3674256B2C12033900E122C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3674256E2C12033900E122C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		367425702C12033900E122C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3674257C2C120A7400E122C9 /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		367425842C120B1C00E122C9 /* RecommendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendVC.swift; sourceTree = "<group>"; };
+		367425862C120B2D00E122C9 /* RecommendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewModel.swift; sourceTree = "<group>"; };
+		3674258A2C120B4300E122C9 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		3674258C2C120B5300E122C9 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		367425902C120B7200E122C9 /* TravelPlanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelPlanVC.swift; sourceTree = "<group>"; };
+		367425922C120B8200E122C9 /* TravelPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelPlanViewModel.swift; sourceTree = "<group>"; };
+		367425962C120BA500E122C9 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		367425982C120BAD00E122C9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		3674259A2C120D0B00E122C9 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		3674259D2C120FFA00E122C9 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		3674259E2C120FFA00E122C9 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		3674259F2C120FFA00E122C9 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
+		367425A02C120FFA00E122C9 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		367425A12C120FFA00E122C9 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		367425A22C120FFA00E122C9 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		367425A32C120FFA00E122C9 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		367425A42C120FFA00E122C9 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		367425A52C120FFA00E122C9 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		367425B02C12143900E122C9 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		367425B32C12163600E122C9 /* UIWindow+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+.swift"; sourceTree = "<group>"; };
+		367425B62C1216B300E122C9 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		367425B92C12173C00E122C9 /* TabbarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarType.swift; sourceTree = "<group>"; };
+		367425BB2C121B4300E122C9 /* Pretendard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pretendard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,12 +102,6 @@
 			children = (
 				367425772C12034600E122C9 /* Resource */,
 				367425762C12033E00E122C9 /* Source */,
-				367425622C12033600E122C9 /* AppDelegate.swift */,
-				367425642C12033600E122C9 /* SceneDelegate.swift */,
-				367425662C12033600E122C9 /* ViewController.swift */,
-				367425682C12033600E122C9 /* Main.storyboard */,
-				3674256B2C12033900E122C9 /* Assets.xcassets */,
-				3674256D2C12033900E122C9 /* LaunchScreen.storyboard */,
 				367425702C12033900E122C9 /* Info.plist */,
 			);
 			path = TalkTravel;
@@ -72,6 +110,10 @@
 		367425762C12033E00E122C9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				367425B52C1216A700E122C9 /* Constants */,
+				367425AF2C12139B00E122C9 /* Extension */,
+				367425792C12065300E122C9 /* Present */,
+				367425782C12062900E122C9 /* Supports */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -79,8 +121,192 @@
 		367425772C12034600E122C9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3674259C2C120FDC00E122C9 /* Fonts */,
+				3674256B2C12033900E122C9 /* Assets.xcassets */,
+				3674256D2C12033900E122C9 /* LaunchScreen.storyboard */,
+				3674259A2C120D0B00E122C9 /* Colors.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		367425782C12062900E122C9 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				367425642C12033600E122C9 /* SceneDelegate.swift */,
+				367425622C12033600E122C9 /* AppDelegate.swift */,
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
+		367425792C12065300E122C9 /* Present */ = {
+			isa = PBXGroup;
+			children = (
+				367425812C120AFC00E122C9 /* Profile */,
+				367425802C120ADF00E122C9 /* TravelPlan */,
+				3674257F2C120AD700E122C9 /* Chat */,
+				3674257E2C120ACD00E122C9 /* Recommend */,
+				3674257A2C12065B00E122C9 /* Tabbar */,
+			);
+			path = Present;
+			sourceTree = "<group>";
+		};
+		3674257A2C12065B00E122C9 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				367425B82C12173200E122C9 /* Type */,
+				3674257B2C120A5C00E122C9 /* Controller */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		3674257B2C120A5C00E122C9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3674257C2C120A7400E122C9 /* TabbarController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3674257E2C120ACD00E122C9 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				367425832C120B0B00E122C9 /* ViewModel */,
+				367425822C120B0500E122C9 /* VC */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
+		3674257F2C120AD700E122C9 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				367425892C120B3600E122C9 /* ViewModel */,
+				367425882C120B3400E122C9 /* VC */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		367425802C120ADF00E122C9 /* TravelPlan */ = {
+			isa = PBXGroup;
+			children = (
+				3674258F2C120B5900E122C9 /* ViewModel */,
+				3674258E2C120B5600E122C9 /* VC */,
+			);
+			path = TravelPlan;
+			sourceTree = "<group>";
+		};
+		367425812C120AFC00E122C9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				367425952C120B8800E122C9 /* ViewModel */,
+				367425942C120B8600E122C9 /* VC */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		367425822C120B0500E122C9 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				367425842C120B1C00E122C9 /* RecommendVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		367425832C120B0B00E122C9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				367425862C120B2D00E122C9 /* RecommendViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		367425882C120B3400E122C9 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				3674258A2C120B4300E122C9 /* ChatVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		367425892C120B3600E122C9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3674258C2C120B5300E122C9 /* ChatViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3674258E2C120B5600E122C9 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				367425902C120B7200E122C9 /* TravelPlanVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		3674258F2C120B5900E122C9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				367425922C120B8200E122C9 /* TravelPlanViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		367425942C120B8600E122C9 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				367425962C120BA500E122C9 /* ProfileVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		367425952C120B8800E122C9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				367425982C120BAD00E122C9 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3674259C2C120FDC00E122C9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3674259F2C120FFA00E122C9 /* Pretendard-Black.otf */,
+				3674259E2C120FFA00E122C9 /* Pretendard-Bold.otf */,
+				367425A02C120FFA00E122C9 /* Pretendard-ExtraBold.otf */,
+				367425A12C120FFA00E122C9 /* Pretendard-ExtraLight.otf */,
+				367425A42C120FFA00E122C9 /* Pretendard-Light.otf */,
+				367425A32C120FFA00E122C9 /* Pretendard-Medium.otf */,
+				367425A22C120FFA00E122C9 /* Pretendard-Regular.otf */,
+				367425A52C120FFA00E122C9 /* Pretendard-SemiBold.otf */,
+				3674259D2C120FFA00E122C9 /* Pretendard-Thin.otf */,
+				367425BB2C121B4300E122C9 /* Pretendard.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		367425AF2C12139B00E122C9 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				367425B02C12143900E122C9 /* UIFont+.swift */,
+				367425B32C12163600E122C9 /* UIWindow+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		367425B52C1216A700E122C9 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				367425B62C1216B300E122C9 /* AppConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		367425B82C12173200E122C9 /* Type */ = {
+			isa = PBXGroup;
+			children = (
+				367425B92C12173C00E122C9 /* TabbarType.swift */,
+			);
+			path = Type;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +367,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3674259B2C120D0B00E122C9 /* Colors.xcassets in Resources */,
+				367425AC2C120FFA00E122C9 /* Pretendard-Medium.otf in Resources */,
+				367425A72C120FFA00E122C9 /* Pretendard-Bold.otf in Resources */,
+				367425AE2C120FFA00E122C9 /* Pretendard-SemiBold.otf in Resources */,
+				367425AA2C120FFA00E122C9 /* Pretendard-ExtraLight.otf in Resources */,
+				367425A92C120FFA00E122C9 /* Pretendard-ExtraBold.otf in Resources */,
+				367425AD2C120FFA00E122C9 /* Pretendard-Light.otf in Resources */,
+				367425AB2C120FFA00E122C9 /* Pretendard-Regular.otf in Resources */,
 				3674256C2C12033900E122C9 /* Assets.xcassets in Resources */,
 				3674256F2C12033900E122C9 /* Base in Resources */,
-				3674256A2C12033600E122C9 /* Base in Resources */,
+				367425A82C120FFA00E122C9 /* Pretendard-Black.otf in Resources */,
+				367425A62C120FFA00E122C9 /* Pretendard-Thin.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,23 +389,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				367425672C12033600E122C9 /* ViewController.swift in Sources */,
+				367425972C120BA500E122C9 /* ProfileVC.swift in Sources */,
+				3674258B2C120B4300E122C9 /* ChatVC.swift in Sources */,
+				3674258D2C120B5300E122C9 /* ChatViewModel.swift in Sources */,
 				367425632C12033600E122C9 /* AppDelegate.swift in Sources */,
+				367425B12C12143900E122C9 /* UIFont+.swift in Sources */,
+				367425BC2C121B4300E122C9 /* Pretendard.swift in Sources */,
+				3674257D2C120A7400E122C9 /* TabbarController.swift in Sources */,
 				367425652C12033600E122C9 /* SceneDelegate.swift in Sources */,
+				367425932C120B8200E122C9 /* TravelPlanViewModel.swift in Sources */,
+				367425992C120BAD00E122C9 /* ProfileViewModel.swift in Sources */,
+				367425872C120B2D00E122C9 /* RecommendViewModel.swift in Sources */,
+				367425BA2C12173C00E122C9 /* TabbarType.swift in Sources */,
+				367425852C120B1C00E122C9 /* RecommendVC.swift in Sources */,
+				367425B72C1216B300E122C9 /* AppConstants.swift in Sources */,
+				367425B42C12163600E122C9 /* UIWindow+.swift in Sources */,
+				367425912C120B7200E122C9 /* TravelPlanVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		367425682C12033600E122C9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				367425692C12033600E122C9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3674256D2C12033900E122C9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -313,7 +553,6 @@
 				INFOPLIST_FILE = TalkTravel/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -341,7 +580,6 @@
 				INFOPLIST_FILE = TalkTravel/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
