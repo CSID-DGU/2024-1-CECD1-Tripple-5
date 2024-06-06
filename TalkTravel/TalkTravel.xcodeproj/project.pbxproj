@@ -35,6 +35,13 @@
 		367425B72C1216B300E122C9 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425B62C1216B300E122C9 /* AppConstants.swift */; };
 		367425BA2C12173C00E122C9 /* TabbarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425B92C12173C00E122C9 /* TabbarType.swift */; };
 		367425BC2C121B4300E122C9 /* Pretendard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425BB2C121B4300E122C9 /* Pretendard.swift */; };
+		367425BF2C12249300E122C9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 367425BE2C12249300E122C9 /* SnapKit */; };
+		367425C42C12249B00E122C9 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 367425C32C12249B00E122C9 /* Then */; };
+		367425C72C1224B500E122C9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 367425C62C1224B500E122C9 /* Kingfisher */; };
+		367425CB2C12251E00E122C9 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 367425CA2C12251E00E122C9 /* RxBlocking */; };
+		367425CD2C12251E00E122C9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 367425CC2C12251E00E122C9 /* RxCocoa */; };
+		367425CF2C12251E00E122C9 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 367425CE2C12251E00E122C9 /* RxRelay */; };
+		367425D12C12251E00E122C9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 367425D02C12251E00E122C9 /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +82,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				367425CF2C12251E00E122C9 /* RxRelay in Frameworks */,
+				367425C72C1224B500E122C9 /* Kingfisher in Frameworks */,
+				367425CB2C12251E00E122C9 /* RxBlocking in Frameworks */,
+				367425CD2C12251E00E122C9 /* RxCocoa in Frameworks */,
+				367425BF2C12249300E122C9 /* SnapKit in Frameworks */,
+				367425C42C12249B00E122C9 /* Then in Frameworks */,
+				367425D12C12251E00E122C9 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +100,7 @@
 			children = (
 				367425612C12033600E122C9 /* TalkTravel */,
 				367425602C12033600E122C9 /* Products */,
+				367425C92C12251E00E122C9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -309,6 +324,13 @@
 			path = Type;
 			sourceTree = "<group>";
 		};
+		367425C92C12251E00E122C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -325,6 +347,15 @@
 			dependencies = (
 			);
 			name = TalkTravel;
+			packageProductDependencies = (
+				367425BE2C12249300E122C9 /* SnapKit */,
+				367425C32C12249B00E122C9 /* Then */,
+				367425C62C1224B500E122C9 /* Kingfisher */,
+				367425CA2C12251E00E122C9 /* RxBlocking */,
+				367425CC2C12251E00E122C9 /* RxCocoa */,
+				367425CE2C12251E00E122C9 /* RxRelay */,
+				367425D02C12251E00E122C9 /* RxSwift */,
+			);
 			productName = TalkTravel;
 			productReference = 3674255F2C12033600E122C9 /* TalkTravel.app */;
 			productType = "com.apple.product-type.application";
@@ -353,6 +384,12 @@
 				Base,
 			);
 			mainGroup = 367425562C12033600E122C9;
+			packageReferences = (
+				367425BD2C12249300E122C9 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				367425C22C12249B00E122C9 /* XCRemoteSwiftPackageReference "Then" */,
+				367425C52C1224B500E122C9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 367425602C12033600E122C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -562,9 +599,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ikbum.TalkTravel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -589,9 +629,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ikbum.TalkTravel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -617,6 +660,79 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		367425BD2C12249300E122C9 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		367425C22C12249B00E122C9 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		367425C52C1224B500E122C9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+		367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		367425BE2C12249300E122C9 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 367425BD2C12249300E122C9 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		367425C32C12249B00E122C9 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 367425C22C12249B00E122C9 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+		367425C62C1224B500E122C9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 367425C52C1224B500E122C9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		367425CA2C12251E00E122C9 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		367425CC2C12251E00E122C9 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		367425CE2C12251E00E122C9 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		367425D02C12251E00E122C9 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 367425572C12033600E122C9 /* Project object */;
 }
