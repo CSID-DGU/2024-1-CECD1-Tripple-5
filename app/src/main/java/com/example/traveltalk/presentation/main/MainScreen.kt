@@ -5,6 +5,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideIn
 import androidx.compose.animation.slideOut
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,7 +20,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -40,7 +40,6 @@ import com.example.traveltalk.presentation.history.navigation.historyNavGraph
 import com.example.traveltalk.presentation.home.navigation.homeNavGraph
 import com.example.traveltalk.presentation.profile.navigation.profileNavGraph
 import com.example.traveltalk.theme.Blue_85BDFF
-import com.example.traveltalk.theme.Gray_300_D5D5D7
 import com.example.traveltalk.theme.Gray_400_C0C1C3
 import com.example.traveltalk.theme.White_FFFFFF
 import com.example.traveltalk.theme.semiBold12
@@ -100,22 +99,23 @@ private fun MainBottomBar(
     currentTab: MainTab?,
     onTabSelected: (MainTab) -> Unit,
 ) {
+    val isChatTabSelected = currentTab?.route == "chat"
     AnimatedVisibility(
         visible = visible,
         enter = fadeIn() + slideIn { IntOffset(0, it.height) },
         exit = fadeOut() + slideOut { IntOffset(0, it.height) }
     ) {
         Surface(
-            shadowElevation = 30.dp,
+            shadowElevation = if (isChatTabSelected) 0.dp else 30.dp,
             color = White_FFFFFF,
         ) {
             Row(
                 modifier = Modifier
                     .navigationBarsPadding()
-                    .padding(start = 8.dp, end = 8.dp, bottom = 28.dp)
+                    .padding(bottom = 12.dp)
                     .fillMaxWidth()
-                    .height(56.dp)
-                    .padding(horizontal = 28.dp),
+                    .height(70.dp)
+                    .padding(vertical = 12.dp, horizontal = 28.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 tabs.forEach { tab ->
@@ -145,10 +145,9 @@ private fun RowScope.MainBottomBarItem(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Icon(
+        Image(
             painter = painterResource(id = if (selected) tab.selectedIconImageVector else tab.unselectedIconImageVector),
             contentDescription = tab.contentDescription,
-            tint = if (selected) Blue_85BDFF else Gray_300_D5D5D7,
             modifier = Modifier.size(24.dp),
         )
         Spacer(modifier = Modifier.height(5.dp))

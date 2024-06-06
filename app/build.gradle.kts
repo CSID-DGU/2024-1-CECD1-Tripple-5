@@ -101,4 +101,8 @@ dependencies {
     // Immutable
     implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7")
 
+    // material
+    implementation("androidx.compose.material:material:1.6.7")
+
+
 }
