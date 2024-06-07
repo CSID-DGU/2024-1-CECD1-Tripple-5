@@ -42,6 +42,20 @@
 		367425CD2C12251E00E122C9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 367425CC2C12251E00E122C9 /* RxCocoa */; };
 		367425CF2C12251E00E122C9 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 367425CE2C12251E00E122C9 /* RxRelay */; };
 		367425D12C12251E00E122C9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 367425D02C12251E00E122C9 /* RxSwift */; };
+		367425D62C12267700E122C9 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425D52C12267700E122C9 /* BaseVC.swift */; };
+		367425DA2C1226AF00E122C9 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425D92C1226AF00E122C9 /* NavigationView.swift */; };
+		367425DC2C122AB100E122C9 /* ChatbotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425DB2C122AB100E122C9 /* ChatbotView.swift */; };
+		367425DE2C122C8800E122C9 /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425DD2C122C8800E122C9 /* CGPoint+.swift */; };
+		367425E02C122CA200E122C9 /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425DF2C122CA200E122C9 /* Collection+.swift */; };
+		367425E22C122CB300E122C9 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425E12C122CB300E122C9 /* NSObject+.swift */; };
+		367425E42C122CC200E122C9 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425E32C122CC200E122C9 /* String+.swift */; };
+		367425E62C122CD000E122C9 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425E52C122CD000E122C9 /* UIButton+.swift */; };
+		367425E82C122CE300E122C9 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425E72C122CE300E122C9 /* UIStackView+.swift */; };
+		367425EA2C122CF800E122C9 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425E92C122CF800E122C9 /* UITextField+.swift */; };
+		367425EC2C122D0900E122C9 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425EB2C122D0900E122C9 /* UIView+.swift */; };
+		367425F22C12314E00E122C9 /* ChattingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F12C12314E00E122C9 /* ChattingDataModel.swift */; };
+		367425F42C1235EB00E122C9 /* ChatbotHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F32C1235EB00E122C9 /* ChatbotHeader.swift */; };
+		367425F62C12A80500E122C9 /* ReceivedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F52C12A80500E122C9 /* ReceivedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +89,20 @@
 		367425B62C1216B300E122C9 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		367425B92C12173C00E122C9 /* TabbarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarType.swift; sourceTree = "<group>"; };
 		367425BB2C121B4300E122C9 /* Pretendard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pretendard.swift; sourceTree = "<group>"; };
+		367425D52C12267700E122C9 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		367425D92C1226AF00E122C9 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		367425DB2C122AB100E122C9 /* ChatbotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotView.swift; sourceTree = "<group>"; };
+		367425DD2C122C8800E122C9 /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
+		367425DF2C122CA200E122C9 /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
+		367425E12C122CB300E122C9 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
+		367425E32C122CC200E122C9 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		367425E52C122CD000E122C9 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		367425E72C122CE300E122C9 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
+		367425E92C122CF800E122C9 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		367425EB2C122D0900E122C9 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		367425F12C12314E00E122C9 /* ChattingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingDataModel.swift; sourceTree = "<group>"; };
+		367425F32C1235EB00E122C9 /* ChatbotHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotHeader.swift; sourceTree = "<group>"; };
+		367425F52C12A80500E122C9 /* ReceivedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +153,8 @@
 		367425762C12033E00E122C9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				367425ED2C12313200E122C9 /* Data */,
+				367425D42C12266E00E122C9 /* Base */,
 				367425B52C1216A700E122C9 /* Constants */,
 				367425AF2C12139B00E122C9 /* Extension */,
 				367425792C12065300E122C9 /* Present */,
@@ -194,6 +224,7 @@
 		3674257F2C120AD700E122C9 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				367425D72C12269400E122C9 /* View */,
 				367425892C120B3600E122C9 /* ViewModel */,
 				367425882C120B3400E122C9 /* VC */,
 			);
@@ -304,6 +335,14 @@
 			children = (
 				367425B02C12143900E122C9 /* UIFont+.swift */,
 				367425B32C12163600E122C9 /* UIWindow+.swift */,
+				367425DD2C122C8800E122C9 /* CGPoint+.swift */,
+				367425DF2C122CA200E122C9 /* Collection+.swift */,
+				367425E12C122CB300E122C9 /* NSObject+.swift */,
+				367425E32C122CC200E122C9 /* String+.swift */,
+				367425E52C122CD000E122C9 /* UIButton+.swift */,
+				367425E72C122CE300E122C9 /* UIStackView+.swift */,
+				367425E92C122CF800E122C9 /* UITextField+.swift */,
+				367425EB2C122D0900E122C9 /* UIView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -329,6 +368,57 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		367425D42C12266E00E122C9 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				367425D82C1226A300E122C9 /* View */,
+				367425D52C12267700E122C9 /* BaseVC.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		367425D72C12269400E122C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				367425DB2C122AB100E122C9 /* ChatbotView.swift */,
+				367425F32C1235EB00E122C9 /* ChatbotHeader.swift */,
+				367425F52C12A80500E122C9 /* ReceivedCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		367425D82C1226A300E122C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				367425D92C1226AF00E122C9 /* NavigationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		367425ED2C12313200E122C9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				367425EE2C12313700E122C9 /* ViewData */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		367425EE2C12313700E122C9 /* ViewData */ = {
+			isa = PBXGroup;
+			children = (
+				367425EF2C12313C00E122C9 /* Chat */,
+			);
+			path = ViewData;
+			sourceTree = "<group>";
+		};
+		367425EF2C12313C00E122C9 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				367425F12C12314E00E122C9 /* ChattingDataModel.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,20 +516,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				367425E82C122CE300E122C9 /* UIStackView+.swift in Sources */,
+				367425EA2C122CF800E122C9 /* UITextField+.swift in Sources */,
 				367425972C120BA500E122C9 /* ProfileVC.swift in Sources */,
+				367425D62C12267700E122C9 /* BaseVC.swift in Sources */,
 				3674258B2C120B4300E122C9 /* ChatVC.swift in Sources */,
 				3674258D2C120B5300E122C9 /* ChatViewModel.swift in Sources */,
 				367425632C12033600E122C9 /* AppDelegate.swift in Sources */,
+				367425E02C122CA200E122C9 /* Collection+.swift in Sources */,
+				367425F42C1235EB00E122C9 /* ChatbotHeader.swift in Sources */,
 				367425B12C12143900E122C9 /* UIFont+.swift in Sources */,
+				367425E62C122CD000E122C9 /* UIButton+.swift in Sources */,
+				367425E22C122CB300E122C9 /* NSObject+.swift in Sources */,
 				367425BC2C121B4300E122C9 /* Pretendard.swift in Sources */,
 				3674257D2C120A7400E122C9 /* TabbarController.swift in Sources */,
+				367425DE2C122C8800E122C9 /* CGPoint+.swift in Sources */,
 				367425652C12033600E122C9 /* SceneDelegate.swift in Sources */,
+				367425EC2C122D0900E122C9 /* UIView+.swift in Sources */,
+				367425DC2C122AB100E122C9 /* ChatbotView.swift in Sources */,
 				367425932C120B8200E122C9 /* TravelPlanViewModel.swift in Sources */,
+				367425DA2C1226AF00E122C9 /* NavigationView.swift in Sources */,
+				367425F22C12314E00E122C9 /* ChattingDataModel.swift in Sources */,
 				367425992C120BAD00E122C9 /* ProfileViewModel.swift in Sources */,
 				367425872C120B2D00E122C9 /* RecommendViewModel.swift in Sources */,
 				367425BA2C12173C00E122C9 /* TabbarType.swift in Sources */,
+				367425F62C12A80500E122C9 /* ReceivedCell.swift in Sources */,
 				367425852C120B1C00E122C9 /* RecommendVC.swift in Sources */,
 				367425B72C1216B300E122C9 /* AppConstants.swift in Sources */,
+				367425E42C122CC200E122C9 /* String+.swift in Sources */,
 				367425B42C12163600E122C9 /* UIWindow+.swift in Sources */,
 				367425912C120B7200E122C9 /* TravelPlanVC.swift in Sources */,
 			);
