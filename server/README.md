@@ -1,6 +1,4 @@
-# fastapi-deploy-test
-
-# 설정 가이드
+# 설정
 
 ## 1. 가상 환경 생성
 
@@ -32,6 +30,7 @@ pip install -r requirements.txt
 
 ```sh
 DATABASE_URL="<데이터베이스 URL>"
+OPENAI_API_KEY="<OpenAI API Key>"
 ```
 
 # 실행 가이드

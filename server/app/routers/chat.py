@@ -15,17 +15,10 @@ async def create_chat_room(chat_room: schemas.ChatRoomCreate, db: AsyncSession =
 async def read_chat_rooms(db: AsyncSession = Depends(get_db)):
     return await crud.get_chat_rooms(db=db)
 
-# @router.get("/chat_rooms/{chat_room_id}", response_model=schemas.ChatRoom)
-# async def read_chat_room(chat_room_id: int, db: AsyncSession = Depends(get_db)):
-#     db_chat_room = await crud.get_chat_room(db=db, chat_room_id=chat_room_id)
-#     if db_chat_room is None:
-#         raise HTTPException(status_code=404, detail="ChatRoom not found")
-#     return db_chat_room
-
 @router.post("/chat_rooms/{chat_room_id}/records/", response_model=schemas.ChatRecord)
 async def create_chat_record(chat_room_id: int, chat_record: schemas.ChatRecordCreate, db: AsyncSession = Depends(get_db)):
     return await crud.create_chat_record(db=db, chat_record=chat_record, chat_room_id=chat_room_id)
 
 @router.get("/chat_rooms/{chat_room_id}/records/", response_model=list[schemas.ChatRecord])
 async def read_chat_records(chat_room_id: int, db: AsyncSession = Depends(get_db)):
-    return await crud.get_chat_records(db=db, chat_room_id=chat_room_id)
+    return await crud.get_chat_records(db=db, chat_room_id=chat_room_id)  
