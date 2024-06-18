@@ -1,15 +1,32 @@
+from datetime import datetime
 from pydantic import BaseModel
 
-class UserBase(BaseModel):
-    username: str
-    email: str
-    full_name: str | None = None
+class ChatRecordBase(BaseModel):
+    message: str
+    is_chatbot: bool = False
 
-class UserCreate(UserBase):
-    password: str
+class ChatRecordCreate(ChatRecordBase):
+    pass
 
-class User(UserBase):
+class ChatRecord(ChatRecordBase):
     id: int
+    chat_room_id: int
+    timestamp: datetime
 
     class Config:
-        orm_mode = True
+        orm_mode: True
+
+class ChatRoomBase(BaseModel):
+    name: str
+
+class ChatRoomCreate(ChatRoomBase):
+    pass
+
+class ChatRoom(ChatRoomBase):
+    id: int
+    created_at: datetime
+    updated_at: datetime
+    # chat_records: list[ChatRecord] = []
+
+    class Config:
+        orm_mode: True
