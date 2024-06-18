@@ -91,6 +91,43 @@ def place_retriever():
     retriever = vector_store.as_retriever()
     return retriever
 
+
+def retaurant_retriever():
+    file_path = f"./.cache/files/식당.txt"
+    cache_dir = LocalFileStore(f"./.cache/embeddings/식당.txt")
+    splitter = CharacterTextSplitter.from_tiktoken_encoder(
+        separator="\n",
+        chunk_size=600,
+        chunk_overlap=100,
+    )
+    loader = UnstructuredFileLoader(file_path)
+    docs = loader.load_and_split(text_splitter=splitter)
+    embeddings = OpenAIEmbeddings()
+    cached_embeddings = CacheBackedEmbeddings.from_bytes_store(
+        embeddings, cache_dir)
+    vector_store = FAISS.from_documents(docs, cached_embeddings)
+    retriever = vector_store.as_retriever()
+    return retriever
+
+
+def hotel_retriever():
+    file_path = f"./.cache/files/숙소.txt"
+    cache_dir = LocalFileStore(f"./.cache/embeddings/숙소.txt")
+    splitter = CharacterTextSplitter.from_tiktoken_encoder(
+        separator="\n",
+        chunk_size=600,
+        chunk_overlap=100,
+    )
+    loader = UnstructuredFileLoader(file_path)
+    docs = loader.load_and_split(text_splitter=splitter)
+    embeddings = OpenAIEmbeddings()
+    cached_embeddings = CacheBackedEmbeddings.from_bytes_store(
+        embeddings, cache_dir)
+    vector_store = FAISS.from_documents(docs, cached_embeddings)
+    retriever = vector_store.as_retriever()
+    return retriever
+
+
 def save_message(message, role):
     st.session_state["messages"].append({"message": message, "role": role})
 
