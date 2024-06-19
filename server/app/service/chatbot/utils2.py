@@ -104,13 +104,14 @@ def handle_message(message, content_type):
     chain = generate_chain(retriever, prompt_place)
     content = chain.invoke(message).content
     try:
-        print("-------------------------------------------------")
-        print(content)
-        print("-------------------------------------------------")
+        # print("-------------------------------------------------")
+        # print(content)
+        # print("-------------------------------------------------")
         response_json = json.loads(content)
-        return JSONResponse(content=content)  # JSON 응답을 출력
+        print(response_json)
+        return content 
     except json.JSONDecodeError:
-        return JSONResponse(content={"error": "잘못된 JSON 응답입니다."})
+        return "잘못된 JSON 응답입니다."
 
 # Pre-embed files and create retrievers
 retriever_map = {

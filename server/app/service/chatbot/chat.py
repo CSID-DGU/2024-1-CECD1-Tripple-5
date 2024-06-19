@@ -36,7 +36,7 @@ async def get_response_from_chatgpt(message):
     if keyword in retriever_map:
         return handle_message(message, keyword)
     else:
-        return JSONResponse(content={"error": "잘못된 입력입니다. 다시 시도해주세요."})
+        return "잘못된 입력입니다. 다시 시도해주세요."
 
     # message
     # return chat_chain.invoke({"question": message}).content
