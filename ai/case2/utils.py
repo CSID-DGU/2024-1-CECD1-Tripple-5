@@ -57,9 +57,8 @@ def embed_file(file):
     retriever = vector_store.as_retriever()
     return retriever
 
-def keyword_retriever():
-    file_path = f"./.cache/files/keyword.txt"
-    cache_dir = LocalFileStore(f"./.cache/embeddings/keyword.txt")
+def create_retriever(file_path):
+    cache_dir = LocalFileStore(f"./.cache/embeddings/{file_path}")
     splitter = CharacterTextSplitter.from_tiktoken_encoder(
         separator="\n",
         chunk_size=600,
@@ -73,74 +72,21 @@ def keyword_retriever():
     vector_store = FAISS.from_documents(docs, cached_embeddings)
     retriever = vector_store.as_retriever()
     return retriever
-
-def place_retriever():
-    file_path = f"./.cache/files/관광명소.txt"
-    cache_dir = LocalFileStore(f"./.cache/embeddings/관광명소.txt")
-    splitter = CharacterTextSplitter.from_tiktoken_encoder(
-        separator="\n",
-        chunk_size=600,
-        chunk_overlap=100,
-    )
-    loader = UnstructuredFileLoader(file_path)
-    docs = loader.load_and_split(text_splitter=splitter)
-    embeddings = OpenAIEmbeddings()
-    cached_embeddings = CacheBackedEmbeddings.from_bytes_store(
-        embeddings, cache_dir)
-    vector_store = FAISS.from_documents(docs, cached_embeddings)
-    retriever = vector_store.as_retriever()
-    return retriever
-
-
-def retaurant_retriever():
-    file_path = f"./.cache/files/식당.txt"
-    cache_dir = LocalFileStore(f"./.cache/embeddings/식당.txt")
-    splitter = CharacterTextSplitter.from_tiktoken_encoder(
-        separator="\n",
-        chunk_size=600,
-        chunk_overlap=100,
-    )
-    loader = UnstructuredFileLoader(file_path)
-    docs = loader.load_and_split(text_splitter=splitter)
-    embeddings = OpenAIEmbeddings()
-    cached_embeddings = CacheBackedEmbeddings.from_bytes_store(
-        embeddings, cache_dir)
-    vector_store = FAISS.from_documents(docs, cached_embeddings)
-    retriever = vector_store.as_retriever()
-    return retriever
-
-
-def hotel_retriever():
-    file_path = f"./.cache/files/숙소.txt"
-    cache_dir = LocalFileStore(f"./.cache/embeddings/숙소.txt")
-    splitter = CharacterTextSplitter.from_tiktoken_encoder(
-        separator="\n",
-        chunk_size=600,
-        chunk_overlap=100,
-    )
-    loader = UnstructuredFileLoader(file_path)
-    docs = loader.load_and_split(text_splitter=splitter)
-    embeddings = OpenAIEmbeddings()
-    cached_embeddings = CacheBackedEmbeddings.from_bytes_store(
-        embeddings, cache_dir)
-    vector_store = FAISS.from_documents(docs, cached_embeddings)
-    retriever = vector_store.as_retriever()
-    return retriever
-
 
 def save_message(message, role):
     st.session_state["messages"].append({"message": message, "role": role})
 
 def send_message(message, role, save=True):
-    with st.chat_message(role):
-        st.markdown(message)
+    if role == "ai":
+        st.chat_message(role).markdown(message)
+    else:
+        st.chat_message(role).markdown(message)
     if save:
         save_message(message, role)
 
 def paint_history():
     for message in st.session_state["messages"]:
-        send_message(
-            message["message"],
-            message["role"],
-            save=False,
-        )
+        if message["role"] == "ai":
+            st.chat_message("ai").markdown(message["message"])
+        else:
+            st.chat_message("human").markdown(message["message"])
