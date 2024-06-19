@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KakaoMapsSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if let appKey = Bundle.main.infoDictionary?[Config.Keys.Plist.KAKAO_APP_KEY] as? String{
+            SDKInitializer.InitSDK(appKey: appKey)
+        }
         return true
     }
 

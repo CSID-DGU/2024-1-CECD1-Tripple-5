@@ -42,6 +42,30 @@
 		367425CD2C12251E00E122C9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 367425CC2C12251E00E122C9 /* RxCocoa */; };
 		367425CF2C12251E00E122C9 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 367425CE2C12251E00E122C9 /* RxRelay */; };
 		367425D12C12251E00E122C9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 367425D02C12251E00E122C9 /* RxSwift */; };
+		367425D62C12267700E122C9 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425D52C12267700E122C9 /* BaseVC.swift */; };
+		367425DA2C1226AF00E122C9 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425D92C1226AF00E122C9 /* NavigationView.swift */; };
+		367425DC2C122AB100E122C9 /* ChatbotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425DB2C122AB100E122C9 /* ChatbotView.swift */; };
+		367425DE2C122C8800E122C9 /* CGPoint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425DD2C122C8800E122C9 /* CGPoint+.swift */; };
+		367425E02C122CA200E122C9 /* Collection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425DF2C122CA200E122C9 /* Collection+.swift */; };
+		367425E22C122CB300E122C9 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425E12C122CB300E122C9 /* NSObject+.swift */; };
+		367425E42C122CC200E122C9 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425E32C122CC200E122C9 /* String+.swift */; };
+		367425E62C122CD000E122C9 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425E52C122CD000E122C9 /* UIButton+.swift */; };
+		367425E82C122CE300E122C9 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425E72C122CE300E122C9 /* UIStackView+.swift */; };
+		367425EA2C122CF800E122C9 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425E92C122CF800E122C9 /* UITextField+.swift */; };
+		367425EC2C122D0900E122C9 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425EB2C122D0900E122C9 /* UIView+.swift */; };
+		367425F22C12314E00E122C9 /* ChattingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F12C12314E00E122C9 /* ChattingDataModel.swift */; };
+		367425F42C1235EB00E122C9 /* ChatbotHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F32C1235EB00E122C9 /* ChatbotHeader.swift */; };
+		367425F62C12A80500E122C9 /* ReceivedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F52C12A80500E122C9 /* ReceivedCell.swift */; };
+		367425F82C12BAA600E122C9 /* ChatTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F72C12BAA600E122C9 /* ChatTextField.swift */; };
+		367425FA2C12BF1100E122C9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F92C12BF1100E122C9 /* UserCell.swift */; };
+		367425FC2C232DA700E122C9 /* ChattingHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425FB2C232DA700E122C9 /* ChattingHistoryView.swift */; };
+		367425FE2C232E0400E122C9 /* ChattingHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425FD2C232E0400E122C9 /* ChattingHistoryVC.swift */; };
+		367426022C232F4000E122C9 /* ChatbotHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426012C232F4000E122C9 /* ChatbotHistoryCell.swift */; };
+		367426042C23311800E122C9 /* ChatbotHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426032C23311800E122C9 /* ChatbotHistoryViewModel.swift */; };
+		3674260A2C23361900E122C9 /* ChattingHistoryDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426092C23361900E122C9 /* ChattingHistoryDataModel.swift */; };
+		3674260F2C23499C00E122C9 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 3674260E2C23499C00E122C9 /* KakaoMapsSDK-SPM */; };
+		367426112C234A9900E122C9 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 367426102C234A9900E122C9 /* Config.xcconfig */; };
+		367426152C234B2300E122C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426142C234B2300E122C9 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +99,29 @@
 		367425B62C1216B300E122C9 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		367425B92C12173C00E122C9 /* TabbarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarType.swift; sourceTree = "<group>"; };
 		367425BB2C121B4300E122C9 /* Pretendard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pretendard.swift; sourceTree = "<group>"; };
+		367425D52C12267700E122C9 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		367425D92C1226AF00E122C9 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		367425DB2C122AB100E122C9 /* ChatbotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotView.swift; sourceTree = "<group>"; };
+		367425DD2C122C8800E122C9 /* CGPoint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+.swift"; sourceTree = "<group>"; };
+		367425DF2C122CA200E122C9 /* Collection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+.swift"; sourceTree = "<group>"; };
+		367425E12C122CB300E122C9 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
+		367425E32C122CC200E122C9 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		367425E52C122CD000E122C9 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		367425E72C122CE300E122C9 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
+		367425E92C122CF800E122C9 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		367425EB2C122D0900E122C9 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		367425F12C12314E00E122C9 /* ChattingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingDataModel.swift; sourceTree = "<group>"; };
+		367425F32C1235EB00E122C9 /* ChatbotHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotHeader.swift; sourceTree = "<group>"; };
+		367425F52C12A80500E122C9 /* ReceivedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedCell.swift; sourceTree = "<group>"; };
+		367425F72C12BAA600E122C9 /* ChatTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextField.swift; sourceTree = "<group>"; };
+		367425F92C12BF1100E122C9 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		367425FB2C232DA700E122C9 /* ChattingHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingHistoryView.swift; sourceTree = "<group>"; };
+		367425FD2C232E0400E122C9 /* ChattingHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingHistoryVC.swift; sourceTree = "<group>"; };
+		367426012C232F4000E122C9 /* ChatbotHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotHistoryCell.swift; sourceTree = "<group>"; };
+		367426032C23311800E122C9 /* ChatbotHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotHistoryViewModel.swift; sourceTree = "<group>"; };
+		367426092C23361900E122C9 /* ChattingHistoryDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingHistoryDataModel.swift; sourceTree = "<group>"; };
+		367426102C234A9900E122C9 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		367426142C234B2300E122C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +136,7 @@
 				367425BF2C12249300E122C9 /* SnapKit in Frameworks */,
 				367425C42C12249B00E122C9 /* Then in Frameworks */,
 				367425D12C12251E00E122C9 /* RxSwift in Frameworks */,
+				3674260F2C23499C00E122C9 /* KakaoMapsSDK-SPM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +166,7 @@
 				367425772C12034600E122C9 /* Resource */,
 				367425762C12033E00E122C9 /* Source */,
 				367425702C12033900E122C9 /* Info.plist */,
+				367426102C234A9900E122C9 /* Config.xcconfig */,
 			);
 			path = TalkTravel;
 			sourceTree = "<group>";
@@ -125,6 +174,9 @@
 		367425762C12033E00E122C9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				367426132C234B1A00E122C9 /* Secure */,
+				367425ED2C12313200E122C9 /* Data */,
+				367425D42C12266E00E122C9 /* Base */,
 				367425B52C1216A700E122C9 /* Constants */,
 				367425AF2C12139B00E122C9 /* Extension */,
 				367425792C12065300E122C9 /* Present */,
@@ -194,6 +246,7 @@
 		3674257F2C120AD700E122C9 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				367425D72C12269400E122C9 /* View */,
 				367425892C120B3600E122C9 /* ViewModel */,
 				367425882C120B3400E122C9 /* VC */,
 			);
@@ -238,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				3674258A2C120B4300E122C9 /* ChatVC.swift */,
+				367425FD2C232E0400E122C9 /* ChattingHistoryVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -246,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				3674258C2C120B5300E122C9 /* ChatViewModel.swift */,
+				367426032C23311800E122C9 /* ChatbotHistoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -304,6 +359,14 @@
 			children = (
 				367425B02C12143900E122C9 /* UIFont+.swift */,
 				367425B32C12163600E122C9 /* UIWindow+.swift */,
+				367425DD2C122C8800E122C9 /* CGPoint+.swift */,
+				367425DF2C122CA200E122C9 /* Collection+.swift */,
+				367425E12C122CB300E122C9 /* NSObject+.swift */,
+				367425E32C122CC200E122C9 /* String+.swift */,
+				367425E52C122CD000E122C9 /* UIButton+.swift */,
+				367425E72C122CE300E122C9 /* UIStackView+.swift */,
+				367425E92C122CF800E122C9 /* UITextField+.swift */,
+				367425EB2C122D0900E122C9 /* UIView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -331,6 +394,86 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		367425D42C12266E00E122C9 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				367425D82C1226A300E122C9 /* View */,
+				367425D52C12267700E122C9 /* BaseVC.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		367425D72C12269400E122C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				367426002C232F3000E122C9 /* History */,
+				367425FF2C232F2C00E122C9 /* Chatbot */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		367425D82C1226A300E122C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				367425D92C1226AF00E122C9 /* NavigationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		367425ED2C12313200E122C9 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				367425EE2C12313700E122C9 /* ViewData */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		367425EE2C12313700E122C9 /* ViewData */ = {
+			isa = PBXGroup;
+			children = (
+				367425EF2C12313C00E122C9 /* Chat */,
+			);
+			path = ViewData;
+			sourceTree = "<group>";
+		};
+		367425EF2C12313C00E122C9 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				367425F12C12314E00E122C9 /* ChattingDataModel.swift */,
+				367426092C23361900E122C9 /* ChattingHistoryDataModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		367425FF2C232F2C00E122C9 /* Chatbot */ = {
+			isa = PBXGroup;
+			children = (
+				367425DB2C122AB100E122C9 /* ChatbotView.swift */,
+				367425F32C1235EB00E122C9 /* ChatbotHeader.swift */,
+				367425F52C12A80500E122C9 /* ReceivedCell.swift */,
+				367425F72C12BAA600E122C9 /* ChatTextField.swift */,
+				367425F92C12BF1100E122C9 /* UserCell.swift */,
+			);
+			path = Chatbot;
+			sourceTree = "<group>";
+		};
+		367426002C232F3000E122C9 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				367425FB2C232DA700E122C9 /* ChattingHistoryView.swift */,
+				367426012C232F4000E122C9 /* ChatbotHistoryCell.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		367426132C234B1A00E122C9 /* Secure */ = {
+			isa = PBXGroup;
+			children = (
+				367426142C234B2300E122C9 /* Config.swift */,
+			);
+			path = Secure;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -355,6 +498,7 @@
 				367425CC2C12251E00E122C9 /* RxCocoa */,
 				367425CE2C12251E00E122C9 /* RxRelay */,
 				367425D02C12251E00E122C9 /* RxSwift */,
+				3674260E2C23499C00E122C9 /* KakaoMapsSDK-SPM */,
 			);
 			productName = TalkTravel;
 			productReference = 3674255F2C12033600E122C9 /* TalkTravel.app */;
@@ -389,6 +533,7 @@
 				367425C22C12249B00E122C9 /* XCRemoteSwiftPackageReference "Then" */,
 				367425C52C1224B500E122C9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				3674260D2C23499C00E122C9 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
 			);
 			productRefGroup = 367425602C12033600E122C9 /* Products */;
 			projectDirPath = "";
@@ -409,6 +554,7 @@
 				367425A72C120FFA00E122C9 /* Pretendard-Bold.otf in Resources */,
 				367425AE2C120FFA00E122C9 /* Pretendard-SemiBold.otf in Resources */,
 				367425AA2C120FFA00E122C9 /* Pretendard-ExtraLight.otf in Resources */,
+				367426112C234A9900E122C9 /* Config.xcconfig in Resources */,
 				367425A92C120FFA00E122C9 /* Pretendard-ExtraBold.otf in Resources */,
 				367425AD2C120FFA00E122C9 /* Pretendard-Light.otf in Resources */,
 				367425AB2C120FFA00E122C9 /* Pretendard-Regular.otf in Resources */,
@@ -426,20 +572,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				367425E82C122CE300E122C9 /* UIStackView+.swift in Sources */,
+				367425EA2C122CF800E122C9 /* UITextField+.swift in Sources */,
 				367425972C120BA500E122C9 /* ProfileVC.swift in Sources */,
+				367425D62C12267700E122C9 /* BaseVC.swift in Sources */,
+				367426022C232F4000E122C9 /* ChatbotHistoryCell.swift in Sources */,
 				3674258B2C120B4300E122C9 /* ChatVC.swift in Sources */,
 				3674258D2C120B5300E122C9 /* ChatViewModel.swift in Sources */,
 				367425632C12033600E122C9 /* AppDelegate.swift in Sources */,
+				367425E02C122CA200E122C9 /* Collection+.swift in Sources */,
+				367425FA2C12BF1100E122C9 /* UserCell.swift in Sources */,
+				367425F42C1235EB00E122C9 /* ChatbotHeader.swift in Sources */,
 				367425B12C12143900E122C9 /* UIFont+.swift in Sources */,
+				367425E62C122CD000E122C9 /* UIButton+.swift in Sources */,
+				367425E22C122CB300E122C9 /* NSObject+.swift in Sources */,
 				367425BC2C121B4300E122C9 /* Pretendard.swift in Sources */,
 				3674257D2C120A7400E122C9 /* TabbarController.swift in Sources */,
+				367425DE2C122C8800E122C9 /* CGPoint+.swift in Sources */,
 				367425652C12033600E122C9 /* SceneDelegate.swift in Sources */,
+				367425EC2C122D0900E122C9 /* UIView+.swift in Sources */,
+				367425DC2C122AB100E122C9 /* ChatbotView.swift in Sources */,
+				3674260A2C23361900E122C9 /* ChattingHistoryDataModel.swift in Sources */,
+				367425F82C12BAA600E122C9 /* ChatTextField.swift in Sources */,
 				367425932C120B8200E122C9 /* TravelPlanViewModel.swift in Sources */,
+				367426152C234B2300E122C9 /* Config.swift in Sources */,
+				367425DA2C1226AF00E122C9 /* NavigationView.swift in Sources */,
+				367425F22C12314E00E122C9 /* ChattingDataModel.swift in Sources */,
 				367425992C120BAD00E122C9 /* ProfileViewModel.swift in Sources */,
 				367425872C120B2D00E122C9 /* RecommendViewModel.swift in Sources */,
 				367425BA2C12173C00E122C9 /* TabbarType.swift in Sources */,
+				367426042C23311800E122C9 /* ChatbotHistoryViewModel.swift in Sources */,
+				367425F62C12A80500E122C9 /* ReceivedCell.swift in Sources */,
+				367425FC2C232DA700E122C9 /* ChattingHistoryView.swift in Sources */,
 				367425852C120B1C00E122C9 /* RecommendVC.swift in Sources */,
 				367425B72C1216B300E122C9 /* AppConstants.swift in Sources */,
+				367425E42C122CC200E122C9 /* String+.swift in Sources */,
+				367425FE2C232E0400E122C9 /* ChattingHistoryVC.swift in Sources */,
 				367425B42C12163600E122C9 /* UIWindow+.swift in Sources */,
 				367425912C120B7200E122C9 /* TravelPlanVC.swift in Sources */,
 			);
@@ -461,6 +629,7 @@
 /* Begin XCBuildConfiguration section */
 		367425712C12033900E122C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 367426102C234A9900E122C9 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -511,7 +680,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -524,6 +693,7 @@
 		};
 		367425722C12033900E122C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 367426102C234A9900E122C9 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -568,7 +738,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -580,6 +750,7 @@
 		};
 		367425742C12033900E122C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 367426102C234A9900E122C9 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -610,6 +781,7 @@
 		};
 		367425752C12033900E122C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 367426102C234A9900E122C9 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -694,6 +866,14 @@
 				minimumVersion = 6.7.1;
 			};
 		};
+		3674260D2C23499C00E122C9 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -731,6 +911,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		3674260E2C23499C00E122C9 /* KakaoMapsSDK-SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3674260D2C23499C00E122C9 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
+			productName = "KakaoMapsSDK-SPM";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -6,7 +6,7 @@ class TabbarController: UITabBarController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        object_setClass(self.tabBar, stepinTabbar.self)
+        object_setClass(self.tabBar, MainTabbar.self)
         delegate = self
     }
     
@@ -34,9 +34,11 @@ class TabbarController: UITabBarController {
         self.tabBar.shadowImage = UIImage()
     }
     
-    class stepinTabbar: UITabBar {
+    class MainTabbar: UITabBar {
         override func layoutSubviews() {
             super.layoutSubviews()
+            self.clipsToBounds = true
+            self.layer.masksToBounds = true
         }
         
         override open func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -143,6 +145,8 @@ class TabbarController: UITabBarController {
         tabBarAppearance.stackedLayoutAppearance.selected.titlePositionAdjustment = .init(horizontal: 0, vertical: -6)
         tabBarAppearance.stackedItemSpacing = 24
         tabBarAppearance.stackedItemPositioning = .centered
+        tabBarAppearance.shadowImage = UIImage()
+        tabBarAppearance.backgroundImage = UIImage()
         tabBarAppearance.backgroundEffect = nil
         self.tabBar.standardAppearance = tabBarAppearance
         self.tabBar.scrollEdgeAppearance = tabBarAppearance
@@ -153,10 +157,5 @@ extension TabbarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController,
                           didSelect viewController: UIViewController) {
         self.selectedViewController = viewController
-    }
-    
-    func tabBarController(_ tabBarController: UITabBarController,
-                          shouldSelect viewController: UIViewController) -> Bool {
-        return true
     }
 }
