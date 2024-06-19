@@ -35,13 +35,15 @@ final class ChatVC: BaseVC {
         viewModel.datasource = UITableViewDiffableDataSource(tableView: chattingView.chattingTableView,
                                                              cellProvider: { (tableView, indexPath, item) in
             if item.isUserCell {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.reuseIdentifier,
-                                                               for: indexPath) as? UserCell else { return UITableViewCell()}
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.reuseIdentifier,
+//                                                               for: indexPath) as? UserCell else { return UITableViewCell()}
+                let cell = UserCell(style: .default, reuseIdentifier: nil)
                 cell.bindData(text: item.singleText ?? "")
                 return cell
             } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceivedCell.reuseIdentifier,
-                                                               for: indexPath) as? ReceivedCell else { return UITableViewCell()}
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceivedCell.reuseIdentifier,
+//                                                               for: indexPath) as? ReceivedCell else { return UITableViewCell()}
+                let cell = ReceivedCell(style: .default, reuseIdentifier: nil)
                 cell.bindData(data: item)
                 return cell
             }

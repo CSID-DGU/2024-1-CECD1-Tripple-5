@@ -63,6 +63,9 @@
 		367426022C232F4000E122C9 /* ChatbotHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426012C232F4000E122C9 /* ChatbotHistoryCell.swift */; };
 		367426042C23311800E122C9 /* ChatbotHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426032C23311800E122C9 /* ChatbotHistoryViewModel.swift */; };
 		3674260A2C23361900E122C9 /* ChattingHistoryDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426092C23361900E122C9 /* ChattingHistoryDataModel.swift */; };
+		3674260F2C23499C00E122C9 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 3674260E2C23499C00E122C9 /* KakaoMapsSDK-SPM */; };
+		367426112C234A9900E122C9 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 367426102C234A9900E122C9 /* Config.xcconfig */; };
+		367426152C234B2300E122C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426142C234B2300E122C9 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +120,8 @@
 		367426012C232F4000E122C9 /* ChatbotHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotHistoryCell.swift; sourceTree = "<group>"; };
 		367426032C23311800E122C9 /* ChatbotHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotHistoryViewModel.swift; sourceTree = "<group>"; };
 		367426092C23361900E122C9 /* ChattingHistoryDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingHistoryDataModel.swift; sourceTree = "<group>"; };
+		367426102C234A9900E122C9 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		367426142C234B2300E122C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +136,7 @@
 				367425BF2C12249300E122C9 /* SnapKit in Frameworks */,
 				367425C42C12249B00E122C9 /* Then in Frameworks */,
 				367425D12C12251E00E122C9 /* RxSwift in Frameworks */,
+				3674260F2C23499C00E122C9 /* KakaoMapsSDK-SPM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +166,7 @@
 				367425772C12034600E122C9 /* Resource */,
 				367425762C12033E00E122C9 /* Source */,
 				367425702C12033900E122C9 /* Info.plist */,
+				367426102C234A9900E122C9 /* Config.xcconfig */,
 			);
 			path = TalkTravel;
 			sourceTree = "<group>";
@@ -167,6 +174,7 @@
 		367425762C12033E00E122C9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				367426132C234B1A00E122C9 /* Secure */,
 				367425ED2C12313200E122C9 /* Data */,
 				367425D42C12266E00E122C9 /* Base */,
 				367425B52C1216A700E122C9 /* Constants */,
@@ -458,6 +466,14 @@
 			path = History;
 			sourceTree = "<group>";
 		};
+		367426132C234B1A00E122C9 /* Secure */ = {
+			isa = PBXGroup;
+			children = (
+				367426142C234B2300E122C9 /* Config.swift */,
+			);
+			path = Secure;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -482,6 +498,7 @@
 				367425CC2C12251E00E122C9 /* RxCocoa */,
 				367425CE2C12251E00E122C9 /* RxRelay */,
 				367425D02C12251E00E122C9 /* RxSwift */,
+				3674260E2C23499C00E122C9 /* KakaoMapsSDK-SPM */,
 			);
 			productName = TalkTravel;
 			productReference = 3674255F2C12033600E122C9 /* TalkTravel.app */;
@@ -516,6 +533,7 @@
 				367425C22C12249B00E122C9 /* XCRemoteSwiftPackageReference "Then" */,
 				367425C52C1224B500E122C9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				3674260D2C23499C00E122C9 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
 			);
 			productRefGroup = 367425602C12033600E122C9 /* Products */;
 			projectDirPath = "";
@@ -536,6 +554,7 @@
 				367425A72C120FFA00E122C9 /* Pretendard-Bold.otf in Resources */,
 				367425AE2C120FFA00E122C9 /* Pretendard-SemiBold.otf in Resources */,
 				367425AA2C120FFA00E122C9 /* Pretendard-ExtraLight.otf in Resources */,
+				367426112C234A9900E122C9 /* Config.xcconfig in Resources */,
 				367425A92C120FFA00E122C9 /* Pretendard-ExtraBold.otf in Resources */,
 				367425AD2C120FFA00E122C9 /* Pretendard-Light.otf in Resources */,
 				367425AB2C120FFA00E122C9 /* Pretendard-Regular.otf in Resources */,
@@ -576,6 +595,7 @@
 				3674260A2C23361900E122C9 /* ChattingHistoryDataModel.swift in Sources */,
 				367425F82C12BAA600E122C9 /* ChatTextField.swift in Sources */,
 				367425932C120B8200E122C9 /* TravelPlanViewModel.swift in Sources */,
+				367426152C234B2300E122C9 /* Config.swift in Sources */,
 				367425DA2C1226AF00E122C9 /* NavigationView.swift in Sources */,
 				367425F22C12314E00E122C9 /* ChattingDataModel.swift in Sources */,
 				367425992C120BAD00E122C9 /* ProfileViewModel.swift in Sources */,
@@ -609,6 +629,7 @@
 /* Begin XCBuildConfiguration section */
 		367425712C12033900E122C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 367426102C234A9900E122C9 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -659,7 +680,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -672,6 +693,7 @@
 		};
 		367425722C12033900E122C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 367426102C234A9900E122C9 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -716,7 +738,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -728,6 +750,7 @@
 		};
 		367425742C12033900E122C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 367426102C234A9900E122C9 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -758,6 +781,7 @@
 		};
 		367425752C12033900E122C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 367426102C234A9900E122C9 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -842,6 +866,14 @@
 				minimumVersion = 6.7.1;
 			};
 		};
+		3674260D2C23499C00E122C9 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -879,6 +911,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		3674260E2C23499C00E122C9 /* KakaoMapsSDK-SPM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3674260D2C23499C00E122C9 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */;
+			productName = "KakaoMapsSDK-SPM";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
