@@ -53,7 +53,7 @@ final class ChatbotView: UIView {
                       size: CGSize(width: 24, height: 24))
     
     let chattingTableView = UITableView(frame: .zero,
-                                                     style: .plain).then {
+                                        style: .grouped).then {
         $0.backgroundColor = .clear
         $0.separatorStyle = .none
         $0.register(ReceivedCell.self,

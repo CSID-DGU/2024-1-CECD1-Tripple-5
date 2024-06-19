@@ -20,6 +20,12 @@ final class ChatTextField: UIView {
         bindTextField()
     }
     
+    func clearTextField() {
+        text = ""
+        textField.text = nil
+        setButtonState(text: text)
+    }
+    
     private func bindTextField() {
         self.textField.rx.text.orEmpty.asObservable()
             .withUnretained(self)

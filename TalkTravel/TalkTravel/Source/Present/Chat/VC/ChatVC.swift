@@ -16,8 +16,19 @@ final class ChatVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindDataSource()
+        setConfigure()
         viewModel.bindData()
         bindTextFieldAction()
+        bindButtonAction()
+    }
+    
+    private func setConfigure() {
+//        self.chattingView.chattingTableView.tableHeaderView = ChatbotHeader(frame: .init(origin: .zero,
+//                                                                                         size: .init(width: UIScreen.main.bounds.height, 
+//                                                                                                     height: 56)))
+//        self.chattingView.chattingTableView.sectionHeaderHeight = 56
+//        self.chattingView.chattingTableView.header
+        self.chattingView.chattingTableView.delegate = self
     }
     
     private func bindDataSource() {
@@ -40,11 +51,34 @@ final class ChatVC: BaseVC {
     private func bindTextFieldAction() {
         chattingView.inputTextField.sendButton.rx.tap.asObservable()
             .withUnretained(self)
-            .bind(onNext: { (vc, _) in
+            .subscribe(onNext: { (vc, _) in
+                if !vc.chattingView.inputTextField.sendButton.isSelected { return }
                 vc.viewModel.addUserItem(text: vc.chattingView.inputTextField.text)
+                vc.chattingView.inputTextField.clearTextField()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindButtonAction() {
+        chattingView.historyButton.rx.tap.asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { (vc, _) in
+                let sideSheetVC = ChattingHistoryVC() // Your side sheet view controller
+                sideSheetVC.modalPresentationStyle = .overFullScreen
+                sideSheetVC.modalTransitionStyle = .crossDissolve
+                vc.present(sideSheetVC, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }
     
     private let chattingView = ChatbotView()
+}
+extension ChatVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 56
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ChatbotHeader.reuseIdentifier) as? ChatbotHeader else { return nil }
+        return header
+    }
 }
