@@ -56,6 +56,8 @@
 		367425F22C12314E00E122C9 /* ChattingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F12C12314E00E122C9 /* ChattingDataModel.swift */; };
 		367425F42C1235EB00E122C9 /* ChatbotHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F32C1235EB00E122C9 /* ChatbotHeader.swift */; };
 		367425F62C12A80500E122C9 /* ReceivedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F52C12A80500E122C9 /* ReceivedCell.swift */; };
+		367425F82C12BAA600E122C9 /* ChatTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F72C12BAA600E122C9 /* ChatTextField.swift */; };
+		367425FA2C12BF1100E122C9 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367425F92C12BF1100E122C9 /* UserCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +105,8 @@
 		367425F12C12314E00E122C9 /* ChattingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingDataModel.swift; sourceTree = "<group>"; };
 		367425F32C1235EB00E122C9 /* ChatbotHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotHeader.swift; sourceTree = "<group>"; };
 		367425F52C12A80500E122C9 /* ReceivedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedCell.swift; sourceTree = "<group>"; };
+		367425F72C12BAA600E122C9 /* ChatTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextField.swift; sourceTree = "<group>"; };
+		367425F92C12BF1100E122C9 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +389,8 @@
 				367425DB2C122AB100E122C9 /* ChatbotView.swift */,
 				367425F32C1235EB00E122C9 /* ChatbotHeader.swift */,
 				367425F52C12A80500E122C9 /* ReceivedCell.swift */,
+				367425F72C12BAA600E122C9 /* ChatTextField.swift */,
+				367425F92C12BF1100E122C9 /* UserCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -524,6 +530,7 @@
 				3674258D2C120B5300E122C9 /* ChatViewModel.swift in Sources */,
 				367425632C12033600E122C9 /* AppDelegate.swift in Sources */,
 				367425E02C122CA200E122C9 /* Collection+.swift in Sources */,
+				367425FA2C12BF1100E122C9 /* UserCell.swift in Sources */,
 				367425F42C1235EB00E122C9 /* ChatbotHeader.swift in Sources */,
 				367425B12C12143900E122C9 /* UIFont+.swift in Sources */,
 				367425E62C122CD000E122C9 /* UIButton+.swift in Sources */,
@@ -534,6 +541,7 @@
 				367425652C12033600E122C9 /* SceneDelegate.swift in Sources */,
 				367425EC2C122D0900E122C9 /* UIView+.swift in Sources */,
 				367425DC2C122AB100E122C9 /* ChatbotView.swift in Sources */,
+				367425F82C12BAA600E122C9 /* ChatTextField.swift in Sources */,
 				367425932C120B8200E122C9 /* TravelPlanViewModel.swift in Sources */,
 				367425DA2C1226AF00E122C9 /* NavigationView.swift in Sources */,
 				367425F22C12314E00E122C9 /* ChattingDataModel.swift in Sources */,

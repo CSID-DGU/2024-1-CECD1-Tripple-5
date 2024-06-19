@@ -21,7 +21,9 @@ final class ChatbotView: UIView {
     
     func setLayout() {
         guard let navigationView else { return }
-        addSubviews(navigationView, chattingTableView)
+        addSubviews(navigationView, 
+                    chattingTableView,
+                    inputTextField)
         
         navigationView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
@@ -32,6 +34,11 @@ final class ChatbotView: UIView {
             $0.top.equalTo(navigationView.snp.bottom)
             $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        inputTextField.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(safeAreaLayoutGuide)
         }
     }
     
@@ -51,8 +58,11 @@ final class ChatbotView: UIView {
         $0.separatorStyle = .none
         $0.register(ReceivedCell.self,
                     forCellReuseIdentifier: ReceivedCell.reuseIdentifier)
+        $0.register(UserCell.self,
+                    forCellReuseIdentifier: UserCell.reuseIdentifier)
         $0.register(ChatbotHeader.self,
                     forHeaderFooterViewReuseIdentifier: ChatbotHeader.reuseIdentifier)
     }
+    let inputTextField = ChatTextField()
     
 }

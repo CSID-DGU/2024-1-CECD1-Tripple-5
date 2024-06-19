@@ -1,13 +1,14 @@
 import UIKit
 
 struct ChattingDataModel: Hashable {
-    let item: [ChattingCellItemData]
+    var chatBotItem: [ChattingCellItemData]
     let sectionProfileImage: UIImage = .icChat
     let sectionChatbotName: String = "AI 챗봇"
 }
 
 struct ChattingCellItemData: Hashable {
     let identifier: UUID = .init()
+    var isUserCell: Bool
     var singleText: String?
     var placeName: String?
     var loacation: String?
