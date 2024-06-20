@@ -3,7 +3,6 @@ import UIKit
 import SnapKit
 import Then
 import RxSwift
-import RxCocoa
 
 final class ChatVC: BaseVC {
     var viewModel = ChatViewModel()
@@ -23,11 +22,6 @@ final class ChatVC: BaseVC {
     }
     
     private func setConfigure() {
-//        self.chattingView.chattingTableView.tableHeaderView = ChatbotHeader(frame: .init(origin: .zero,
-//                                                                                         size: .init(width: UIScreen.main.bounds.height, 
-//                                                                                                     height: 56)))
-//        self.chattingView.chattingTableView.sectionHeaderHeight = 56
-//        self.chattingView.chattingTableView.header
         self.chattingView.chattingTableView.delegate = self
     }
     
