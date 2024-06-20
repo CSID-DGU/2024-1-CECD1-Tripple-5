@@ -42,6 +42,15 @@ final class ChatVC: BaseVC {
 //                                                               for: indexPath) as? ReceivedCell else { return UITableViewCell()}
                 let cell = ReceivedCell(style: .default, reuseIdentifier: nil)
                 cell.bindData(data: item)
+                
+                print(item.singleText)
+                cell.urlLabelActionCompletion = { [weak self] _ in
+                    guard let self else { return }
+                    guard let newUrl = URL(string: self.decodeKakaoLink(viewModel.chatDataDict[identifier]?.link ?? "")) else { return }
+                    let webVC = WebVC()
+                    webVC.url = newUrl
+                    self.present(webVC, animated: true)
+                }
                 cell.buttonActionCompletion = { [weak self] in
                     guard let self else { return }
                     let newDataFlag = !(self.viewModel.chatData.chatBotItem[indexPath.row].isAddPlan ?? false)
@@ -60,6 +69,17 @@ final class ChatVC: BaseVC {
                 return cell
             }
         })
+    }
+    
+    func decodeKakaoLink(_ encodedLink: String) -> String {
+        var decodedLink = encodedLink
+        decodedLink = decodedLink.replacingOccurrences(of: "link: ", with: "")
+//        if let range = decodedLink.range(of: "link: ") {
+//            decodedLink.removeSubrange(range)
+//        }
+//        decodedLink = decodedLink.replacingOccurrences(of: "%3A", with: "::")
+        
+        return decodedLink
     }
     
     private func bindTextFieldAction() {

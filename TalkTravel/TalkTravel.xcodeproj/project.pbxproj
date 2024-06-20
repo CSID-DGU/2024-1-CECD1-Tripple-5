@@ -80,6 +80,9 @@
 		367426452C2445A900E122C9 /* AddPlanAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426442C2445A900E122C9 /* AddPlanAlertVC.swift */; };
 		367426472C2445D800E122C9 /* AddPlanAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426462C2445D800E122C9 /* AddPlanAlertView.swift */; };
 		3674264C2C245A3E00E122C9 /* MakePlanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3674264B2C245A3E00E122C9 /* MakePlanButton.swift */; };
+		3674264F2C2479F400E122C9 /* loadingLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3674264E2C2479F400E122C9 /* loadingLottie.json */; };
+		367426522C247A2100E122C9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 367426512C247A2100E122C9 /* Lottie */; };
+		367426572C247DEC00E122C9 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426562C247DEC00E122C9 /* WebVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -149,6 +152,8 @@
 		367426442C2445A900E122C9 /* AddPlanAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlanAlertVC.swift; sourceTree = "<group>"; };
 		367426462C2445D800E122C9 /* AddPlanAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlanAlertView.swift; sourceTree = "<group>"; };
 		3674264B2C245A3E00E122C9 /* MakePlanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePlanButton.swift; sourceTree = "<group>"; };
+		3674264E2C2479F400E122C9 /* loadingLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingLottie.json; sourceTree = "<group>"; };
+		367426562C247DEC00E122C9 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +166,7 @@
 				367425C72C1224B500E122C9 /* Kingfisher in Frameworks */,
 				367425CB2C12251E00E122C9 /* RxBlocking in Frameworks */,
 				367425CD2C12251E00E122C9 /* RxCocoa in Frameworks */,
+				367426522C247A2100E122C9 /* Lottie in Frameworks */,
 				367425BF2C12249300E122C9 /* SnapKit in Frameworks */,
 				367425C42C12249B00E122C9 /* Then in Frameworks */,
 				367425D12C12251E00E122C9 /* RxSwift in Frameworks */,
@@ -216,6 +222,7 @@
 		367425772C12034600E122C9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				3674264D2C2479EB00E122C9 /* Lottie */,
 				3674259C2C120FDC00E122C9 /* Fonts */,
 				3674256B2C12033900E122C9 /* Assets.xcassets */,
 				3674256D2C12033900E122C9 /* LaunchScreen.storyboard */,
@@ -236,6 +243,7 @@
 		367425792C12065300E122C9 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				367426542C247DE200E122C9 /* WebView */,
 				367425812C120AFC00E122C9 /* Profile */,
 				367425802C120ADF00E122C9 /* TravelPlan */,
 				3674257F2C120AD700E122C9 /* Chat */,
@@ -563,6 +571,30 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		3674264D2C2479EB00E122C9 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				3674264E2C2479F400E122C9 /* loadingLottie.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
+		367426542C247DE200E122C9 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				367426552C247DE700E122C9 /* VC */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		367426552C247DE700E122C9 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				367426562C247DEC00E122C9 /* WebVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -589,6 +621,7 @@
 				367425D02C12251E00E122C9 /* RxSwift */,
 				3674260E2C23499C00E122C9 /* KakaoMapsSDK-SPM */,
 				3674261D2C24100800E122C9 /* Alamofire */,
+				367426512C247A2100E122C9 /* Lottie */,
 			);
 			productName = TalkTravel;
 			productReference = 3674255F2C12033600E122C9 /* TalkTravel.app */;
@@ -625,6 +658,7 @@
 				367425C82C12250400E122C9 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3674260D2C23499C00E122C9 /* XCRemoteSwiftPackageReference "KakaoMapsSDK-SPM" */,
 				3674261C2C24100700E122C9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				367426502C247A2100E122C9 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 367425602C12033600E122C9 /* Products */;
 			projectDirPath = "";
@@ -653,6 +687,7 @@
 				367425A82C120FFA00E122C9 /* Pretendard-Black.otf in Resources */,
 				367426172C240D4500E122C9 /* Config.xcconfig in Resources */,
 				367425A62C120FFA00E122C9 /* Pretendard-Thin.otf in Resources */,
+				3674264F2C2479F400E122C9 /* loadingLottie.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +743,7 @@
 				367425FC2C232DA700E122C9 /* ChattingHistoryView.swift in Sources */,
 				367426412C24340200E122C9 /* CALayer+.swift in Sources */,
 				367426452C2445A900E122C9 /* AddPlanAlertVC.swift in Sources */,
+				367426572C247DEC00E122C9 /* WebVC.swift in Sources */,
 				367425852C120B1C00E122C9 /* RecommendVC.swift in Sources */,
 				367425B72C1216B300E122C9 /* AppConstants.swift in Sources */,
 				367425E42C122CC200E122C9 /* String+.swift in Sources */,
@@ -986,6 +1022,14 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		367426502C247A2100E122C9 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1033,6 +1077,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3674261C2C24100700E122C9 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		367426512C247A2100E122C9 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 367426502C247A2100E122C9 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

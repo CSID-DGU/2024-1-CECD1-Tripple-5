@@ -70,6 +70,7 @@ final class ChatViewModel {
     }
     
     func addUserItem(text: String) {
+        UIWindow.key?.showLoadingIndicator()
         chatData.chatBotItem.append(.init(isUserCell: true, singleText: text))
         if roomId != "" {
             startChat(prompt: text)
@@ -129,11 +130,12 @@ final class ChatViewModel {
                                                        singleText: result.message))
                 self.bindData()
             }
-            
+            UIWindow.key?.removeLoadingIndicator()
         })
     }
     
     func getChatHistoryData() {
+        UIWindow.key?.showLoadingIndicator()
         chatRepository.getChatbotHistory(id: self.roomId, completion: { [weak self] result in
             guard let self else { return }
             result.chatRecords.forEach { result in
@@ -157,10 +159,7 @@ final class ChatViewModel {
                     self.bindData()
                 }
             }
-            
-            print(self.chatData)
-            print(self.chatDataDict)
-            
+            UIWindow.key?.removeLoadingIndicator()
         })
     }
     

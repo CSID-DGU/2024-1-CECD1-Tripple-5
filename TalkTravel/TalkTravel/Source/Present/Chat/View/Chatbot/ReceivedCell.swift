@@ -12,6 +12,7 @@ final class ReceivedCell: UITableViewCell {
     var _appear: Bool?
     var location: ChatLocationData?
     var buttonActionCompletion: (() -> Void)?
+    var urlLabelActionCompletion: ((String) -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -197,6 +198,11 @@ final class ReceivedCell: UITableViewCell {
         }
     }
     
+    @objc private func urlLabelTap() {
+        guard let urlLabelActionCompletion else { return }
+        urlLabelActionCompletion(linkLabel.text ?? "")
+    }
+    
     private let chatContentView = UIView().then {
         $0.backgroundColor = .mainYellow
         $0.layer.cornerRadius = 30
@@ -228,11 +234,14 @@ final class ReceivedCell: UITableViewCell {
         $0.textAlignment = .left
         $0.numberOfLines = 0
     }
-    private let linkLabel = UILabel().then {
+    private lazy var linkLabel = UILabel().then {
         $0.font = Pretendard.pretendardMedium(size: 14).font
         $0.textColor = .gray800
         $0.textAlignment = .left
         $0.numberOfLines = 0
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                       action: #selector(urlLabelTap)))
+        $0.isUserInteractionEnabled = true
     }
     private let detailLabel = UILabel().then {
         $0.font = Pretendard.pretendardMedium(size: 14).font
