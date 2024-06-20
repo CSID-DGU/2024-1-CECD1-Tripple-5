@@ -23,7 +23,8 @@ final class ChatbotView: UIView {
         guard let navigationView else { return }
         addSubviews(navigationView, 
                     chattingTableView,
-                    inputTextField)
+                    inputTextField,
+                    makePlanButton)
         
         navigationView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
@@ -32,13 +33,18 @@ final class ChatbotView: UIView {
         
         chattingTableView.snp.makeConstraints {
             $0.top.equalTo(navigationView.snp.bottom)
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(self.keyboardLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         inputTextField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(safeAreaLayoutGuide)
+            $0.bottom.equalTo(self.keyboardLayoutGuide.snp.top)
+        }
+        
+        makePlanButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(inputTextField.snp.top).inset(-20)
         }
     }
     
@@ -62,7 +68,11 @@ final class ChatbotView: UIView {
                     forCellReuseIdentifier: UserCell.reuseIdentifier)
         $0.register(ChatbotHeader.self,
                     forHeaderFooterViewReuseIdentifier: ChatbotHeader.reuseIdentifier)
+        $0.contentInset = .init(top: 0, left: 0, bottom: 20, right: 0)
     }
     let inputTextField = ChatTextField()
+    let makePlanButton = MakePlanButton().then {
+        $0.isHidden = true
+    }
     
 }

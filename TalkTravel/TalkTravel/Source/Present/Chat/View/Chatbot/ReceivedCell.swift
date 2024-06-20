@@ -10,22 +10,30 @@ final class ReceivedCell: UITableViewCell {
     var _observerAdded: Bool?
     var _auth: Bool?
     var _appear: Bool?
+    var location: ChatLocationData?
+    var buttonActionCompletion: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
         setLayout()
         prepareMapView()
-        addViews()
         addObservers()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
     private func setUI() {
         self.contentView.backgroundColor = .gray100
+    }
+    
+    @objc private func didAddPlanButtonTap() {
+        addPlanButton.button.isSelected.toggle()
+        self.contentView.layoutIfNeeded()
+        guard let buttonActionCompletion else { return }
+        buttonActionCompletion()
     }
     
     func addObservers(){
@@ -44,12 +52,10 @@ final class ReceivedCell: UITableViewCell {
     
     @objc func willResignActive(){
         print("willResignActive")
-//        mapController?.stopRendering()  //뷰가 inactive 상태로 전환되는 경우 렌더링 중인 경우 렌더링을 중단.
     }
     
     @objc func didBecomeActive(){
         print("didBecomeActive")
-//        mapController?.startRendering() //뷰가 active 상태가 되면 렌더링 시작. 엔진은 미리 시작된 상태여야 함.
     }
     
     func createLabelLayer() {
@@ -80,8 +86,12 @@ final class ReceivedCell: UITableViewCell {
             let layer = manager.getLabelLayer(layerID: "PoiLayer")
             let poiOption = PoiOptions(styleID: "PerLevelStyle", poiID: "poi1")
             poiOption.rank = 0
-            let poi1 = layer?.addPoi(option:poiOption, at: MapPoint(longitude: 127.108678, latitude: 37.402001))
-            poi1?.show()
+            if let location = self.location,
+               let long: Double = Double(location.long),
+               let lat: Double = Double(location.lat) {
+                let poi1 = layer?.addPoi(option:poiOption, at: MapPoint(longitude: long, latitude: lat))
+                poi1?.show()
+            }
         }
     }
     
@@ -105,6 +115,13 @@ final class ReceivedCell: UITableViewCell {
             locationLabel.text = placeName
         } else {
             locationLabel.isHidden = true
+        }
+        
+        if let location = data.loacation {
+            locationDetailLabel.isHidden = false
+            locationDetailLabel.text = location
+        } else {
+            locationDetailLabel.isHidden = true
         }
         
         if let link = data.link {
@@ -131,9 +148,21 @@ final class ReceivedCell: UITableViewCell {
         
         if let isAddPlan = data.isAddPlan {
             addPlanButton.isHidden = false
-            addPlanButton.isSelected = isAddPlan
+            addPlanButton.button.isSelected = isAddPlan
+            print("buttonState", isAddPlan)
         } else {
             addPlanButton.isHidden = true
+        }
+        
+        if let detailLocation = data.detailLocation {
+            self.location = nil
+            mapView.isHidden = false
+            self.location = data.detailLocation
+            DispatchQueue.main.async {
+                self.addViews()
+            }
+        } else {
+            mapView.isHidden = true
         }
     }
     
@@ -141,7 +170,8 @@ final class ReceivedCell: UITableViewCell {
         self.contentView.addSubview(chatContentView)
         chatContentView.addSubview(chattingStackView)
         chatContentView.snp.makeConstraints {
-            $0.height.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(10)
+//            $0.height.equalToSuperview()
             $0.width.lessThanOrEqualTo(UIScreen.main.bounds.width)
         }
         
@@ -151,6 +181,7 @@ final class ReceivedCell: UITableViewCell {
         
         chattingStackView.addArrangeSubviews(singleLabel,
                                              locationLabel,
+                                             locationDetailLabel,
                                              linkLabel,
                                              detailLabel,
                                              placeImageView,
@@ -176,27 +207,37 @@ final class ReceivedCell: UITableViewCell {
     private let chattingStackView = UIStackView().then {
         $0.distribution = .fill
         $0.spacing = 6
-        $0.alignment = .center
+        $0.alignment = .fill
         $0.axis = .vertical
     }
     private let singleLabel = UILabel().then {
         $0.font = Pretendard.pretendardMedium(size: 14).font
         $0.textColor = .gray800
+        $0.textAlignment = .left
         $0.numberOfLines = 0
     }
     private let locationLabel = UILabel().then {
         $0.font = Pretendard.pretendardMedium(size: 14).font
         $0.textColor = .gray800
+        $0.textAlignment = .left
+        $0.numberOfLines = 0
+    }
+    private let locationDetailLabel = UILabel().then {
+        $0.font = Pretendard.pretendardMedium(size: 14).font
+        $0.textColor = .gray800
+        $0.textAlignment = .left
         $0.numberOfLines = 0
     }
     private let linkLabel = UILabel().then {
         $0.font = Pretendard.pretendardMedium(size: 14).font
         $0.textColor = .gray800
+        $0.textAlignment = .left
         $0.numberOfLines = 0
     }
     private let detailLabel = UILabel().then {
         $0.font = Pretendard.pretendardMedium(size: 14).font
         $0.textColor = .gray800
+        $0.textAlignment = .left
         $0.numberOfLines = 0
     }
     private let placeImageView = UIImageView().then {
@@ -204,22 +245,26 @@ final class ReceivedCell: UITableViewCell {
         $0.layer.cornerRadius = 30
     }
     private let mapView = KMViewContainer(frame: .init(origin: .zero, size: .init(width: 288, height: 140)))
-    private let addPlanButton = UIButton().then {
-        $0.setImage(.icCheckDefault, for: .normal)
-        $0.setImage(.icCheckActive, for: .normal)
-        $0.setTitle("여행 일정 추가", for: .normal)
+    private lazy var addPlanButton = AddPlanButton().then {
+        $0.button.addTarget(self,
+                            action: #selector(didAddPlanButtonTap),
+                            for: .touchUpInside)
     }
     
 }
 extension ReceivedCell: MapControllerDelegate {
     func addViews() {
-        let defaultPosition: MapPoint = MapPoint(longitude: 127.108678, latitude: 37.402001)
-        let mapviewInfo: MapviewInfo = .init(viewName: "mapView", defaultPosition: defaultPosition)
-        mapController?.addView(mapviewInfo)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.createLabelLayer()
-            self.createPoiStyle()
-            self.createPois()
+        if let location = self.location,
+           let long: Double = Double(location.long),
+           let lat: Double = Double(location.lat) {
+            let defaultPosition: MapPoint = MapPoint(longitude: long, latitude: lat)
+            let mapviewInfo: MapviewInfo = .init(viewName: "mapView", defaultPosition: defaultPosition)
+            mapController?.addView(mapviewInfo)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.createLabelLayer()
+                self.createPoiStyle()
+                self.createPois()
+            }
         }
     }
     func containerDidResized(_ size: CGSize) {

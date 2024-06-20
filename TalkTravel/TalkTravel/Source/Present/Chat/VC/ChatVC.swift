@@ -19,6 +19,8 @@ final class ChatVC: BaseVC {
         viewModel.bindData()
         bindTextFieldAction()
         bindButtonAction()
+        tableViewMoveToBottom()
+        addAlertAction()
     }
     
     private func setConfigure() {
@@ -27,7 +29,8 @@ final class ChatVC: BaseVC {
     
     private func bindDataSource() {
         viewModel.datasource = UITableViewDiffableDataSource(tableView: chattingView.chattingTableView,
-                                                             cellProvider: { (tableView, indexPath, item) in
+                                                             cellProvider: { (tableView, indexPath, identifier) in
+            guard let item = self.viewModel.chatDataDict[identifier] else { return UITableViewCell() }
             if item.isUserCell {
 //                guard let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.reuseIdentifier,
 //                                                               for: indexPath) as? UserCell else { return UITableViewCell()}
@@ -39,6 +42,21 @@ final class ChatVC: BaseVC {
 //                                                               for: indexPath) as? ReceivedCell else { return UITableViewCell()}
                 let cell = ReceivedCell(style: .default, reuseIdentifier: nil)
                 cell.bindData(data: item)
+                cell.buttonActionCompletion = { [weak self] in
+                    guard let self else { return }
+                    let newDataFlag = !(self.viewModel.chatData.chatBotItem[indexPath.row].isAddPlan ?? false)
+                    let newDictFlag = !(self.viewModel.chatDataDict[identifier]?.isAddPlan ?? false)
+                    self.viewModel.chatDataDict[identifier]?.isAddPlan = newDictFlag
+                    self.viewModel.chatData.chatBotItem[indexPath.row].isAddPlan = newDataFlag
+                    self.viewModel.convertData()
+                    self.viewModel.countAddPlanNumber()
+                    
+                    if let value = try? viewModel.isFirstSelectBehaviorRelay.value() {
+                        if !value {
+                            viewModel.isFirstSelectBehaviorRelay.onNext(true)
+                        }
+                    }
+                }
                 return cell
             }
         })
@@ -63,6 +81,62 @@ final class ChatVC: BaseVC {
                 sideSheetVC.modalPresentationStyle = .overFullScreen
                 sideSheetVC.modalTransitionStyle = .crossDissolve
                 vc.present(sideSheetVC, animated: true, completion: nil)
+                
+                
+                sideSheetVC.createNewChatCompletion = { [weak self] in
+                    guard let self else { return }
+                    self.viewModel.resetData(roomId: "")
+                    viewModel.bindData()
+                }
+                
+                sideSheetVC.selecteCompletion = { [weak self] roomId in
+                    guard let self else { return }
+                    self.viewModel.resetData(roomId: roomId)
+                    self.viewModel.getChatHistoryData()
+                    viewModel.bindData()
+                }
+                
+                
+                
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func tableViewMoveToBottom() {
+        viewModel.updateChatData
+            .withUnretained(self)
+            .bind(onNext: { (vc, _) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.chattingView.chattingTableView.setContentOffset(.init(x: .zero,
+                                                                               y: self.chattingView.chattingTableView.contentSize.height - self.chattingView.chattingTableView.bounds.height),
+                                                                         animated: true)
+                    self.chattingView.endEditing(true)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func addAlertAction() {
+        viewModel.isFirstSelectBehaviorRelay
+            .withUnretained(self)
+            .bind(onNext: { (vc, state) in
+                if state {
+                    let alertVC = AddPlanAlertVC()
+                    alertVC.modalTransitionStyle = .crossDissolve
+                    alertVC.modalPresentationStyle = .overFullScreen
+                    vc.present(alertVC, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.addPlanCountRelay
+            .withUnretained(self)
+            .bind(onNext: { (vc, count) in
+                if count >= 2 {
+                    vc.chattingView.makePlanButton.isHidden = false
+                } else {
+                    vc.chattingView.makePlanButton.isHidden = true
+                }
             })
             .disposed(by: disposeBag)
     }
