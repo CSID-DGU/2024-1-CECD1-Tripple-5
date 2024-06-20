@@ -20,6 +20,7 @@ final class ChatbotHistoryCell: UITableViewCell {
     }
     
     private func setConfigure() {
+        self.contentView.backgroundColor = .white
         self.selectionStyle = .none
     }
     

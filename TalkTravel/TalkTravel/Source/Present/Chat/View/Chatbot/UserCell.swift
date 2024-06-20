@@ -28,8 +28,9 @@ final class UserCell: UITableViewCell {
         
         contentBackgroundView.snp.makeConstraints {
             $0.width.lessThanOrEqualTo(UIScreen.main.bounds.width - 80)
-            $0.top.equalToSuperview()
-            $0.bottom.trailing.equalToSuperview().inset(20)
+            $0.top.equalToSuperview().offset(10)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(10)
         }
         
         contentBackgroundView.addSubview(chatTextLabel)

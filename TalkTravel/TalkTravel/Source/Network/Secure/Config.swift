@@ -4,6 +4,7 @@ enum Config {
     enum Keys {
         enum Plist {
             static let KAKAO_APP_KEY = "KAKAO_APP_KEY"
+            static let BASE_URL = "BASE_URL"
         }
     }
     

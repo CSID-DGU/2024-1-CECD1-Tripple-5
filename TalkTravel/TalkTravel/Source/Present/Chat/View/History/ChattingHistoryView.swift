@@ -65,6 +65,7 @@ final class ChattingHistoryView: UIView {
     let chattingHistoryTableView = UITableView(frame: .zero, style: .plain).then {
         $0.register(ChatbotHistoryCell.self,
                     forCellReuseIdentifier: ChatbotHistoryCell.reuseIdentifier)
+        $0.backgroundColor = .clear
         $0.separatorStyle = .none
     }
 }

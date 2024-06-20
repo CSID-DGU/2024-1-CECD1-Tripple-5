@@ -5,14 +5,19 @@ import Then
 import RxSwift
 import RxCocoa
 
-final class ChattingHistoryVC: UIViewController {
+final class ChattingHistoryVC: BaseVC {
     var viewModel = ChatbotHistoryViewModel()
+    var selecteCompletion: ((String) -> Void)?
+    var createNewChatCompletion: (() -> Void)?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bindDataSource()
-        viewModel.bindData()
         setLayout()
+        bindSelectItemAction()
+        bindCreateNewChatAction()
+        viewModel.getHistoryData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,15 +60,40 @@ final class ChattingHistoryVC: UIViewController {
         endRemoveAnimation()
     }
     
+    private func bindCreateNewChatAction() {
+        self.chattingHistoryView.startNewChattingButton.rx.tap.asObservable()
+            .withUnretained(self)
+            .bind(onNext: { (vc, _) in
+                guard let completion = vc.createNewChatCompletion else { return }
+                completion()
+                vc.endRemoveAnimation()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindSelectItemAction() {
+        self.chattingHistoryView.chattingHistoryTableView.rx.itemSelected.asObservable()
+            .withUnretained(self)
+            .bind(onNext: { (vc, indexPath) in
+                if let identifier = vc.viewModel.datasource.itemIdentifier(for: indexPath) {
+                    if let roomId = vc.viewModel.historyDataDict[identifier]?.roomId {
+                        vc.selecteCompletion?(roomId)
+                        vc.endRemoveAnimation()
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     
     private func bindDataSource() {
         viewModel.datasource = UITableViewDiffableDataSource(tableView: chattingHistoryView.chattingHistoryTableView,
-                                                             cellProvider: { (tableView, indexPath, item) in
+                                                             cellProvider: { (tableView, indexPath, identifier) in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ChatbotHistoryCell.reuseIdentifier,
                                                            for: indexPath) as? ChatbotHistoryCell else {
                 return UITableViewCell()
             }
-            cell.bindCell(title: item.title)
+            cell.bindCell(title: self.viewModel.historyDataDict[identifier]?.title ?? "")
             return cell
         })
     }
