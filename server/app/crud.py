@@ -5,7 +5,8 @@ from .service.chatbot.chat import get_response_from_chatgpt
 
 async def get_chat_rooms(db: AsyncSession):
     result = await db.execute(select(models.ChatRoom))
-    return [chatroom.__dict__ for chatroom in result.scalars().all()]
+    chatrooms = [chatroom.__dict__ for chatroom in result.scalars().all()]
+    return {"chat_rooms":chatrooms}
 
 async def create_chat_room(db: AsyncSession, chat_room: schemas.ChatRoomCreate):
     db_chat_room = models.ChatRoom(name=chat_room.name)
@@ -38,4 +39,5 @@ async def get_chat_records(db: AsyncSession, chat_room_id: int):
         .filter(models.ChatRecord.chat_room_id == chat_room_id)
     )
     # return result.scalars().all().__dict__
-    return [record.__dict__ for record in result.scalars().all()]
+    records = [record.__dict__ for record in result.scalars().all()]
+    return {"chat_records":records}

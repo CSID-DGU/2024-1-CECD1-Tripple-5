@@ -1,5 +1,8 @@
 from datetime import datetime
+from typing import List
 from pydantic import BaseModel
+
+
 
 class ChatRecordBase(BaseModel):
     message: str
@@ -16,6 +19,9 @@ class ChatRecord(ChatRecordBase):
     class Config:
         orm_mode: True
 
+class ChatRecordsResponse(BaseModel):
+    chat_records: List[ChatRecord]
+
 class ChatRoomBase(BaseModel):
     name: str
 
@@ -30,3 +36,6 @@ class ChatRoom(ChatRoomBase):
 
     class Config:
         orm_mode: True
+
+class ChatRoomsResponse(BaseModel):
+    chat_rooms: List[ChatRoom]
