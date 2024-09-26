@@ -65,7 +65,6 @@
 		3674260A2C23361900E122C9 /* ChattingHistoryDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426092C23361900E122C9 /* ChattingHistoryDataModel.swift */; };
 		3674260F2C23499C00E122C9 /* KakaoMapsSDK-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 3674260E2C23499C00E122C9 /* KakaoMapsSDK-SPM */; };
 		367426152C234B2300E122C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426142C234B2300E122C9 /* Config.swift */; };
-		367426172C240D4500E122C9 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 367426162C240D4500E122C9 /* Config.xcconfig */; };
 		3674261B2C240EA100E122C9 /* GETService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3674261A2C240EA100E122C9 /* GETService.swift */; };
 		3674261E2C24100800E122C9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3674261D2C24100800E122C9 /* Alamofire */; };
 		367426222C24107300E122C9 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426212C24107300E122C9 /* NetworkResult.swift */; };
@@ -83,6 +82,11 @@
 		3674264F2C2479F400E122C9 /* loadingLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3674264E2C2479F400E122C9 /* loadingLottie.json */; };
 		367426522C247A2100E122C9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 367426512C247A2100E122C9 /* Lottie */; };
 		367426572C247DEC00E122C9 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426562C247DEC00E122C9 /* WebVC.swift */; };
+		36C06DBB2CA5689C008D4EFA /* GlobalNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBA2CA5689C008D4EFA /* GlobalNavigationView.swift */; };
+		36C06DBE2CA56D91008D4EFA /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBD2CA56D91008D4EFA /* RecommendView.swift */; };
+		36C06DC02CA56E52008D4EFA /* GotoChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBF2CA56E52008D4EFA /* GotoChatButton.swift */; };
+		36E1D4BF2CA5CE03008962EC /* RecommendPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E1D4BE2CA5CE03008962EC /* RecommendPlaceCell.swift */; };
+		36E1D4C22CA5D198008962EC /* RecommendCellViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E1D4C12CA5D198008962EC /* RecommendCellViewData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,7 +142,6 @@
 		367426032C23311800E122C9 /* ChatbotHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatbotHistoryViewModel.swift; sourceTree = "<group>"; };
 		367426092C23361900E122C9 /* ChattingHistoryDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingHistoryDataModel.swift; sourceTree = "<group>"; };
 		367426142C234B2300E122C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		367426162C240D4500E122C9 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		3674261A2C240EA100E122C9 /* GETService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GETService.swift; sourceTree = "<group>"; };
 		367426212C24107300E122C9 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		367426232C2410F400E122C9 /* POSTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSTService.swift; sourceTree = "<group>"; };
@@ -154,6 +157,12 @@
 		3674264B2C245A3E00E122C9 /* MakePlanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePlanButton.swift; sourceTree = "<group>"; };
 		3674264E2C2479F400E122C9 /* loadingLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingLottie.json; sourceTree = "<group>"; };
 		367426562C247DEC00E122C9 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
+		36C06DBA2CA5689C008D4EFA /* GlobalNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalNavigationView.swift; sourceTree = "<group>"; };
+		36C06DBD2CA56D91008D4EFA /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
+		36C06DBF2CA56E52008D4EFA /* GotoChatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoChatButton.swift; sourceTree = "<group>"; };
+		36E1D4BC2CA5CCB8008962EC /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		36E1D4BE2CA5CE03008962EC /* RecommendPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendPlaceCell.swift; sourceTree = "<group>"; };
+		36E1D4C12CA5D198008962EC /* RecommendCellViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCellViewData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +189,7 @@
 		367425562C12033600E122C9 = {
 			isa = PBXGroup;
 			children = (
-				367426162C240D4500E122C9 /* Config.xcconfig */,
+				36E1D4BC2CA5CCB8008962EC /* Config.xcconfig */,
 				367425612C12033600E122C9 /* TalkTravel */,
 				367425602C12033600E122C9 /* Products */,
 				367425C92C12251E00E122C9 /* Frameworks */,
@@ -243,6 +252,7 @@
 		367425792C12065300E122C9 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				36C06DB92CA56894008D4EFA /* Global */,
 				367426542C247DE200E122C9 /* WebView */,
 				367425812C120AFC00E122C9 /* Profile */,
 				367425802C120ADF00E122C9 /* TravelPlan */,
@@ -273,6 +283,7 @@
 		3674257E2C120ACD00E122C9 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
+				36C06DBC2CA56D8B008D4EFA /* View */,
 				367425832C120B0B00E122C9 /* ViewModel */,
 				367425822C120B0500E122C9 /* VC */,
 			);
@@ -470,6 +481,7 @@
 		367425EE2C12313700E122C9 /* ViewData */ = {
 			isa = PBXGroup;
 			children = (
+				36E1D4C02CA5D18B008962EC /* Recommend */,
 				367425EF2C12313C00E122C9 /* Chat */,
 			);
 			path = ViewData;
@@ -595,6 +607,40 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		36C06DB92CA56894008D4EFA /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				36C06DBA2CA5689C008D4EFA /* GlobalNavigationView.swift */,
+				36C06DBF2CA56E52008D4EFA /* GotoChatButton.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		36C06DBC2CA56D8B008D4EFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36E1D4BD2CA5CDF2008962EC /* Cell */,
+				36C06DBD2CA56D91008D4EFA /* RecommendView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36E1D4BD2CA5CDF2008962EC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				36E1D4BE2CA5CE03008962EC /* RecommendPlaceCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		36E1D4C02CA5D18B008962EC /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				36E1D4C12CA5D198008962EC /* RecommendCellViewData.swift */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -685,7 +731,6 @@
 				3674256C2C12033900E122C9 /* Assets.xcassets in Resources */,
 				3674256F2C12033900E122C9 /* Base in Resources */,
 				367425A82C120FFA00E122C9 /* Pretendard-Black.otf in Resources */,
-				367426172C240D4500E122C9 /* Config.xcconfig in Resources */,
 				367425A62C120FFA00E122C9 /* Pretendard-Thin.otf in Resources */,
 				3674264F2C2479F400E122C9 /* loadingLottie.json in Resources */,
 			);
@@ -699,11 +744,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				367425E82C122CE300E122C9 /* UIStackView+.swift in Sources */,
+				36C06DBE2CA56D91008D4EFA /* RecommendView.swift in Sources */,
 				367425EA2C122CF800E122C9 /* UITextField+.swift in Sources */,
 				367425972C120BA500E122C9 /* ProfileVC.swift in Sources */,
+				36E1D4C22CA5D198008962EC /* RecommendCellViewData.swift in Sources */,
 				367426242C2410F400E122C9 /* POSTService.swift in Sources */,
 				367425D62C12267700E122C9 /* BaseVC.swift in Sources */,
 				367426022C232F4000E122C9 /* ChatbotHistoryCell.swift in Sources */,
+				36C06DC02CA56E52008D4EFA /* GotoChatButton.swift in Sources */,
 				3674258B2C120B4300E122C9 /* ChatVC.swift in Sources */,
 				367426382C2414E500E122C9 /* ChatDetailDTO.swift in Sources */,
 				3674258D2C120B5300E122C9 /* ChatViewModel.swift in Sources */,
@@ -711,6 +759,7 @@
 				367425E02C122CA200E122C9 /* Collection+.swift in Sources */,
 				367425FA2C12BF1100E122C9 /* UserCell.swift in Sources */,
 				367425F42C1235EB00E122C9 /* ChatbotHeader.swift in Sources */,
+				36E1D4BF2CA5CE03008962EC /* RecommendPlaceCell.swift in Sources */,
 				367426302C24124D00E122C9 /* ChatHistoryDTO.swift in Sources */,
 				367426432C2443B600E122C9 /* AddPlanButton.swift in Sources */,
 				367425B12C12143900E122C9 /* UIFont+.swift in Sources */,
@@ -730,6 +779,7 @@
 				367425F82C12BAA600E122C9 /* ChatTextField.swift in Sources */,
 				367425932C120B8200E122C9 /* TravelPlanViewModel.swift in Sources */,
 				367426152C234B2300E122C9 /* Config.swift in Sources */,
+				36C06DBB2CA5689C008D4EFA /* GlobalNavigationView.swift in Sources */,
 				367425DA2C1226AF00E122C9 /* NavigationView.swift in Sources */,
 				367425F22C12314E00E122C9 /* ChattingDataModel.swift in Sources */,
 				367426362C2413EC00E122C9 /* CreateChatDTO.swift in Sources */,
@@ -769,7 +819,7 @@
 /* Begin XCBuildConfiguration section */
 		367425712C12033900E122C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 367426162C240D4500E122C9 /* Config.xcconfig */;
+			baseConfigurationReference = 36E1D4BC2CA5CCB8008962EC /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -833,7 +883,7 @@
 		};
 		367425722C12033900E122C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 367426162C240D4500E122C9 /* Config.xcconfig */;
+			baseConfigurationReference = 36E1D4BC2CA5CCB8008962EC /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -890,7 +940,6 @@
 		};
 		367425742C12033900E122C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 367426162C240D4500E122C9 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -921,7 +970,6 @@
 		};
 		367425752C12033900E122C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 367426162C240D4500E122C9 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

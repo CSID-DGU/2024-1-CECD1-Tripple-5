@@ -33,7 +33,7 @@ public enum Pretendard {
         case .pretendardRegular(let size):
             return FontProperty(font: .pretendardRegular, size: size)
         case .pretendardSemibold(let size):
-            return FontProperty(font: .pretendardRegular, size: size)
+            return FontProperty(font: .pretendardSemibold, size: size)
         case .pretendardThin(let size):
             return FontProperty(font: .pretendardThin, size: size)
         }
