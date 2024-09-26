@@ -15,7 +15,10 @@ final class RecommendView: UIView {
     }
     
     private func setConfig() {
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(red: 249.0 / 255.0,
+                                       green: 249.0 / 255.0,
+                                       blue: 249.0 / 255.0,
+                                       alpha: 1.0)
     }
     
     private func setLayout() {
@@ -36,7 +39,6 @@ final class RecommendView: UIView {
         scrollContentView.snp.makeConstraints {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.width.equalTo(UIScreen.main.bounds.width - 40)
-//            $0.height.greaterThanOrEqualTo(UIScreen.main.bounds.height)
         }
         scrollContentView.addArrangeSubviews(gotoChatButton,
                                              themePlaceCollectionViewHeader,
@@ -46,14 +48,19 @@ final class RecommendView: UIView {
         gotoChatButton.snp.makeConstraints {
             $0.height.equalTo(140)
         }
+        scrollContentView.setCustomSpacing(30, after: gotoChatButton)
         
         themePlaceCollectionView.snp.makeConstraints {
             $0.height.equalTo(150)
         }
+        scrollContentView.setCustomSpacing(15, after: themePlaceCollectionViewHeader)
+        scrollContentView.setCustomSpacing(20, after: themePlaceCollectionView)
         
         recommendPlaceCollectionView.snp.makeConstraints {
             $0.height.equalTo(150)
         }
+        
+        scrollContentView.setCustomSpacing(15, after: recommendPlaceCollectionViewHeader)
         
     }
     
@@ -78,13 +85,37 @@ final class RecommendView: UIView {
         $0.text = "요즘 뜨는 테마 여행지"
     }
     let themePlaceCollectionView = UICollectionView(frame: .zero,
-                                                    collectionViewLayout: .init())
+                                                    collectionViewLayout: .init()).then {
+        $0.tag = 0
+        $0.showsHorizontalScrollIndicator = false
+        var layout = UICollectionViewFlowLayout()
+        layout.itemSize = .init(width: 250,
+                                height: 150)
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 15
+        layout.minimumInteritemSpacing = 15
+        $0.register(RecommendPlaceCell.self,
+                    forCellWithReuseIdentifier: RecommendPlaceCell.reuseIdentifier)
+        $0.setCollectionViewLayout(layout, animated: false)
+    }
     let recommendPlaceCollectionViewHeader = UILabel().then {
         $0.font = Pretendard.pretendardSemibold(size: 16).font
         $0.textColor = .black
         $0.text = "요즘 뜨는 테마 여행지"
     }
     let recommendPlaceCollectionView = UICollectionView(frame: .zero,
-                                                    collectionViewLayout: .init())
+                                                        collectionViewLayout: .init()).then {
+        $0.tag = 1
+        $0.showsHorizontalScrollIndicator = false
+        var layout = UICollectionViewFlowLayout()
+        layout.itemSize = .init(width: 250,
+                                height: 150)
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 15
+        layout.minimumInteritemSpacing = 15
+        $0.register(RecommendPlaceCell.self,
+                    forCellWithReuseIdentifier: RecommendPlaceCell.reuseIdentifier)
+        $0.setCollectionViewLayout(layout, animated: false)
+    }
 }
 

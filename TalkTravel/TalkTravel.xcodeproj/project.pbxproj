@@ -85,6 +85,8 @@
 		36C06DBB2CA5689C008D4EFA /* GlobalNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBA2CA5689C008D4EFA /* GlobalNavigationView.swift */; };
 		36C06DBE2CA56D91008D4EFA /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBD2CA56D91008D4EFA /* RecommendView.swift */; };
 		36C06DC02CA56E52008D4EFA /* GotoChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBF2CA56E52008D4EFA /* GotoChatButton.swift */; };
+		36E1D4BF2CA5CE03008962EC /* RecommendPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E1D4BE2CA5CE03008962EC /* RecommendPlaceCell.swift */; };
+		36E1D4C22CA5D198008962EC /* RecommendCellViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E1D4C12CA5D198008962EC /* RecommendCellViewData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +161,8 @@
 		36C06DBD2CA56D91008D4EFA /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
 		36C06DBF2CA56E52008D4EFA /* GotoChatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoChatButton.swift; sourceTree = "<group>"; };
 		36E1D4BC2CA5CCB8008962EC /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		36E1D4BE2CA5CE03008962EC /* RecommendPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendPlaceCell.swift; sourceTree = "<group>"; };
+		36E1D4C12CA5D198008962EC /* RecommendCellViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCellViewData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -477,6 +481,7 @@
 		367425EE2C12313700E122C9 /* ViewData */ = {
 			isa = PBXGroup;
 			children = (
+				36E1D4C02CA5D18B008962EC /* Recommend */,
 				367425EF2C12313C00E122C9 /* Chat */,
 			);
 			path = ViewData;
@@ -614,9 +619,26 @@
 		36C06DBC2CA56D8B008D4EFA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				36E1D4BD2CA5CDF2008962EC /* Cell */,
 				36C06DBD2CA56D91008D4EFA /* RecommendView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		36E1D4BD2CA5CDF2008962EC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				36E1D4BE2CA5CE03008962EC /* RecommendPlaceCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		36E1D4C02CA5D18B008962EC /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				36E1D4C12CA5D198008962EC /* RecommendCellViewData.swift */,
+			);
+			path = Recommend;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -725,6 +747,7 @@
 				36C06DBE2CA56D91008D4EFA /* RecommendView.swift in Sources */,
 				367425EA2C122CF800E122C9 /* UITextField+.swift in Sources */,
 				367425972C120BA500E122C9 /* ProfileVC.swift in Sources */,
+				36E1D4C22CA5D198008962EC /* RecommendCellViewData.swift in Sources */,
 				367426242C2410F400E122C9 /* POSTService.swift in Sources */,
 				367425D62C12267700E122C9 /* BaseVC.swift in Sources */,
 				367426022C232F4000E122C9 /* ChatbotHistoryCell.swift in Sources */,
@@ -736,6 +759,7 @@
 				367425E02C122CA200E122C9 /* Collection+.swift in Sources */,
 				367425FA2C12BF1100E122C9 /* UserCell.swift in Sources */,
 				367425F42C1235EB00E122C9 /* ChatbotHeader.swift in Sources */,
+				36E1D4BF2CA5CE03008962EC /* RecommendPlaceCell.swift in Sources */,
 				367426302C24124D00E122C9 /* ChatHistoryDTO.swift in Sources */,
 				367426432C2443B600E122C9 /* AddPlanButton.swift in Sources */,
 				367425B12C12143900E122C9 /* UIFont+.swift in Sources */,
