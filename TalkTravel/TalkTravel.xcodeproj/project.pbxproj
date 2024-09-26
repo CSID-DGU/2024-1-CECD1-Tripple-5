@@ -83,6 +83,9 @@
 		3674264F2C2479F400E122C9 /* loadingLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3674264E2C2479F400E122C9 /* loadingLottie.json */; };
 		367426522C247A2100E122C9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 367426512C247A2100E122C9 /* Lottie */; };
 		367426572C247DEC00E122C9 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426562C247DEC00E122C9 /* WebVC.swift */; };
+		36C06DBB2CA5689C008D4EFA /* GlobalNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBA2CA5689C008D4EFA /* GlobalNavigationView.swift */; };
+		36C06DBE2CA56D91008D4EFA /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBD2CA56D91008D4EFA /* RecommendView.swift */; };
+		36C06DC02CA56E52008D4EFA /* GotoChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBF2CA56E52008D4EFA /* GotoChatButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +157,9 @@
 		3674264B2C245A3E00E122C9 /* MakePlanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePlanButton.swift; sourceTree = "<group>"; };
 		3674264E2C2479F400E122C9 /* loadingLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingLottie.json; sourceTree = "<group>"; };
 		367426562C247DEC00E122C9 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
+		36C06DBA2CA5689C008D4EFA /* GlobalNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalNavigationView.swift; sourceTree = "<group>"; };
+		36C06DBD2CA56D91008D4EFA /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
+		36C06DBF2CA56E52008D4EFA /* GotoChatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoChatButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +249,7 @@
 		367425792C12065300E122C9 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				36C06DB92CA56894008D4EFA /* Global */,
 				367426542C247DE200E122C9 /* WebView */,
 				367425812C120AFC00E122C9 /* Profile */,
 				367425802C120ADF00E122C9 /* TravelPlan */,
@@ -273,6 +280,7 @@
 		3674257E2C120ACD00E122C9 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
+				36C06DBC2CA56D8B008D4EFA /* View */,
 				367425832C120B0B00E122C9 /* ViewModel */,
 				367425822C120B0500E122C9 /* VC */,
 			);
@@ -595,6 +603,23 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		36C06DB92CA56894008D4EFA /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				36C06DBA2CA5689C008D4EFA /* GlobalNavigationView.swift */,
+				36C06DBF2CA56E52008D4EFA /* GotoChatButton.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		36C06DBC2CA56D8B008D4EFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36C06DBD2CA56D91008D4EFA /* RecommendView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -699,11 +724,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				367425E82C122CE300E122C9 /* UIStackView+.swift in Sources */,
+				36C06DBE2CA56D91008D4EFA /* RecommendView.swift in Sources */,
 				367425EA2C122CF800E122C9 /* UITextField+.swift in Sources */,
 				367425972C120BA500E122C9 /* ProfileVC.swift in Sources */,
 				367426242C2410F400E122C9 /* POSTService.swift in Sources */,
 				367425D62C12267700E122C9 /* BaseVC.swift in Sources */,
 				367426022C232F4000E122C9 /* ChatbotHistoryCell.swift in Sources */,
+				36C06DC02CA56E52008D4EFA /* GotoChatButton.swift in Sources */,
 				3674258B2C120B4300E122C9 /* ChatVC.swift in Sources */,
 				367426382C2414E500E122C9 /* ChatDetailDTO.swift in Sources */,
 				3674258D2C120B5300E122C9 /* ChatViewModel.swift in Sources */,
@@ -730,6 +757,7 @@
 				367425F82C12BAA600E122C9 /* ChatTextField.swift in Sources */,
 				367425932C120B8200E122C9 /* TravelPlanViewModel.swift in Sources */,
 				367426152C234B2300E122C9 /* Config.swift in Sources */,
+				36C06DBB2CA5689C008D4EFA /* GlobalNavigationView.swift in Sources */,
 				367425DA2C1226AF00E122C9 /* NavigationView.swift in Sources */,
 				367425F22C12314E00E122C9 /* ChattingDataModel.swift in Sources */,
 				367426362C2413EC00E122C9 /* CreateChatDTO.swift in Sources */,
