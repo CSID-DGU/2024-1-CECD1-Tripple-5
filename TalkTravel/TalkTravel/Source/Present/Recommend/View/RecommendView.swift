@@ -38,9 +38,21 @@ final class RecommendView: UIView {
             $0.width.equalTo(UIScreen.main.bounds.width - 40)
 //            $0.height.greaterThanOrEqualTo(UIScreen.main.bounds.height)
         }
-        scrollContentView.addArrangedSubview(gotoChatButton)
+        scrollContentView.addArrangeSubviews(gotoChatButton,
+                                             themePlaceCollectionViewHeader,
+                                             themePlaceCollectionView,
+                                             recommendPlaceCollectionViewHeader,
+                                             recommendPlaceCollectionView)
         gotoChatButton.snp.makeConstraints {
             $0.height.equalTo(140)
+        }
+        
+        themePlaceCollectionView.snp.makeConstraints {
+            $0.height.equalTo(150)
+        }
+        
+        recommendPlaceCollectionView.snp.makeConstraints {
+            $0.height.equalTo(150)
         }
         
     }
@@ -58,5 +70,21 @@ final class RecommendView: UIView {
         $0.distribution = .fill
     }
     let gotoChatButton = GotoChatButton()
+    
+    
+    let themePlaceCollectionViewHeader = UILabel().then {
+        $0.font = Pretendard.pretendardSemibold(size: 16).font
+        $0.textColor = .black
+        $0.text = "요즘 뜨는 테마 여행지"
+    }
+    let themePlaceCollectionView = UICollectionView(frame: .zero,
+                                                    collectionViewLayout: .init())
+    let recommendPlaceCollectionViewHeader = UILabel().then {
+        $0.font = Pretendard.pretendardSemibold(size: 16).font
+        $0.textColor = .black
+        $0.text = "요즘 뜨는 테마 여행지"
+    }
+    let recommendPlaceCollectionView = UICollectionView(frame: .zero,
+                                                    collectionViewLayout: .init())
 }
 
