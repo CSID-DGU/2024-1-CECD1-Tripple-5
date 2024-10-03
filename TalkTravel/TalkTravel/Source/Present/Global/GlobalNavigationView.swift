@@ -117,12 +117,14 @@ final class GlobalNavigationView: UIView {
                          action: #selector(leftButtonAcition),
                          for: .touchUpInside)
         }
-        let titleLabel = UILabel().then {
+        titleLabel = UILabel().then {
             $0.font = Pretendard.pretendardSemibold(size: 16).font
             $0.textColor = .gray700
             $0.text = title
             $0.textAlignment = .center
         }
+        
+        guard let titleLabel else { return self}
        
         self.addSubviews(backButton,
                          titleLabel)
@@ -141,12 +143,13 @@ final class GlobalNavigationView: UIView {
     }
     
     func makeTitleNavigaiton(title: String) -> GlobalNavigationView {
-        let titleLabel = UILabel().then {
+        titleLabel = UILabel().then {
             $0.font = Pretendard.pretendardSemibold(size: 16).font
             $0.textColor = .gray700
             $0.text = title
             $0.textAlignment = .center
         }
+        guard let titleLabel else { return self }
        
         self.addSubviews(titleLabel)
         
@@ -157,5 +160,11 @@ final class GlobalNavigationView: UIView {
         
         return self
     }
+    
+    func setTitle(title: String) {
+        titleLabel?.text = title
+    }
+    
     var textField: UITextField?
+    private var titleLabel: UILabel?
 }

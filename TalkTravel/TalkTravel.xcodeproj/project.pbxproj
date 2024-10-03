@@ -82,6 +82,14 @@
 		3674264F2C2479F400E122C9 /* loadingLottie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3674264E2C2479F400E122C9 /* loadingLottie.json */; };
 		367426522C247A2100E122C9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 367426512C247A2100E122C9 /* Lottie */; };
 		367426572C247DEC00E122C9 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367426562C247DEC00E122C9 /* WebVC.swift */; };
+		36AFC2AA2CAEDA0F00EFAC70 /* PlanDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFC2A92CAEDA0F00EFAC70 /* PlanDetailVC.swift */; };
+		36AFC2AC2CAEDA3400EFAC70 /* PlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFC2AB2CAEDA3400EFAC70 /* PlanDetailView.swift */; };
+		36AFC2AE2CAEDC6200EFAC70 /* TravelSummarizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFC2AD2CAEDC6200EFAC70 /* TravelSummarizeCell.swift */; };
+		36AFC2B12CAEE79900EFAC70 /* PlanDetailDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFC2B02CAEE79900EFAC70 /* PlanDetailDataModel.swift */; };
+		36AFC2B32CAEEF2200EFAC70 /* PlanDetailBudgetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFC2B22CAEEF2200EFAC70 /* PlanDetailBudgetItemView.swift */; };
+		36AFC2B52CAEF16300EFAC70 /* PlanDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFC2B42CAEF16300EFAC70 /* PlanDetailViewModel.swift */; };
+		36AFC2B72CAEFBC300EFAC70 /* TravelDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFC2B62CAEFBC300EFAC70 /* TravelDetailCell.swift */; };
+		36AFC2B92CAEFEB800EFAC70 /* PlanDetailCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AFC2B82CAEFEB800EFAC70 /* PlanDetailCollectionHeaderView.swift */; };
 		36C06DBB2CA5689C008D4EFA /* GlobalNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBA2CA5689C008D4EFA /* GlobalNavigationView.swift */; };
 		36C06DBE2CA56D91008D4EFA /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBD2CA56D91008D4EFA /* RecommendView.swift */; };
 		36C06DC02CA56E52008D4EFA /* GotoChatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DBF2CA56E52008D4EFA /* GotoChatButton.swift */; };
@@ -167,6 +175,14 @@
 		3674264B2C245A3E00E122C9 /* MakePlanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePlanButton.swift; sourceTree = "<group>"; };
 		3674264E2C2479F400E122C9 /* loadingLottie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingLottie.json; sourceTree = "<group>"; };
 		367426562C247DEC00E122C9 /* WebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
+		36AFC2A92CAEDA0F00EFAC70 /* PlanDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailVC.swift; sourceTree = "<group>"; };
+		36AFC2AB2CAEDA3400EFAC70 /* PlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailView.swift; sourceTree = "<group>"; };
+		36AFC2AD2CAEDC6200EFAC70 /* TravelSummarizeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelSummarizeCell.swift; sourceTree = "<group>"; };
+		36AFC2B02CAEE79900EFAC70 /* PlanDetailDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailDataModel.swift; sourceTree = "<group>"; };
+		36AFC2B22CAEEF2200EFAC70 /* PlanDetailBudgetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailBudgetItemView.swift; sourceTree = "<group>"; };
+		36AFC2B42CAEF16300EFAC70 /* PlanDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailViewModel.swift; sourceTree = "<group>"; };
+		36AFC2B62CAEFBC300EFAC70 /* TravelDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDetailCell.swift; sourceTree = "<group>"; };
+		36AFC2B82CAEFEB800EFAC70 /* PlanDetailCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanDetailCollectionHeaderView.swift; sourceTree = "<group>"; };
 		36C06DBA2CA5689C008D4EFA /* GlobalNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalNavigationView.swift; sourceTree = "<group>"; };
 		36C06DBD2CA56D91008D4EFA /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
 		36C06DBF2CA56E52008D4EFA /* GotoChatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GotoChatButton.swift; sourceTree = "<group>"; };
@@ -272,6 +288,7 @@
 		367425792C12065300E122C9 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				36AFC2A42CAED9F100EFAC70 /* PlanDetail */,
 				36C06DB92CA56894008D4EFA /* Global */,
 				367426542C247DE200E122C9 /* WebView */,
 				367425812C120AFC00E122C9 /* Profile */,
@@ -503,9 +520,10 @@
 		367425EE2C12313700E122C9 /* ViewData */ = {
 			isa = PBXGroup;
 			children = (
+				36AFC2AF2CAEE78E00EFAC70 /* PlanDetail */,
+				36E1D4C02CA5D18B008962EC /* Recommend */,
 				36C06DD62CA68F36008D4EFA /* Profile */,
 				36C06DC72CA677CC008D4EFA /* PlanHistory */,
-				36E1D4C02CA5D18B008962EC /* Recommend */,
 				367425EF2C12313C00E122C9 /* Chat */,
 			);
 			path = ViewData;
@@ -629,6 +647,52 @@
 				367426562C247DEC00E122C9 /* WebVC.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		36AFC2A42CAED9F100EFAC70 /* PlanDetail */ = {
+			isa = PBXGroup;
+			children = (
+				36AFC2A72CAEDA0200EFAC70 /* VC */,
+				36AFC2A62CAED9FC00EFAC70 /* ViewModel */,
+				36AFC2A52CAED9FA00EFAC70 /* View */,
+			);
+			path = PlanDetail;
+			sourceTree = "<group>";
+		};
+		36AFC2A52CAED9FA00EFAC70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36AFC2AB2CAEDA3400EFAC70 /* PlanDetailView.swift */,
+				36AFC2AD2CAEDC6200EFAC70 /* TravelSummarizeCell.swift */,
+				36AFC2B22CAEEF2200EFAC70 /* PlanDetailBudgetItemView.swift */,
+				36AFC2B62CAEFBC300EFAC70 /* TravelDetailCell.swift */,
+				36AFC2B82CAEFEB800EFAC70 /* PlanDetailCollectionHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36AFC2A62CAED9FC00EFAC70 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				36AFC2B42CAEF16300EFAC70 /* PlanDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		36AFC2A72CAEDA0200EFAC70 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				36AFC2A92CAEDA0F00EFAC70 /* PlanDetailVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		36AFC2AF2CAEE78E00EFAC70 /* PlanDetail */ = {
+			isa = PBXGroup;
+			children = (
+				36AFC2B02CAEE79900EFAC70 /* PlanDetailDataModel.swift */,
+			);
+			path = PlanDetail;
 			sourceTree = "<group>";
 		};
 		36C06DB92CA56894008D4EFA /* Global */ = {
@@ -822,6 +886,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				367425E82C122CE300E122C9 /* UIStackView+.swift in Sources */,
+				36AFC2B12CAEE79900EFAC70 /* PlanDetailDataModel.swift in Sources */,
 				36C06DD12CA67D4A008D4EFA /* CustomSlider.swift in Sources */,
 				36C06DBE2CA56D91008D4EFA /* RecommendView.swift in Sources */,
 				367425EA2C122CF800E122C9 /* UITextField+.swift in Sources */,
@@ -844,6 +909,7 @@
 				367426432C2443B600E122C9 /* AddPlanButton.swift in Sources */,
 				367425B12C12143900E122C9 /* UIFont+.swift in Sources */,
 				367425E62C122CD000E122C9 /* UIButton+.swift in Sources */,
+				36AFC2AE2CAEDC6200EFAC70 /* TravelSummarizeCell.swift in Sources */,
 				36C06DCC2CA67B6E008D4EFA /* ProfileView.swift in Sources */,
 				367425E22C122CB300E122C9 /* NSObject+.swift in Sources */,
 				3674263A2C24180C00E122C9 /* ChatDetailHistoryDTO.swift in Sources */,
@@ -855,12 +921,17 @@
 				367425652C12033600E122C9 /* SceneDelegate.swift in Sources */,
 				367425EC2C122D0900E122C9 /* UIView+.swift in Sources */,
 				367425DC2C122AB100E122C9 /* ChatbotView.swift in Sources */,
+				36AFC2B32CAEEF2200EFAC70 /* PlanDetailBudgetItemView.swift in Sources */,
 				3674261B2C240EA100E122C9 /* GETService.swift in Sources */,
+				36AFC2B72CAEFBC300EFAC70 /* TravelDetailCell.swift in Sources */,
 				3674260A2C23361900E122C9 /* ChattingHistoryDataModel.swift in Sources */,
+				36AFC2B52CAEF16300EFAC70 /* PlanDetailViewModel.swift in Sources */,
 				3674264C2C245A3E00E122C9 /* MakePlanButton.swift in Sources */,
 				367425F82C12BAA600E122C9 /* ChatTextField.swift in Sources */,
 				367425932C120B8200E122C9 /* TravelPlanViewModel.swift in Sources */,
+				36AFC2AC2CAEDA3400EFAC70 /* PlanDetailView.swift in Sources */,
 				36C06DC62CA67466008D4EFA /* TravelPlanCell.swift in Sources */,
+				36AFC2AA2CAEDA0F00EFAC70 /* PlanDetailVC.swift in Sources */,
 				36C06DDD2CA69CC8008D4EFA /* TravelThemeItemSection.swift in Sources */,
 				367426152C234B2300E122C9 /* Config.swift in Sources */,
 				36C06DBB2CA5689C008D4EFA /* GlobalNavigationView.swift in Sources */,
@@ -869,6 +940,7 @@
 				367426362C2413EC00E122C9 /* CreateChatDTO.swift in Sources */,
 				367426292C24114500E122C9 /* ChatbotRepository.swift in Sources */,
 				367425992C120BAD00E122C9 /* ProfileViewModel.swift in Sources */,
+				36AFC2B92CAEFEB800EFAC70 /* PlanDetailCollectionHeaderView.swift in Sources */,
 				367425872C120B2D00E122C9 /* RecommendViewModel.swift in Sources */,
 				367425BA2C12173C00E122C9 /* TabbarType.swift in Sources */,
 				367426042C23311800E122C9 /* ChatbotHistoryViewModel.swift in Sources */,
