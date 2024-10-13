@@ -33,12 +33,13 @@ async def read_user(user_id: int, db: AsyncSession = Depends(get_db)):
     return db_user.__dict__
 
 # 모든 사용자 조회 엔드포인트
-@router.get("/users/", response_model=List[schemas.User])
+@router.get("/users/", response_model=schemas.UsersResponse)
 async def read_users(skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)):
     # CRUD 함수를 통해 사용자 리스트를 조회
     users = await crud.get_users(db=db, skip=skip, limit=limit)
     # 조회된 사용자 리스트 반환
-    return [user.__dict__ for user in users]
+    users = [user.__dict__ for user in users]
+    return {"users":users}
 
 # 사용자 정보 업데이트 엔드포인트
 @router.put("/users/{user_id}", response_model=schemas.User)

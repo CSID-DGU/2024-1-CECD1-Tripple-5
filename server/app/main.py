@@ -6,6 +6,7 @@ from .routers import chat
 from .routers import recommendation
 from .routers import travel
 from .routers import user
+from .routers import place
 
 app = FastAPI()
 
@@ -18,4 +19,5 @@ async def startup():
 app.include_router(user.router, prefix="/api/v1", tags=["user"])
 app.include_router(chat.router, prefix="/api/v1", tags=["chat"])
 app.include_router(travel.router, prefix="/api/v1", tags=["travel"])
+app.include_router(place.router, prefix="/api/v1", tags=["place"])
 app.include_router(recommendation.router, prefix="/api/v1", tags=["recommendation"])

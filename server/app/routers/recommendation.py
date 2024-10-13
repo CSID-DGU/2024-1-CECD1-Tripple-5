@@ -32,12 +32,13 @@ async def read_recommendation_record(record_id: int, db: AsyncSession = Depends(
     return db_record.__dict__
 
 # 특정 사용자의 추천 기록 목록 조회 엔드포인트
-@router.get("/users/{user_id}/recommendation_records/", response_model=List[schemas.RecommendationRecord])
+@router.get("/users/{user_id}/recommendation_records/", response_model=schemas.RecommendationRecordsResponse)
 async def read_recommendation_records(user_id: int, db: AsyncSession = Depends(get_db)):
     # 사용자의 추천 기록을 CRUD 함수로 조회
-    records = await crud.get_recommendation_records(db=db, user_id=user_id)
+    recommendation_records = await crud.get_recommendation_records(db=db, user_id=user_id)
     # 조회된 추천 기록 리스트 반환
-    return [record.__dict__ for record in records]
+    recommendation_records = [record.__dict__ for record in recommendation_records]
+    return {"recommendation_records":recommendation_records}
 
 # 추천 기록 삭제 엔드포인트
 @router.delete("/recommendation_records/{record_id}", response_model=schemas.RecommendationRecord)

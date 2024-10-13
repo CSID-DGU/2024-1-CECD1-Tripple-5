@@ -311,7 +311,7 @@ async def create_user(db: AsyncSession, user: schemas.UserCreate):
 
 # 특정 사용자 조회
 async def get_user(db: AsyncSession, user_id: int):
-    result = await db.execute(select(models.User).filter(models.User.id == user_id).options(selectinload(models.User.recommendation_records)))
+    result = await db.execute(select(models.User).filter(models.User.id == user_id))
     return result.scalars().first()  # 첫 번째 사용자 반환
 
 # 모든 사용자 조회
@@ -451,7 +451,7 @@ async def create_travel_schedule(db: AsyncSession, travel_schedule: schemas.Trav
 
 # 특정 여행 일정 조회
 async def get_travel_schedule(db: AsyncSession, schedule_id: int):
-    result = await db.execute(select(models.TravelSchedule).filter(models.TravelSchedule.id == schedule_id).options(selectinload(models.TravelSchedule.places_to_visit)))
+    result = await db.execute(select(models.TravelSchedule).filter(models.TravelSchedule.id == schedule_id))
     return result.scalars().first()  # 첫 번째 여행 일정 반환
 
 # 특정 사용자의 모든 여행 일정 조회
@@ -471,8 +471,8 @@ async def delete_travel_schedule(db: AsyncSession, schedule_id: int):
 
 # PlaceToVisit CRUD
 # 새로운 방문할 장소 생성
-async def create_place_to_visit(db: AsyncSession, place_to_visit: schemas.PlaceToVisitCreate):
-    db_place_to_visit = models.PlaceToVisit(**place_to_visit.dict())
+async def create_place_to_visit(db: AsyncSession, place_to_visit: schemas.PlaceToVisitCreate, travel_schedule_id: int):
+    db_place_to_visit = models.PlaceToVisit(**place_to_visit.dict(), travel_schedule_id=travel_schedule_id)
     db.add(db_place_to_visit)  # DB에 방문할 장소 추가
     await db.commit()  # 변경 사항 커밋
     await db.refresh(db_place_to_visit)  # DB에서 새로 추가된 방문할 장소 정보 갱신
@@ -483,12 +483,20 @@ async def get_places_to_visit(db: AsyncSession, travel_schedule_id: int):
     result = await db.execute(select(models.PlaceToVisit).filter(models.PlaceToVisit.travel_schedule_id == travel_schedule_id))
     return result.scalars().all()  # 방문할 장소 목록 반환
 
-# 특정 여행 일정의 모든 방문할 장소 조회
+# 방문 장소 조회
 async def get_place_to_visit(db: AsyncSession, place_to_visit_id: int):
     result = await db.execute(select(models.PlaceToVisit).filter(models.PlaceToVisit.id == place_to_visit_id))
     return result.scalars().first()  # 방문할 장소 목록 반환
 
-
+async def update_place_to_visit(db: AsyncSession, place_to_visit_id: int, place_to_visit: schemas.PlaceToVisit):
+    db_place_to_visit = await get_place_to_visit(db, place_to_visit_id)
+    if db_place_to_visit is None:
+        return None  # 없을 시 None 반환
+    for key, value in place_to_visit.dict().items():
+        setattr(db_place_to_visit, key, value)  # 방문 장소 정보 업데이트
+    await db.commit()  # 변경 사항 커밋
+    await db.refresh(db_place_to_visit)  # DB에서 갱신된 방문 장소 정보 가져오기
+    return db_place_to_visit  # 업데이트된 방문 장소 반환
 
 # 방문할 장소 삭제
 async def delete_place_to_visit(db: AsyncSession, place_to_visit_id: int):
