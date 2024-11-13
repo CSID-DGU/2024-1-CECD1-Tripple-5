@@ -224,6 +224,10 @@
 		368DA5B52CC1E78E00AE7F43 /* User */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = User; sourceTree = "<group>"; };
 		36A5B90D2CE4C40D00A36A69 /* TravelRepository */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TravelRepository; sourceTree = "<group>"; };
 		36A5B9102CE4C49600A36A69 /* Travel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Travel; sourceTree = "<group>"; };
+		36A5B91F2CE4CDB600A36A69 /* PlaceRepository */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PlaceRepository; sourceTree = "<group>"; };
+		36A5B9242CE4CE5000A36A69 /* Place */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Place; sourceTree = "<group>"; };
+		36A5B9312CE4DDB300A36A69 /* Recommendation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Recommendation; sourceTree = "<group>"; };
+		36A5B9342CE4DDE700A36A69 /* Recommendation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Recommendation; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -598,6 +602,8 @@
 		367426182C240D8500E122C9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				36A5B9312CE4DDB300A36A69 /* Recommendation */,
+				36A5B91F2CE4CDB600A36A69 /* PlaceRepository */,
 				36A5B90D2CE4C40D00A36A69 /* TravelRepository */,
 				368DA5B22CC1E76000AE7F43 /* UserRepository */,
 				367426272C24113900E122C9 /* ChatbotRepository */,
@@ -638,6 +644,8 @@
 		3674262D2C24123300E122C9 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				36A5B9342CE4DDE700A36A69 /* Recommendation */,
+				36A5B9242CE4CE5000A36A69 /* Place */,
 				36A5B9102CE4C49600A36A69 /* Travel */,
 				368DA5B52CC1E78E00AE7F43 /* User */,
 				367426312C24137100E122C9 /* Chat */,
@@ -841,6 +849,10 @@
 				368DA5B52CC1E78E00AE7F43 /* User */,
 				36A5B90D2CE4C40D00A36A69 /* TravelRepository */,
 				36A5B9102CE4C49600A36A69 /* Travel */,
+				36A5B91F2CE4CDB600A36A69 /* PlaceRepository */,
+				36A5B9242CE4CE5000A36A69 /* Place */,
+				36A5B9312CE4DDB300A36A69 /* Recommendation */,
+				36A5B9342CE4DDE700A36A69 /* Recommendation */,
 			);
 			name = TalkTravel;
 			packageProductDependencies = (
