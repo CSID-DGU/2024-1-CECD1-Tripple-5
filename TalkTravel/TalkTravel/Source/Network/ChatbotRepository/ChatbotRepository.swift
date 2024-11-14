@@ -13,7 +13,7 @@ final class ChatbotRepository {
         })
     }
     
-    func postCreateChatRoom(userId: String,
+    func postCreateChatRoom(userId: Int,
                             chatRoomName: String,
                             completion: @escaping ((PostCreateChatRoomDTO) -> Void)) {
         let body = ["chat_room_name": chatRoomName]

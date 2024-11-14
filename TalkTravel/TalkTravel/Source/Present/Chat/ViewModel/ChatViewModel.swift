@@ -82,22 +82,26 @@ final class ChatViewModel {
     }
     
     private func removeEscapeWord(text: String) -> String {
-        let originString = text.trimmingCharacters(in: ["\\", "n"])
+        let originString = text.replacingOccurrences(of: "\\", with: "")
+                               .replacingOccurrences(of: "\n", with: "")
+        print("originString: ", originString)
         return originString
     }
-    
-    private func parseMessageToStruct(data: String) -> ChatDetailMessageDTO? {
-        guard let data = data.data(using: .utf8, allowLossyConversion: false) else { return nil }
-        guard let message = try? JSONDecoder().decode(ChatDetailMessageDTO.self, from: data) else { return nil }
-        print(message)
+
+    private func parseMessageToStruct(data: String) -> ChatDetailMessageItemDTO? {
+        let cleanedData = removeEscapeWord(text: data)
+        guard let jsonData = cleanedData.data(using: .utf8, allowLossyConversion: false) else { return nil }
+        print(jsonData)
+        guard let message = try? JSONDecoder().decode(ChatDetailMessageItemDTO.self, from: jsonData) else { return nil }
+        print("message: ", message)
         return message
     }
-    
     //MARK: - Network
     func createRoom(name: String,
                     prompt: String) {
-        chatRepository.createChatRoom(name: name,
-                                      completion: { [weak self] result in
+        chatRepository.postCreateChatRoom(userId: 1,
+                                          chatRoomName: name,
+                                          completion: { [weak self] result in
             guard let self else { return }
             self.roomId = String(result.id)
             startChat(prompt: prompt)
@@ -105,31 +109,31 @@ final class ChatViewModel {
     }
     
     func startChat(prompt: String) {
-        chatRepository.chatDetailPost(id: self.roomId,
-                                      prompt: prompt,
-                                      isChatbot: false,
-                                      completion: { [weak self] result in
+        chatRepository.postCreateChatRecords(chatRoomId: self.roomId,
+                                             message: prompt,
+                                             isChatbot: false,
+                                             completion: { [weak self] result in
+            print(result)
             guard let self else { return }
             if let messageData = parseMessageToStruct(data: removeEscapeWord(text: result.message)) {
-                messageData.description.places.forEach {
+                messageData.description.places.forEach { [weak self] messageData in
+                    guard let self else { return }
                     self.chatData.chatBotItem.append(.init(isUserCell: !result.isChatbot,
-                                                           singleText: messageData.description.content,
-                                                           placeName: "이름: " + $0.name,
-                                                           loacation: "위치: " + $0.location,
-                                                           detailLocation: .init(long: $0.longitude,
-                                                                                 lat: $0.latitude),
-                                                           link: "link: " + $0.url,
-                                                           detail: "상세 설명: " + $0.description,
+                                                           singleText: result.message,
+                                                           placeName: "이름: " + messageData.name,
+                                                           loacation: "위치: " + messageData.location,
+                                                           detailLocation: .init(long: messageData.longitude,
+                                                                                 lat: messageData.latitude),
+                                                           link: "link: " + messageData.url,
+                                                           detail: "상세 설명: " + messageData.description,
                                                            placeImagePath: nil,
                                                            isAddPlan: false))
-                    
                 }
-                self.bindData()
             } else {
                 self.chatData.chatBotItem.append(.init(isUserCell: false,
-                                                       singleText: result.message))
-                self.bindData()
+                                                       singleText: "오류가 발생했습니다."))
             }
+            self.bindData()
             UIWindow.key?.removeLoadingIndicator()
         })
     }

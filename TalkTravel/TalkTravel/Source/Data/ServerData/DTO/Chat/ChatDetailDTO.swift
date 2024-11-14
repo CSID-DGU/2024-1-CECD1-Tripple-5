@@ -14,7 +14,6 @@ struct ChatDetailDTO: Codable {
         case timestamp
     }
 }
-import Foundation
 
 // MARK: - WeatherDataModel
 struct ChatDetailMessageDTO: Codable {
