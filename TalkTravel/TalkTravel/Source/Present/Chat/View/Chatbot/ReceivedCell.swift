@@ -1,12 +1,11 @@
 import UIKit
+import MapKit
 
 import SnapKit
 import Then
 import Kingfisher
-import KakaoMapsSDK
 
 final class ReceivedCell: UITableViewCell {
-    var mapController: KMController?
     var _observerAdded: Bool?
     var _auth: Bool?
     var _appear: Bool?
@@ -18,7 +17,6 @@ final class ReceivedCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUI()
         setLayout()
-        prepareMapView()
         addObservers()
     }
 
@@ -57,50 +55,6 @@ final class ReceivedCell: UITableViewCell {
     
     @objc func didBecomeActive(){
         print("didBecomeActive")
-    }
-    
-    func createLabelLayer() {
-        let view = mapController?.getView("mapView") as! KakaoMap
-        let manager = view.getLabelManager()
-        let layerOption = LabelLayerOptions(layerID: "PoiLayer", 
-                                            competitionType: .none,
-                                            competitionUnit: .symbolFirst,
-                                            orderType: .rank,
-                                            zOrder: 10)
-        let _ = manager.addLabelLayer(option: layerOption)
-    }
-    
-    func createPoiStyle() {
-        let view = mapController?.getView("mapView") as! KakaoMap
-        let manager = view.getLabelManager()
-        let iconStyle1 = PoiIconStyle(symbol: .icMap, anchorPoint: .init(x: 0.0, y: 0.5), badges: [])
-
-        let poiStyle = PoiStyle(styleID: "PerLevelStyle", styles: [
-            PerLevelPoiStyle(iconStyle: iconStyle1, level: 5)
-        ])
-        manager.addPoiStyle(poiStyle)
-    }
-    
-    func createPois() {
-        if let view = mapController?.getView("mapView") as? KakaoMap {
-            let manager = view.getLabelManager()
-            let layer = manager.getLabelLayer(layerID: "PoiLayer")
-            let poiOption = PoiOptions(styleID: "PerLevelStyle", poiID: "poi1")
-            poiOption.rank = 0
-            if let location = self.location,
-               let long: Double = Double(location.long),
-               let lat: Double = Double(location.lat) {
-                let poi1 = layer?.addPoi(option:poiOption, at: MapPoint(longitude: long, latitude: lat))
-                poi1?.show()
-            }
-        }
-    }
-    
-    private func prepareMapView() {
-        mapController = KMController(viewContainer: mapView)
-        mapController!.delegate = self
-        mapController?.prepareEngine()
-        mapController?.activateEngine()
     }
     
     func bindData(data: ChattingCellItemData) {
@@ -158,13 +112,30 @@ final class ReceivedCell: UITableViewCell {
         if let detailLocation = data.detailLocation {
             self.location = nil
             mapView.isHidden = false
-            self.location = data.detailLocation
-            DispatchQueue.main.async {
-                self.addViews()
-            }
+            setMap(location: .init(lat: Double(detailLocation.lat) ?? 0,
+                                   lon: Double(detailLocation.long) ?? 0))
         } else {
             mapView.isHidden = true
         }
+    }
+    
+    private func setMap(location: PlaceLocateData) {
+        let center = CLLocationCoordinate2D(latitude: location.lat,
+                                            longitude: location.lon)
+        let span = MKCoordinateSpan(latitudeDelta: 0.005,
+                                    longitudeDelta: 0.005)
+        let region = MKCoordinateRegion(center: center,
+                                        span: span)
+        mapView.setRegion(region,
+                          animated: false)
+        createAnnotaion(location: location)
+    }
+    
+    func createAnnotaion(location: PlaceLocateData) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat,
+                                                       longitude: location.lon)
+        mapView.addAnnotation(annotation)
     }
     
     private func setLayout() {
@@ -172,7 +143,6 @@ final class ReceivedCell: UITableViewCell {
         chatContentView.addSubview(chattingStackView)
         chatContentView.snp.makeConstraints {
             $0.top.bottom.equalToSuperview().inset(10)
-//            $0.height.equalToSuperview()
             $0.width.lessThanOrEqualTo(UIScreen.main.bounds.width)
         }
         
@@ -253,7 +223,10 @@ final class ReceivedCell: UITableViewCell {
         $0.contentMode = .scaleAspectFill
         $0.layer.cornerRadius = 30
     }
-    private let mapView = KMViewContainer(frame: .init(origin: .zero, size: .init(width: 288, height: 140)))
+    private lazy var mapView = MKMapView(frame: .init(origin: .zero, size: .init(width: 288, height: 140)))
+        .then {
+            $0.delegate = self
+        }
     private lazy var addPlanButton = AddPlanButton().then {
         $0.button.addTarget(self,
                             action: #selector(didAddPlanButtonTap),
@@ -261,26 +234,19 @@ final class ReceivedCell: UITableViewCell {
     }
     
 }
-extension ReceivedCell: MapControllerDelegate {
-    func addViews() {
-        if let location = self.location,
-           let long: Double = Double(location.long),
-           let lat: Double = Double(location.lat) {
-            let defaultPosition: MapPoint = MapPoint(longitude: long, latitude: lat)
-            let mapviewInfo: MapviewInfo = .init(viewName: "mapView", defaultPosition: defaultPosition)
-            mapController?.addView(mapviewInfo)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.createLabelLayer()
-                self.createPoiStyle()
-                self.createPois()
-            }
+
+extension ReceivedCell: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: any MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else { return nil }
+        let identifier = "custom_place"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = false
+            annotationView?.image = .icMap
         }
-    }
-    func containerDidResized(_ size: CGSize) {
-        let mapView: KakaoMap? = mapController?.getView("mapView") as? KakaoMap
-        mapView?.viewRect = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: size)
-    }
-    func authenticationFailed(_ errorCode: Int, desc: String) {
-        print("에러", errorCode, desc)
+        
+        return annotationView
     }
 }

@@ -116,16 +116,16 @@ final class ChatViewModel {
             print(result)
             guard let self else { return }
             if let messageData = parseMessageToStruct(data: removeEscapeWord(text: result.message)) {
-                messageData.description.places.forEach { [weak self] messageData in
+                messageData.places.forEach { [weak self] places in
                     guard let self else { return }
                     self.chatData.chatBotItem.append(.init(isUserCell: !result.isChatbot,
-                                                           singleText: result.message,
-                                                           placeName: "이름: " + messageData.name,
-                                                           loacation: "위치: " + messageData.location,
-                                                           detailLocation: .init(long: messageData.longitude,
-                                                                                 lat: messageData.latitude),
-                                                           link: "link: " + messageData.url,
-                                                           detail: "상세 설명: " + messageData.description,
+                                                           singleText: "",
+                                                           placeName: "이름: " + places.name,
+                                                           loacation: "위치: " + places.location,
+                                                           detailLocation: .init(long: places.longitude,
+                                                                                 lat: places.latitude),
+                                                           link: "link: " + places.url,
+                                                           detail: "상세 설명: " + places.description,
                                                            placeImagePath: nil,
                                                            isAddPlan: false))
                 }
@@ -144,15 +144,16 @@ final class ChatViewModel {
             guard let self else { return }
             result.chatRecords.forEach { result in
                 if let messageData = self.parseMessageToStruct(data: self.removeEscapeWord(text: result.message)) {
-                    messageData.description.places.forEach {
+                    messageData.places.forEach { [weak self] places in
+                        guard let self else { return }
                         self.chatData.chatBotItem.append(.init(isUserCell: !result.isChatbot,
-                                                               singleText: messageData.description.content,
-                                                               placeName: "이름: " + $0.name,
-                                                               loacation: "위치: " + $0.location,
-                                                               detailLocation: .init(long: $0.longitude,
-                                                                                     lat: $0.latitude),
-                                                               link: "link: " + $0.url,
-                                                               detail: "상세 설명: " + $0.description,
+                                                               singleText: result.message,
+                                                               placeName: "이름: " + places.name,
+                                                               loacation: "위치: " + places.location,
+                                                               detailLocation: .init(long: places.longitude,
+                                                                                     lat: places.latitude),
+                                                               link: "link: " + places.url,
+                                                               detail: "상세 설명: " + places.description,
                                                                placeImagePath: nil,
                                                                isAddPlan: false))
                     }
