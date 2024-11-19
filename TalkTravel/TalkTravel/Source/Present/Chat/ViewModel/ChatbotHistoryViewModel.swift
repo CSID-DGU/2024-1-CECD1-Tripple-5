@@ -32,10 +32,11 @@ final class ChatbotHistoryViewModel {
     }
     
     func getHistoryData() {
-        chatbotRepository.getChatRooms(completion: { [weak self] result in
+        chatbotRepository.getReadChatRooms(userId: "1",
+                                           completion: { [weak self] result in
             guard let self else { return }
             print(result)
-            self.historyData = result.chatRooms.map { .init(title: $0.name,
+            self.historyData = result.chatRooms.map { .init(title: $0.chatRoomName,
                                                             roomId: String($0.id)) }
             bindData()
         })
