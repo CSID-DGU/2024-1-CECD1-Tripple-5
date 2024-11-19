@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - Welcome
 struct GetReadChatRecordsDTO: Codable {
-    let chatRecords: ReadChatRecord
+    let chatRecords: [ReadChatRecord]
 
     enum CodingKeys: String, CodingKey {
         case chatRecords = "chat_records"

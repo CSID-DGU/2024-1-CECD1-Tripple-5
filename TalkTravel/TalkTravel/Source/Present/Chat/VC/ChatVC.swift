@@ -117,11 +117,13 @@ final class ChatVC: BaseVC {
         viewModel.updateChatData
             .withUnretained(self)
             .bind(onNext: { (vc, _) in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    self.chattingView.chattingTableView.setContentOffset(.init(x: .zero,
-                                                                               y: self.chattingView.chattingTableView.contentSize.height - self.chattingView.chattingTableView.bounds.height),
-                                                                         animated: true)
-                    self.chattingView.endEditing(true)
+                if self.chattingView.chattingTableView.contentSize.height > 300 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.chattingView.chattingTableView.setContentOffset(.init(x: .zero,
+                                                                                   y: self.chattingView.chattingTableView.contentSize.height - self.chattingView.chattingTableView.bounds.height),
+                                                                             animated: true)
+                        self.chattingView.endEditing(true)
+                    }
                 }
             })
             .disposed(by: disposeBag)

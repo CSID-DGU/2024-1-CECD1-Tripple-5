@@ -62,6 +62,8 @@ final class ChatbotView: UIView {
                                         style: .grouped).then {
         $0.backgroundColor = .clear
         $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
+        $0.showsHorizontalScrollIndicator = false
         $0.register(ReceivedCell.self,
                     forCellReuseIdentifier: ReceivedCell.reuseIdentifier)
         $0.register(UserCell.self,

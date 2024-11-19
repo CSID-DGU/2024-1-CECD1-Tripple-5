@@ -51,7 +51,7 @@ final class ChatbotRepository {
     
     func getReadChatRecords(chatRoomId: String,
                             completion: @escaping ((GetReadChatRecordsDTO) -> Void)) {
-        GETService.shared.getService(from: AppConstants.baseURL + "/api/v1/chat_rooms/\(chatRoomId)",
+        GETService.shared.getService(from: AppConstants.baseURL + "/api/v1/chat_rooms/\(chatRoomId)/records",
                                      callback: { (data: GetReadChatRecordsDTO?, error) in
             guard let data = data else {
                 return

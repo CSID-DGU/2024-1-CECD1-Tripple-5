@@ -138,29 +138,38 @@ final class ChatViewModel {
     }
     
     func getChatHistoryData() {
+        self.chatData.chatBotItem.removeAll()
         chatRepository.getReadChatRecords(chatRoomId: self.roomId,
                                           completion: { [weak self] result in
             guard let self else { return }
-            if let messageData = parseMessageToStruct(data: removeEscapeWord(text: result.chatRecords.message)) {
-                messageData.places.forEach { [weak self] places in
-                    guard let self else { return }
-                    self.chatData.chatBotItem.append(.init(isUserCell: !result.chatRecords.isChatbot,
-                                                           singleText: "",
-                                                           placeName: "이름: " + places.name,
-                                                           loacation: "위치: " + places.location,
-                                                           detailLocation: .init(long: places.longitude,
-                                                                                 lat: places.latitude),
-                                                           link: "link: " + places.url,
-                                                           detail: "상세 설명: " + places.description,
-                                                           placeImagePath: nil,
-                                                           isAddPlan: false))
+            result.chatRecords.forEach { [weak self] chatRecord in
+                guard let self else { return }
+                if let messageData = parseMessageToStruct(data: removeEscapeWord(text: chatRecord.message)) {
+                    messageData.places.forEach { [weak self] places in
+                        guard let self else { return }
+                        self.chatData.chatBotItem.append(.init(isUserCell: !chatRecord.isChatbot,
+                                                               singleText: "",
+                                                               placeName: "이름: " + places.name,
+                                                               loacation: "위치: " + places.location,
+                                                               detailLocation: .init(long: places.longitude,
+                                                                                     lat: places.latitude),
+                                                               link: "link: " + places.url,
+                                                               detail: "상세 설명: " + places.description,
+                                                               placeImagePath: nil,
+                                                               isAddPlan: false))
+                    }
+                } else {
+                    if chatRecord.isChatbot {
+                        self.chatData.chatBotItem.append(.init(isUserCell: false,
+                                                               singleText: "오류가 발생했습니다."))
+                    } else {
+                        self.chatData.chatBotItem.append(.init(isUserCell: true,
+                                                               singleText: chatRecord.message))
+                    }
                 }
-            } else {
-                self.chatData.chatBotItem.append(.init(isUserCell: false,
-                                                       singleText: "오류가 발생했습니다."))
+                self.bindData()
+                UIWindow.key?.removeLoadingIndicator()
             }
-            self.bindData()
-            UIWindow.key?.removeLoadingIndicator()
         })
     }
     

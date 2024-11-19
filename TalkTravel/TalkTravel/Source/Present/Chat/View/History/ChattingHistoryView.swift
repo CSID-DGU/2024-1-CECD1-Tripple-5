@@ -67,5 +67,7 @@ final class ChattingHistoryView: UIView {
                     forCellReuseIdentifier: ChatbotHistoryCell.reuseIdentifier)
         $0.backgroundColor = .clear
         $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
+        $0.showsHorizontalScrollIndicator = false
     }
 }
