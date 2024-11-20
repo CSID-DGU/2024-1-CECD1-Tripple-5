@@ -1,7 +1,7 @@
 import Foundation
 
 struct RecommendCellViewData {
-    let placeId: String
+    let placeId: Int
     let placeImagePath: String
     let placeTitle: String
     let localeTitle: String
