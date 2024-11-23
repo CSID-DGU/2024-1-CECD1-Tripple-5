@@ -1,8 +1,10 @@
 from sqlalchemy import and_, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from . import models, schemas
-from .service.chatbot.chat import get_response_from_chatgpt
+
+from ..dto import schemas
+from ..entity import models
+from .chatbot.chat import get_response_from_chatgpt
 from sqlalchemy.orm import selectinload
 
 # CRUD 함수 정의

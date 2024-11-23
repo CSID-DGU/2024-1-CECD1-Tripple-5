@@ -1,7 +1,9 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from app import models, schemas, crud
-from app.database import engine, get_db
+from app.service import crud
+from app.config.database import engine, get_db
+from app.dto import schemas
+from app.entity import models
 from .routers import chat
 from .routers import recommendation
 from .routers import travel

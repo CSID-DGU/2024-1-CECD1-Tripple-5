@@ -1,9 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from .. import crud, models, schemas
-from ..database import SessionLocal, engine
+
+from ..entity import models
+
+from ..dto import schemas
+from ..service import crud
+from ..config.database import SessionLocal, engine
 from sqlalchemy.ext.asyncio import AsyncSession
-from ..database import get_db
+from ..config.database import get_db
 from typing import List
 
 
