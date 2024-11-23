@@ -12,7 +12,7 @@ from sqlalchemy.orm import selectinload
 # ChatRoom CRUD
 # 새로운 채팅방 생성
 async def create_chat_room(db: AsyncSession, chat_room: chat_room_dto.ChatRoomCreate, user_id: int):
-    db_chat_room = chat_room.ChatRoom(**chat_room.dict(), user_id=user_id)
+    db_chat_room = chat_room_model.ChatRoom(**chat_room.dict(), user_id=user_id)
     db.add(db_chat_room)  # DB에 채팅방 추가
     await db.commit()  # 변경 사항 커밋
     await db.refresh(db_chat_room)  # DB에서 새로 추가된 채팅방 정보 갱신

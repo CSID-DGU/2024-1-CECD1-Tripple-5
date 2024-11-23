@@ -10,13 +10,11 @@ from sqlalchemy.orm import selectinload
 # User CRUD
 # 새로운 사용자 생성
 async def create_user(db: AsyncSession, user: user_dto.UserCreate):
-    db_user = user.User(**user.dict())  # User 모델 인스턴스 생성
+    db_user = user_model.User(**user.dict())  # User 모델 인스턴스 생성
     db.add(db_user)  # DB에 사용자 추가
     await db.commit()  # 변경 사항 커밋
     await db.refresh(db_user)  # DB에서 새로 추가된 사용자 정보 갱신
-    # print("생성된 user"+user.dict())
-    # logging.info(f"생성된 db_user: {db_user.dict()}")
-    # logging.info(f"생성된 db_user: {user.from_orm(db_user)}")
+
     return db_user  # 새로 생성된 사용자 반환
 
 # 특정 사용자 조회

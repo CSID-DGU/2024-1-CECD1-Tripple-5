@@ -11,7 +11,7 @@ from sqlalchemy.orm import selectinload
 # ChatRecord CRUD
 # 새로운 채팅 기록 생성
 async def create_chat_record(db: AsyncSession, chat_record: chat_record_dto.ChatRecordCreate, chat_room_id: int):
-    db_chat_record = chat_record.ChatRecord(**chat_record.dict(), chat_room_id=chat_room_id)
+    db_chat_record = chat_record_model.ChatRecord(**chat_record.dict(), chat_room_id=chat_room_id)
     db.add(db_chat_record)  # DB에 채팅 기록 추가
     await db.commit()  # 변경 사항 커밋
     await db.refresh(db_chat_record)  # DB에서 새로 추가된 채팅 기록 정보 갱신

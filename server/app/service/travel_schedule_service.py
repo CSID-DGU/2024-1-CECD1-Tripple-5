@@ -12,7 +12,7 @@ from sqlalchemy.orm import selectinload
 # TravelSchedule CRUD
 # 새로운 여행 일정 생성
 async def create_travel_schedule(db: AsyncSession, travel_schedule: travel_schedule_dto.TravelScheduleCreate, user_id: int):
-    db_travel_schedule = travel_schedule.TravelSchedule(**travel_schedule.dict(), user_id=user_id)
+    db_travel_schedule = travel_schedule_model.TravelSchedule(**travel_schedule.dict(), user_id=user_id)
     db.add(db_travel_schedule)  # DB에 여행 일정 추가
     await db.commit()  # 변경 사항 커밋
     await db.refresh(db_travel_schedule)  # DB에서 새로 추가된 여행 일정 정보 갱신

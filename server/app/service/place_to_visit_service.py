@@ -12,7 +12,7 @@ from sqlalchemy.orm import selectinload
 # PlaceToVisit CRUD
 # 새로운 방문할 장소 생성
 async def create_place_to_visit(db: AsyncSession, place_to_visit: place_to_visit_dto.PlaceToVisitCreate, travel_schedule_id: int):
-    db_place_to_visit = place_to_visit.PlaceToVisit(**place_to_visit.dict(), travel_schedule_id=travel_schedule_id)
+    db_place_to_visit = place_to_visit_model.PlaceToVisit(**place_to_visit.dict(), travel_schedule_id=travel_schedule_id)
     db.add(db_place_to_visit)  # DB에 방문할 장소 추가
     await db.commit()  # 변경 사항 커밋
     await db.refresh(db_place_to_visit)  # DB에서 새로 추가된 방문할 장소 정보 갱신

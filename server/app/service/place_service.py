@@ -12,7 +12,7 @@ from sqlalchemy.orm import selectinload
 # Place CRUD
 # 새로운 장소 생성
 async def create_place(db: AsyncSession, place: place_dto.PlaceCreate):
-    db_place = place.Place(**place.dict())
+    db_place = place_model.Place(**place.dict())
     db.add(db_place)  # DB에 장소 추가
     await db.commit()  # 변경 사항 커밋
     await db.refresh(db_place)  # DB에서 새로 추가된 장소 정보 갱신
