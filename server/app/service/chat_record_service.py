@@ -16,10 +16,16 @@ async def create_chat_record(db: AsyncSession, chat_record: chat_record_dto.Chat
     await db.commit()  # 변경 사항 커밋
     await db.refresh(db_chat_record)  # DB에서 새로 추가된 채팅 기록 정보 갱신
     # chatgpt로부터 response 받기
-    chatbot_response = await get_response_from_chatgpt(chat_record.message)
-    db_chat_record_response = chat_record.ChatRecord(
-        message=chatbot_response,
-        is_chatbot=True,
+    # print("@@@@@@@@@@@@@@@@@@@@", db_chat_record)
+    # print("@@@@@@@@@@@@@@@@@@@@", chat_record.message)
+    # chatbot_response = await get_response_from_chatgpt(chat_record.message)
+    # print("@@@@@@@@@@@@@@@@@@@@", chatbot_response)
+    db_chat_record_response = chat_record_model.ChatRecord(
+        **chat_record_dto.ChatRecordCreate(
+            # message=chatbot_response,
+            message="현재 챗봇이 잠자고 있습니다.",
+            is_chatbot=True
+        ).dict(),
         chat_room_id=chat_room_id
     )
     db.add(db_chat_record_response)
@@ -31,11 +37,17 @@ async def create_chat_record(db: AsyncSession, chat_record: chat_record_dto.Chat
 
 # 특정 채팅방의 모든 채팅 기록 조회
 async def get_chat_records(db: AsyncSession, chat_room_id: int):
-    result = await db.execute(select(chat_record_model.ChatRecord).filter(chat_record_model.ChatRecord.chat_room_id == chat_room_id))
+    result = await db.execute(
+        select(chat_record_model.ChatRecord)
+        .filter(chat_record_model.ChatRecord.chat_room_id == chat_room_id)
+    )
     return result.scalars().all()  # 채팅 기록 목록 반환
 
 async def get_chat_record(db: AsyncSession, chat_record_id: int):
-    result = await db.execute(select(chat_record_model.ChatRecord).filter(chat_record_model.ChatRecord.id == chat_record_id))
+    result = await db.execute(
+        select(chat_record_model.ChatRecord)
+        .filter(chat_record_model.ChatRecord.id == chat_record_id)
+    )
     return result.scalars().first()  # 채팅 기록 반환
 
 

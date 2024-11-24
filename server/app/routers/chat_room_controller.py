@@ -23,7 +23,7 @@ async def create_chat_room(user_id: int, chat_room: chat_room_dto.ChatRoomCreate
     return response.__dict__
 
 # 특정 채팅방 조회 엔드포인트
-@router.get("/chat_rooms/{chat_room_id}", response_model=chat_room_dto.ChatRoom)
+@router.get("/chat_rooms/{chat_room_id}", response_model=chat_room_dto.ChatRoomDetailResponse)
 async def read_chat_room(chat_room_id: int, db: AsyncSession = Depends(get_db)):
     # 특정 채팅방을 CRUD 함수로 조회
     db_chat_room = await chat_room_service.get_chat_room(db=db, chat_room_id=chat_room_id)
@@ -34,12 +34,12 @@ async def read_chat_room(chat_room_id: int, db: AsyncSession = Depends(get_db)):
     return db_chat_room.__dict__
 
 # 특정 사용자의 모든 채팅방 조회 엔드포인트
-@router.get("/users/{user_id}/chat_rooms/", response_model=chat_room_dto.ChatRoomsResponse)
+@router.get("/users/{user_id}/chat_rooms/", response_model=chat_room_dto.ChatRoomsDetailResponse)
 async def read_chat_rooms(user_id: int, db: AsyncSession = Depends(get_db)):
     # 사용자의 모든 채팅방을 CRUD 함수로 조회
     chat_rooms = await chat_room_service.get_chat_rooms(db=db, user_id=user_id)
     # 조회된 채팅방 리스트 반환
-    chat_rooms = [chat_room.__dict__ for chat_room in chat_rooms]
+    # chat_rooms = [chat_room.__dict__ for chat_room in chat_rooms]
     return {"chat_rooms":chat_rooms}
 
 # 채팅방 삭제 엔드포인트
