@@ -23,7 +23,7 @@ async def create_travel_schedule(user_id: int, travel_schedule: travel_schedule_
     return response.__dict__
 
 # 특정 여행 일정 조회 엔드포인트
-@router.get("/travel_schedules/{schedule_id}", response_model=travel_schedule_dto.TravelSchedule)
+@router.get("/travel_schedules/{schedule_id}", response_model=travel_schedule_dto.TravelScheduleDetailResponse)
 async def read_travel_schedule(schedule_id: int, db: AsyncSession = Depends(get_db)):
     # 특정 여행 일정을 CRUD 함수로 조회
     db_schedule = await travel_schedule_service.get_travel_schedule(db=db, schedule_id=schedule_id)
@@ -34,12 +34,12 @@ async def read_travel_schedule(schedule_id: int, db: AsyncSession = Depends(get_
     return db_schedule.__dict__
 
 # 특정 사용자의 모든 여행 일정 조회 엔드포인트
-@router.get("/users/{user_id}/travel_schedules/", response_model=travel_schedule_dto.TravelSchedulesResponse)
+@router.get("/users/{user_id}/travel_schedules/", response_model=travel_schedule_dto.TravelSchedulesDetailResponse)
 async def read_travel_schedules(user_id: int, db: AsyncSession = Depends(get_db)):
     # 특정 사용자의 모든 여행 일정을 CRUD 함수로 조회
     travel_schedules = await travel_schedule_service.get_travel_schedules(db=db, user_id=user_id)
     # 조회된 여행 일정 리스트 반환
-    travel_schedules = [schedule.__dict__ for schedule in travel_schedules]
+    # travel_schedules = [schedule.__dict__ for schedule in travel_schedules]
     return {"travel_schedules":travel_schedules}
 
 # 여행 일정 삭제 엔드포인트

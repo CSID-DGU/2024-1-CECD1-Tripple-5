@@ -23,7 +23,7 @@ class ChatRoom(ChatRoomBase):
     chat_records: List['ChatRecord'] = []  # 채팅 기록 리스트
 
     class Config:
-        orm_mode: True  # ORM 객체를 Pydantic 모델로 변환 가능
+        orm_mode = True  # ORM 객체를 Pydantic 모델로 변환 가능
         arbitrary_types_allowed = True
 
 class ChatRoomsResponse(BaseModel):

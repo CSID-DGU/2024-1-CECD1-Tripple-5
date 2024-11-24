@@ -7,6 +7,8 @@ from ..entity.model import place_to_visit_model
 from .chatbot.chat import get_response_from_chatgpt
 from sqlalchemy.orm import selectinload
 
+from ..dto import place_dto
+
 # CRUD 함수 정의
 
 # PlaceToVisit CRUD
@@ -20,13 +22,30 @@ async def create_place_to_visit(db: AsyncSession, place_to_visit: place_to_visit
 
 # 특정 여행 일정의 모든 방문할 장소 조회
 async def get_places_to_visit(db: AsyncSession, travel_schedule_id: int):
-    result = await db.execute(select(place_to_visit_model.PlaceToVisit).filter(place_to_visit_model.PlaceToVisit.travel_schedule_id == travel_schedule_id))
-    return result.scalars().all()  # 방문할 장소 목록 반환
+    result = await db.execute(
+        select(place_to_visit_model.PlaceToVisit)
+        .options(
+            selectinload(place_to_visit_model.PlaceToVisit.place)
+        )  # place 관계 로드
+        .filter(place_to_visit_model.PlaceToVisit.travel_schedule_id == travel_schedule_id)
+    )
+    records = result.scalars().all()
+    dtos = [entity_to_dto(record) for record in records]
+
+    return dtos  # 방문할 장소 목록 반환
 
 # 방문 장소 조회
 async def get_place_to_visit(db: AsyncSession, place_to_visit_id: int):
-    result = await db.execute(select(place_to_visit_model.PlaceToVisit).filter(place_to_visit_model.PlaceToVisit.id == place_to_visit_id))
-    return result.scalars().first()  # 방문할 장소 목록 반환
+    result = await db.execute(
+        select(place_to_visit_model.PlaceToVisit)
+        .options(
+            selectinload(place_to_visit_model.PlaceToVisit.place)
+        )  # place 관계 로드
+        .filter(place_to_visit_model.PlaceToVisit.id == place_to_visit_id)
+    )
+    record = result.scalars().first()
+    
+    return entity_to_dto(record)  # 방문할 장소 목록 반환
 
 async def update_place_to_visit(db: AsyncSession, place_to_visit_id: int, place_to_visit: place_to_visit_dto.PlaceToVisit):
     db_place_to_visit = await get_place_to_visit(db, place_to_visit_id)
@@ -46,3 +65,23 @@ async def delete_place_to_visit(db: AsyncSession, place_to_visit_id: int):
     await db.delete(db_place_to_visit)  # 방문할 장소 삭제
     await db.commit()  # 변경 사항 커밋
     return db_place_to_visit  # 삭제된 방문할 장소 반환
+
+def entity_to_dto(entity: place_to_visit_model.PlaceToVisit) -> place_to_visit_dto.PlaceToVisitDetailResponse:
+    return place_to_visit_dto.PlaceToVisitDetailResponse(
+        id=entity.id,
+        travel_schedule_id=entity.travel_schedule_id,
+        place_id=entity.place_id,
+        user_memo=entity.user_memo,
+        created_at=entity.created_at,
+        place=place_dto.Place(
+            id=entity.place.id,
+            place_name=entity.place.place_name,
+            x=entity.place.x,
+            y=entity.place.y,
+            road_address_name=entity.place.road_address_name,
+            place_url=entity.place.place_url,
+            place_description=entity.place.place_description,
+            place_cost=entity.place.place_cost,
+            created_at=entity.place.created_at
+        )
+    )

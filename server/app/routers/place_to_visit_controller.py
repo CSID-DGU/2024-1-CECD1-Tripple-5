@@ -20,12 +20,12 @@ async def create_place_to_visit(travel_schedule_id: int, place_to_visit: place_t
     return response.__dict__
 
 # 특정 여행 일정의 방문할 장소 조회 엔드포인트
-@router.get("/travel_schedules/{travel_schedule_id}/places_to_visit/", response_model=place_to_visit_dto.PlacesToVisitResponse)
+@router.get("/travel_schedules/{travel_schedule_id}/places_to_visit/", response_model=place_to_visit_dto.PlacesToVisitDetailResponse)
 async def read_places_to_visit(travel_schedule_id: int, db: AsyncSession = Depends(get_db)):
     # 특정 여행 일정에 포함된 모든 방문할 장소를 CRUD 함수로 조회
     places_to_visit = await place_to_visit_service.get_places_to_visit(db=db, travel_schedule_id=travel_schedule_id)
     # 조회된 방문할 장소 리스트 반환
-    places_to_visit = [place.__dict__ for place in places_to_visit]
+    # places_to_visit = [place.__dict__ for place in places_to_visit]
     return {"places_to_visit":places_to_visit}
 
 # 방문할 장소 삭제 엔드포인트

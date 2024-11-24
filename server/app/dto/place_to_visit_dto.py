@@ -2,6 +2,7 @@ from datetime import date, datetime
 from decimal import Decimal
 from typing import List, Optional
 from pydantic import BaseModel
+from .place_dto import Place
 
 # PlaceToVisit 스키마 정의
 # 방문할 장소에 대한 기본 필드를 정의
@@ -20,11 +21,19 @@ class PlaceToVisit(PlaceToVisitBase):
     created_at: datetime  # 방문할 장소 생성 시간
 
     class Config:
-        orm_mode: True  # ORM 객체를 Pydantic 모델로 변환 가능
+        orm_mode = True  # ORM 객체를 Pydantic 모델로 변환 가능
         arbitrary_types_allowed = True
 
 class PlacesToVisitResponse(BaseModel):
     places_to_visit: List[PlaceToVisit]
+
+
+class PlaceToVisitDetailResponse(PlaceToVisit):
+    place: Optional[Place]  # PlaceDetail DTO 추가
+
+class PlacesToVisitDetailResponse(BaseModel):
+    places_to_visit: List[PlaceToVisitDetailResponse]
+    
 
 # 순환 참조 해결을 위한 update_forward_refs() 호출
 PlaceToVisit.update_forward_refs()  # PlaceToVisit 모델의 참조 해결

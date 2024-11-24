@@ -20,7 +20,7 @@ class ChatRecord(ChatRecordBase):
     created_at: datetime  # 채팅 기록 생성 시간
 
     class Config:
-        orm_mode: True  # ORM 객체를 Pydantic 모델로 변환 가능
+        orm_mode = True  # ORM 객체를 Pydantic 모델로 변환 가능
         arbitrary_types_allowed = True
 
 class ChatRecordsResponse(BaseModel):

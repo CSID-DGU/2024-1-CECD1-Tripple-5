@@ -3,7 +3,6 @@ from decimal import Decimal
 from typing import List, Optional
 from pydantic import BaseModel
 # from ..entity.model.place_to_visit_model import PlaceToVisit
-from .place_to_visit_dto import PlaceToVisit
 
 # Place 스키마 정의
 # 장소에 대한 기본 필드를 정의
@@ -24,10 +23,9 @@ class PlaceCreate(PlaceBase):
 class Place(PlaceBase):
     id: int  # 장소 ID
     created_at: datetime  # 장소 생성 시간
-    places_to_visit: List['PlaceToVisit'] = []  # 방문할 장소 리스트
 
     class Config:
-        orm_mode: True  # ORM 객체를 Pydantic 모델로 변환 가능
+        orm_mode = True  # ORM 객체를 Pydantic 모델로 변환 가능
         arbitrary_types_allowed = True
 
 class PlacesResponse(BaseModel):

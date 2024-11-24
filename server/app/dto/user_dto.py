@@ -33,7 +33,7 @@ class User(UserBase):
     travel_schedules: List['TravelSchedule'] = []  # 여행 일정 리스트
 
     class Config:
-        orm_mode: True  # ORM 객체를 Pydantic 모델로 변환 가능
+        orm_mode = True  # ORM 객체를 Pydantic 모델로 변환 가능
         arbitrary_types_allowed = True
 
 class UserBaseResponse(UserBase):
