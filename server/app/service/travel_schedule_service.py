@@ -99,6 +99,7 @@ def entity_to_dto(entity: travel_schedule_model.TravelSchedule) -> travel_schedu
                     place_url=place_to_visit.place.place_url,
                     place_description=place_to_visit.place.place_description,
                     place_cost=place_to_visit.place.place_cost,
+                    img_url=place_to_visit.place.img_url,
                     created_at=place_to_visit.place.created_at
                 ) if place_to_visit.place else None
             )

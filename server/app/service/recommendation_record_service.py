@@ -80,6 +80,7 @@ def entity_to_dto(entity: recommendation_record_model.RecommendationRecord) -> r
             place_url=entity.place.place_url,
             place_description=entity.place.place_description,
             place_cost=entity.place.place_cost,
+            img_url=entity.place.img_url,
             created_at=entity.place.created_at,
         ) if entity.place else None  # 관계가 없는 경우 None 처리
     )

@@ -14,6 +14,7 @@ class Place(Base):
     place_url = Column(String(255))  # boolean -> varchar(255)로 변경
     place_description = Column(Text)  # varchar -> Text로 변경
     place_cost = Column(DECIMAL(10, 2))  # decimal(10,2)
+    img_url = Column(Text)
     created_at = Column(DateTime, default=datetime.utcnow)  # timestamp -> created_at으로 변경
 
     places_to_visit = relationship("PlaceToVisit", back_populates="place")
