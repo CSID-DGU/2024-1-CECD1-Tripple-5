@@ -26,12 +26,6 @@ async def create_travel_schedule(db: AsyncSession, travel_schedule: travel_sched
 
 # 특정 여행 일정 조회
 async def get_travel_schedule(db: AsyncSession, schedule_id: int):
-    # result = await db.execute(
-    #       select(travel_schedule_model.TravelSchedule)
-    #       .filter(travel_schedule_model.TravelSchedule.id == schedule_id)
-    #)
-    # return result.scalars().first()  # 첫 번째 여행 일정 반환
-
     result = await db.execute(
         select(travel_schedule_model.TravelSchedule)
         .options(
@@ -64,7 +58,16 @@ async def get_travel_schedules(db: AsyncSession, user_id: int):
 
 # 여행 일정 삭제
 async def delete_travel_schedule(db: AsyncSession, schedule_id: int):
-    db_travel_schedule = await get_travel_schedule(db, schedule_id)
+    result = await db.execute(
+        select(travel_schedule_model.TravelSchedule)
+        .options(
+            selectinload(travel_schedule_model.TravelSchedule.places_to_visit)
+            .selectinload(place_to_visit_model.PlaceToVisit.place)
+        )
+        .filter(travel_schedule_model.TravelSchedule.id == schedule_id)
+    )
+    schedule = result.scalars().first()
+    db_travel_schedule = schedule
     if db_travel_schedule is None:
         return None  # 여행 일정 없을 시 None 반환
     await db.delete(db_travel_schedule)  # 여행 일정 삭제

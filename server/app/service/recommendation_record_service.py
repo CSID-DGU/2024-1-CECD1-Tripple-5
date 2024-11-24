@@ -51,7 +51,13 @@ async def get_recommendation_records(db: AsyncSession, user_id: int):
 
 # 추천 기록 삭제
 async def delete_recommendation_record(db: AsyncSession, record_id: int):
-    db_record = await get_recommendation_record(db, record_id)
+    result = await db.execute(
+        select(recommendation_record_model.RecommendationRecord)
+        .options(selectinload(recommendation_record_model.RecommendationRecord.place))  # place 관계 로드
+        .filter(recommendation_record_model.RecommendationRecord.id == record_id)
+    )
+    record = result.scalars().first()
+    db_record = record
     if db_record is None:
         return None  # 추천 기록 없을 시 None 반환
     await db.delete(db_record)  # 추천 기록 삭제

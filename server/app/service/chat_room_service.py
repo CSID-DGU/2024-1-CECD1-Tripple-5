@@ -48,7 +48,15 @@ async def get_chat_rooms(db: AsyncSession, user_id: int):
 
 # 채팅방 삭제
 async def delete_chat_room(db: AsyncSession, chat_room_id: int):
-    db_chat_room = await get_chat_room(db, chat_room_id)
+    result = await db.execute(
+        select(chat_room_model.ChatRoom)
+        .options(
+            selectinload(chat_room_model.ChatRoom.chat_records)
+        )
+        .filter(chat_room_model.ChatRoom.id == chat_room_id)
+    )
+    record = result.scalars().first()
+    db_chat_room = record
     if db_chat_room is None:
         return None  # 채팅방 없을 시 None 반환
     await db.delete(db_chat_room)  # 채팅방 삭제

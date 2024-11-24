@@ -59,7 +59,15 @@ async def update_place_to_visit(db: AsyncSession, place_to_visit_id: int, place_
 
 # 방문할 장소 삭제
 async def delete_place_to_visit(db: AsyncSession, place_to_visit_id: int):
-    db_place_to_visit = await get_place_to_visit(db, place_to_visit_id)
+    result = await db.execute(
+        select(place_to_visit_model.PlaceToVisit)
+        .options(
+            selectinload(place_to_visit_model.PlaceToVisit.place)
+        )  # place 관계 로드
+        .filter(place_to_visit_model.PlaceToVisit.id == place_to_visit_id)
+    )
+    record = result.scalars().first()
+    db_place_to_visit = record
     if db_place_to_visit is None:
         return None  # 방문할 장소 없을 시 None 반환
     await db.delete(db_place_to_visit)  # 방문할 장소 삭제
