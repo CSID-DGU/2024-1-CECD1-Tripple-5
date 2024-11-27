@@ -12,8 +12,13 @@ class Place(Base):
     y = Column(Float)  # double -> Float
     road_address_name = Column(String(255))  # varchar(255)
     place_url = Column(String(255))  # boolean -> varchar(255)로 변경
-    place_description = Column(Text)  # varchar -> Text로 변경
-    place_cost = Column(DECIMAL(10, 2))  # decimal(10,2)
+
+    # place_description = Column(Text)  # varchar -> Text로 변경
+    # place_cost = Column(DECIMAL(10, 2))  # decimal(10,2)
+    visitor_characteristics = Column(Text)  # 예상 방문자 특성
+    estimated_cost = Column(DECIMAL(10, 2))  # 예상 비용
+    estimated_duration = Column(DECIMAL(10, 2))  # 예상 체류 시간
+    
     img_url = Column(Text)
     created_at = Column(DateTime, default=datetime.utcnow)  # timestamp -> created_at으로 변경
 

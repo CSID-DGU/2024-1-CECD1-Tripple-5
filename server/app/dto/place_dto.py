@@ -12,8 +12,14 @@ class PlaceBase(BaseModel):
     y: float  # 장소 Y 좌표
     road_address_name: str  # 도로명 주소
     place_url: Optional[str]  # 장소 URL (선택 사항)
-    place_description: Optional[str]  # 장소 설명 (선택 사항)
-    place_cost: Optional[Decimal]  # 장소 비용 (선택 사항)
+
+    # place_description: Optional[str]  # 장소 설명 (선택 사항)
+    # place_cost: Optional[Decimal]  # 장소 비용 (선택 사항)
+
+    visitor_characteristics: Optional[str]  # 장소 설명 (선택 사항)
+    estimated_cost: Optional[Decimal]  # 장소 비용 (선택 사항)
+    estimated_duration: Optional[Decimal]  # 장소 비용 (선택 사항)
+
     img_url: Optional[str]
 
 # 장소 생성 시 사용하는 스키마

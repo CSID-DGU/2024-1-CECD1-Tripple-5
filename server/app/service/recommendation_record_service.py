@@ -65,11 +65,6 @@ async def delete_recommendation_record(db: AsyncSession, record_id: int):
     return db_record  # 삭제된 추천 기록 반환
 
 def entity_to_dto(entity: recommendation_record_model.RecommendationRecord) -> recommendation_record_dto.RecommendationRecordDetailResponse:
-    """
-    SQLAlchemy 엔티티를 DTO로 변환하는 함수.
-    :param entity: RecommendationRecord 엔티티
-    :return: RecommendationRecordDetailResponse DTO
-    """
     # DTO 변환
     return recommendation_record_dto.RecommendationRecordDetailResponse(
         id=entity.id,
@@ -84,8 +79,9 @@ def entity_to_dto(entity: recommendation_record_model.RecommendationRecord) -> r
             y=entity.place.y,
             road_address_name=entity.place.road_address_name,
             place_url=entity.place.place_url,
-            place_description=entity.place.place_description,
-            place_cost=entity.place.place_cost,
+            visitor_characteristics=entity.place.visitor_characteristics,
+            estimated_cost=entity.place.estimated_cost,
+            estimated_duration=entity.place.estimated_duration,
             img_url=entity.place.img_url,
             created_at=entity.place.created_at,
         ) if entity.place else None  # 관계가 없는 경우 None 처리

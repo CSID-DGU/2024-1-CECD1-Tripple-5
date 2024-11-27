@@ -34,9 +34,9 @@ async def read_place(place_id: int, db: AsyncSession = Depends(get_db)):
     return db_place.__dict__
 
 @router.get("/places/", response_model=place_dto.PlacesResponse)
-async def search_place(unified_search_term: str="", place_name_search_term: str="", road_address_name_search_term: str="", place_description_search_term: str="", db: AsyncSession = Depends(get_db)):
+async def search_place(unified_search_term: str="", place_name_search_term: str="", road_address_name_search_term: str="", visitor_characteristics_search_term: str="", db: AsyncSession = Depends(get_db)):
     # 장소 검색
-    places = await place_service.search_places(db=db, unified_search_term=unified_search_term, place_name=place_name_search_term, road_address_name=road_address_name_search_term, place_description=place_description_search_term)
+    places = await place_service.search_places(db=db, unified_search_term=unified_search_term, place_name=place_name_search_term, road_address_name=road_address_name_search_term, visitor_characteristics=visitor_characteristics_search_term)
     # 검색된 장소 목록 반환
     places = [_place.__dict__ for _place in places]
     return {"places":places}

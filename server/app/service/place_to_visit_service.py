@@ -88,8 +88,9 @@ def entity_to_dto(entity: place_to_visit_model.PlaceToVisit) -> place_to_visit_d
             y=entity.place.y,
             road_address_name=entity.place.road_address_name,
             place_url=entity.place.place_url,
-            place_description=entity.place.place_description,
-            place_cost=entity.place.place_cost,
+            visitor_characteristics=entity.place.visitor_characteristics,
+            estimated_cost=entity.place.estimated_cost,
+            estimated_duration=entity.place.estimated_duration,
             img_url=entity.place.img_url,
             created_at=entity.place.created_at
         )

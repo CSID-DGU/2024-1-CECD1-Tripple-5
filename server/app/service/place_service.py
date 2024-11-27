@@ -28,7 +28,7 @@ async def get_places(db: AsyncSession, skip: int = 0, limit: int = 100):
     result = await db.execute(select(place_model.Place).offset(skip).limit(limit))
     return result.scalars().all()  # 장소 목록 반환
 
-async def search_places(db: AsyncSession, unified_search_term: str="", place_name: str = "", road_address_name: str = "", place_description: str = ""):
+async def search_places(db: AsyncSession, unified_search_term: str="", place_name: str = "", road_address_name: str = "", visitor_characteristics: str = ""):
     filters = []
     result = None
     query = None
@@ -36,7 +36,7 @@ async def search_places(db: AsyncSession, unified_search_term: str="", place_nam
         unified_filters = or_(
             place_model.Place.place_name.ilike(f"%{unified_search_term}%"),
             place_model.Place.road_address_name.ilike(f"%{unified_search_term}%"),
-            place_model.Place.place_description.ilike(f"%{unified_search_term}%")
+            place_model.Place.visitor_characteristics.ilike(f"%{unified_search_term}%")
         )
         filters.append(unified_filters)
 
@@ -46,8 +46,8 @@ async def search_places(db: AsyncSession, unified_search_term: str="", place_nam
     if road_address_name:
         filters.append(place_model.Place.road_address_name.ilike(f"%{road_address_name}%"))
     
-    if place_description:
-        filters.append(place_model.Place.place_description.ilike(f"%{place_description}%"))
+    if visitor_characteristics:
+        filters.append(place_model.Place.visitor_characteristics.ilike(f"%{visitor_characteristics}%"))
 
     if filters:
         query = select(place_model.Place).where(and_(*filters))  # *filters는 리스트의 모든 항목을 조건으로 넣음

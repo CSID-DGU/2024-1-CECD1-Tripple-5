@@ -75,9 +75,6 @@ async def delete_travel_schedule(db: AsyncSession, schedule_id: int):
     return db_travel_schedule  # 삭제된 여행 일정 반환
 
 def entity_to_dto(entity: travel_schedule_model.TravelSchedule) -> travel_schedule_dto.TravelScheduleDetailResponse:
-    """
-    TravelSchedule 엔티티를 TravelScheduleDetail DTO로 변환
-    """
     return travel_schedule_dto.TravelScheduleDetailResponse(
         id=entity.id,
         user_id=entity.user_id,
@@ -100,8 +97,9 @@ def entity_to_dto(entity: travel_schedule_model.TravelSchedule) -> travel_schedu
                     y=place_to_visit.place.y,
                     road_address_name=place_to_visit.place.road_address_name,
                     place_url=place_to_visit.place.place_url,
-                    place_description=place_to_visit.place.place_description,
-                    place_cost=place_to_visit.place.place_cost,
+                    visitor_characteristics=place_to_visit.place.visitor_characteristics,
+                    estimated_cost=place_to_visit.place.estimated_cost,
+                    estimated_duration=place_to_visit.place.estimated_duration,
                     img_url=place_to_visit.place.img_url,
                     created_at=place_to_visit.place.created_at
                 ) if place_to_visit.place else None
