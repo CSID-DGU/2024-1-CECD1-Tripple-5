@@ -83,27 +83,31 @@ def entity_to_dto(entity: travel_schedule_model.TravelSchedule) -> travel_schedu
         end_date=entity.end_date,
         created_at=entity.created_at,
         updated_at=entity.updated_at,
-        places_to_visit=[
-            place_to_visit_dto.PlaceToVisitDetailResponse(
-                id=place_to_visit.id,
-                travel_schedule_id=place_to_visit.travel_schedule_id,
-                place_id=place_to_visit.place_id,
-                user_memo=place_to_visit.user_memo,
-                created_at=place_to_visit.created_at,
-                place=place_dto.Place(
-                    id=place_to_visit.place.id,
-                    place_name=place_to_visit.place.place_name,
-                    x=place_to_visit.place.x,
-                    y=place_to_visit.place.y,
-                    road_address_name=place_to_visit.place.road_address_name,
-                    place_url=place_to_visit.place.place_url,
-                    visitor_characteristics=place_to_visit.place.visitor_characteristics,
-                    estimated_cost=place_to_visit.place.estimated_cost,
-                    estimated_duration=place_to_visit.place.estimated_duration,
-                    img_url=place_to_visit.place.img_url,
-                    created_at=place_to_visit.place.created_at
-                ) if place_to_visit.place else None
-            )
-            for place_to_visit in entity.places_to_visit
-        ]
+        places_to_visit=sorted(
+            [
+                place_to_visit_dto.PlaceToVisitDetailResponse(
+                    id=place_to_visit.id,
+                    travel_schedule_id=place_to_visit.travel_schedule_id,
+                    place_id=place_to_visit.place_id,
+                    user_memo=place_to_visit.user_memo,
+                    order_index=place_to_visit.order_index,
+                    created_at=place_to_visit.created_at,
+                    place=place_dto.Place(
+                        id=place_to_visit.place.id,
+                        place_name=place_to_visit.place.place_name,
+                        x=place_to_visit.place.x,
+                        y=place_to_visit.place.y,
+                        road_address_name=place_to_visit.place.road_address_name,
+                        place_url=place_to_visit.place.place_url,
+                        visitor_characteristics=place_to_visit.place.visitor_characteristics,
+                        estimated_cost=place_to_visit.place.estimated_cost,
+                        estimated_duration=place_to_visit.place.estimated_duration,
+                        img_url=place_to_visit.place.img_url,
+                        created_at=place_to_visit.place.created_at
+                    ) if place_to_visit.place else None
+                )
+                for place_to_visit in entity.places_to_visit
+            ],
+            key=lambda dto: dto.order_index  # order_index 기준으로 정렬
+        )
     )

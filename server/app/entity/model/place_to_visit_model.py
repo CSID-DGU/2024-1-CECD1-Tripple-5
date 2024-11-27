@@ -10,6 +10,9 @@ class PlaceToVisit(Base):
     travel_schedule_id = Column(BigInteger, ForeignKey('travel_schedule.id'))  # bigint로 변경
     place_id = Column(BigInteger, ForeignKey('place.id'))  # bigint로 변경
     user_memo = Column(Text)  # String -> Text로 변경
+
+    order_index = Column(BigInteger)
+
     created_at = Column(DateTime, default=datetime.utcnow)  # timestamp -> created_at으로 변경
 
     travel_schedule = relationship("TravelSchedule", back_populates="places_to_visit")

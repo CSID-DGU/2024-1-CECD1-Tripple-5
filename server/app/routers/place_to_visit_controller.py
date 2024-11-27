@@ -24,8 +24,10 @@ async def create_place_to_visit(travel_schedule_id: int, place_to_visit: place_t
 async def read_places_to_visit(travel_schedule_id: int, db: AsyncSession = Depends(get_db)):
     # 특정 여행 일정에 포함된 모든 방문할 장소를 CRUD 함수로 조회
     places_to_visit = await place_to_visit_service.get_places_to_visit(db=db, travel_schedule_id=travel_schedule_id)
-    # 조회된 방문할 장소 리스트 반환
-    # places_to_visit = [place.__dict__ for place in places_to_visit]
+
+    if places_to_visit is None:
+        raise HTTPException(status_code=404, detail="Place to visit not found")
+
     return {"places_to_visit":places_to_visit}
 
 # 방문할 장소 삭제 엔드포인트
@@ -48,3 +50,15 @@ async def put_place_to_visit(place_to_visit_id: int, place_to_visit: place_to_vi
         raise HTTPException(status_code=404, detail="Place to visit not found")
     # 업데이트된 사용자 정보 반환
     return db_place_to_visit.__dict__
+
+
+@router.put("/travel_schedules/{travel_schedule_id}/places_to_visit/order_index", response_model=place_to_visit_dto.PlacesToVisitDetailResponse)
+async def put_place_to_visit(travel_schedule_id: int,places_to_visit_order_index: place_to_visit_dto.PlacesToVisitOrderIndexUpdate, db: AsyncSession = Depends(get_db)):
+    # CRUD 함수로 사용자 정보를 업데이트
+    db_places_to_visit = await place_to_visit_service.update_order_index_of_places_to_visit(db=db, places_to_visit_order_index=places_to_visit_order_index, travel_schedule_id=travel_schedule_id)
+    # 사용자가 없을 경우 404 에러 반환
+    if db_places_to_visit is None:
+        raise HTTPException(status_code=404, detail="Place to visit not found")
+    # 업데이트된 사용자 정보 반환
+    return {"places_to_visit":db_places_to_visit}
+
