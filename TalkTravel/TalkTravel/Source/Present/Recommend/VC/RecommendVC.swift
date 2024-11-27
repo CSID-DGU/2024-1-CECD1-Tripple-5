@@ -30,7 +30,9 @@ class RecommendVC: UIViewController {
     
     private func setDelegate() {
         self.recommendView.themePlaceCollectionView.dataSource = self
+        self.recommendView.themePlaceCollectionView.delegate = self
         self.recommendView.recommendPlaceCollectionView.dataSource = self
+        self.recommendView.recommendPlaceCollectionView.delegate = self
     }
     
     private func setBindingRelay() {
@@ -90,6 +92,24 @@ extension RecommendVC: UICollectionViewDataSource {
                           placeTitle: viewModel.recommendPlaceDatas[indexPath.row].placeTitle,
                           placeLocale: viewModel.recommendPlaceDatas[indexPath.row].localeTitle)
             return cell
+        }
+    }
+}
+
+extension RecommendVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView.tag == 0 {
+            let vc = PlaceDetailVC()
+            vc.viewModel.placeId = self.viewModel.themePlaceDatas[indexPath.row].placeId
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc,
+                                                          animated: true)
+        } else {
+            let vc = PlaceDetailVC()
+            vc.viewModel.placeId = self.viewModel.recommendPlaceDatas[indexPath.row].placeId
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc,
+                                                          animated: true)
         }
     }
 }

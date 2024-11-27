@@ -232,6 +232,8 @@
 		36A5B9242CE4CE5000A36A69 /* Place */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Place; sourceTree = "<group>"; };
 		36A5B9312CE4DDB300A36A69 /* Recommendation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Recommendation; sourceTree = "<group>"; };
 		36A5B9342CE4DDE700A36A69 /* Recommendation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Recommendation; sourceTree = "<group>"; };
+		36CCA8752CF79EC3003BE2D7 /* Detail */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Detail; sourceTree = "<group>"; };
+		36CCA8812CF7A481003BE2D7 /* Detail */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Detail; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +323,7 @@
 		367425792C12065300E122C9 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				36CCA8752CF79EC3003BE2D7 /* Detail */,
 				36AFC2A42CAED9F100EFAC70 /* PlanDetail */,
 				36C06DB92CA56894008D4EFA /* Global */,
 				367426542C247DE200E122C9 /* WebView */,
@@ -555,6 +558,7 @@
 		367425EE2C12313700E122C9 /* ViewData */ = {
 			isa = PBXGroup;
 			children = (
+				36CCA8812CF7A481003BE2D7 /* Detail */,
 				36AFC2AF2CAEE78E00EFAC70 /* PlanDetail */,
 				36E1D4C02CA5D18B008962EC /* Recommend */,
 				36C06DD62CA68F36008D4EFA /* Profile */,
@@ -859,6 +863,8 @@
 				36A5B9242CE4CE5000A36A69 /* Place */,
 				36A5B9312CE4DDB300A36A69 /* Recommendation */,
 				36A5B9342CE4DDE700A36A69 /* Recommendation */,
+				36CCA8752CF79EC3003BE2D7 /* Detail */,
+				36CCA8812CF7A481003BE2D7 /* Detail */,
 			);
 			name = TalkTravel;
 			packageProductDependencies = (
