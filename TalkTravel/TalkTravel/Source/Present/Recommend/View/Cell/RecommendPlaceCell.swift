@@ -14,16 +14,17 @@ final class RecommendPlaceCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
-    func bindData(imagePath: String,
+    func bindData(imagePath: String?,
                   placeTitle: String,
                   placeLocale: String) {
         titleLabel.text = placeTitle
         placeLabel.text = placeLocale
         
-        if let imageUrl = URL(string: imagePath) {
+        if let imagePath = imagePath,
+           let imageUrl = URL(string: imagePath) {
             imageView.kf.setImage(with: imageUrl)
         } else {
-            imageView.backgroundColor = .gray300
+            imageView.image = .imgEmptyCell
         }
     }
     
@@ -46,6 +47,11 @@ final class RecommendPlaceCell: UICollectionViewCell {
         placeContentView.snp.makeConstraints {
             $0.centerY.equalTo(titleLabel)
             $0.leading.equalTo(titleLabel.snp.trailing).offset(6)
+            $0.trailing.equalToSuperview().inset(20)
+        }
+        
+        placeIconImageView.snp.makeConstraints {
+            $0.size.equalTo(12)
         }
         
         self.imageView.addGradient(size: .init(width: 250,
@@ -80,5 +86,6 @@ final class RecommendPlaceCell: UICollectionViewCell {
     private let placeLabel = UILabel().then {
         $0.font = Pretendard.pretendardMedium(size: 12).font
         $0.textColor = .mainYellow2
+        $0.textAlignment = .left
     }
 }

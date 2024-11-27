@@ -13,7 +13,7 @@ struct TravelThemeData {
     var isSelected: Bool
 }
 
-enum TravelThemeType {
+enum TravelThemeType: String {
     case crowded
     case quiet
     case resort

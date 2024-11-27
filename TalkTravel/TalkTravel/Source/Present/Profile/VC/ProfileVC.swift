@@ -28,6 +28,7 @@ class ProfileVC: UIViewController {
             viewModel.profileViewData.themeSection1Data[0].isSelected = true
             viewModel.profileViewData.themeSection1Data[1].isSelected = false
             profileView.themeSectionItem.section1View.bindData(types: viewModel.profileViewData.themeSection1Data)
+            viewModel.updateUserData()
         }
         
         profileView.themeSectionItem.section1View.rightItem.selectCompletion = { [weak self] _ in
@@ -35,6 +36,7 @@ class ProfileVC: UIViewController {
             viewModel.profileViewData.themeSection1Data[0].isSelected = false
             viewModel.profileViewData.themeSection1Data[1].isSelected = true
             profileView.themeSectionItem.section1View.bindData(types: viewModel.profileViewData.themeSection1Data)
+            viewModel.updateUserData()
         }
         
         profileView.themeSectionItem.section2View.leftItem.selectCompletion = { [weak self] _ in
@@ -42,6 +44,7 @@ class ProfileVC: UIViewController {
             viewModel.profileViewData.themeSection2Data[0].isSelected = true
             viewModel.profileViewData.themeSection2Data[1].isSelected = false
             profileView.themeSectionItem.section2View.bindData(types: viewModel.profileViewData.themeSection2Data)
+            viewModel.updateUserData()
         }
         
         profileView.themeSectionItem.section2View.rightItem.selectCompletion = { [weak self] _ in
@@ -49,6 +52,7 @@ class ProfileVC: UIViewController {
             viewModel.profileViewData.themeSection2Data[0].isSelected = false
             viewModel.profileViewData.themeSection2Data[1].isSelected = true
             profileView.themeSectionItem.section2View.bindData(types: viewModel.profileViewData.themeSection2Data)
+            viewModel.updateUserData()
         }
         
         profileView.themeSectionItem.section3View.leftItem.selectCompletion = { [weak self] _ in
@@ -56,6 +60,7 @@ class ProfileVC: UIViewController {
             viewModel.profileViewData.themeSection3Data[0].isSelected = true
             viewModel.profileViewData.themeSection3Data[1].isSelected = false
             profileView.themeSectionItem.section3View.bindData(types: viewModel.profileViewData.themeSection3Data)
+            viewModel.updateUserData()
         }
         
         profileView.themeSectionItem.section3View.rightItem.selectCompletion = { [weak self] _ in
@@ -63,7 +68,9 @@ class ProfileVC: UIViewController {
             viewModel.profileViewData.themeSection3Data[0].isSelected = false
             viewModel.profileViewData.themeSection3Data[1].isSelected = true
             profileView.themeSectionItem.section3View.bindData(types: viewModel.profileViewData.themeSection3Data)
+            viewModel.updateUserData()
         }
+        
     }
     
     private let profileView = ProfileView()

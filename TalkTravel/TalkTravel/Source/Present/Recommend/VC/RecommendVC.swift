@@ -1,22 +1,62 @@
 import UIKit
 
+import RxSwift
+import RxRelay
+import RxCocoa
+
 class RecommendVC: UIViewController {
-    var viewModel = RecommendViewModel()
+    private var disposeBag: DisposeBag = .init()
+    var viewModel = RecommendViewModel(recommendationRepository: .init(),
+                                       placeRepository: .init())
     
     override func loadView() {
         super.loadView()
         self.view = recommendView
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.getRecommendationData()
+        viewModel.getThemePlaceData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         setDelegate()
+        setBindingRelay()
+        bindButtonAction()
     }
     
     private func setDelegate() {
         self.recommendView.themePlaceCollectionView.dataSource = self
         self.recommendView.recommendPlaceCollectionView.dataSource = self
+    }
+    
+    private func setBindingRelay() {
+        viewModel.recommendPlaceUpdateRelay
+            .withUnretained(self)
+            .bind(onNext: { (vc, _) in
+                vc.recommendView.recommendPlaceCollectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.themePlaceUpdateRelay
+            .withUnretained(self)
+            .bind(onNext: { (vc, _) in
+                vc.recommendView.themePlaceCollectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindButtonAction() {
+        recommendView.gotoChatButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                                 action: #selector(goToChatButtonTapped)))
+    }
+    
+    @objc
+    private func goToChatButtonTapped() {
+        NotificationCenter.default.post(name: .moveToChatSection, object: nil, userInfo: nil)
     }
 
     

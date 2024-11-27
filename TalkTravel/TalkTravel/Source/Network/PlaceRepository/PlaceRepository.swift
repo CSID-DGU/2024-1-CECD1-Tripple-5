@@ -2,11 +2,8 @@ import Foundation
 
 class PlaceRepository {
     func getSearchPlace(unifiedSearchTerm: String,
-                        placeNameSearchTerm: String,
-                        roadAddressNameSearchTerm: String,
-                        placeDescriptionSearchTerm: String,
                         completion: @escaping ((GetSearchPlaceDTO) -> Void)) {
-        GETService.shared.getService(from: AppConstants.baseURL + "/api/v1/places?unified_search_term=\(unifiedSearchTerm)&place_name_search_term=\(placeNameSearchTerm)&road_address_name_search_term=\(roadAddressNameSearchTerm)&place_description_search_term=\(placeDescriptionSearchTerm)",
+        GETService.shared.getService(from: AppConstants.baseURL + "/api/v1/places?unified_search_term=\(unifiedSearchTerm)",
                                      callback: { (data: GetSearchPlaceDTO?, error) in
             guard let data = data else {
                 return

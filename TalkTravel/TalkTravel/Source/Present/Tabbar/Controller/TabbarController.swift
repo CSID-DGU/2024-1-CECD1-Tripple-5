@@ -8,6 +8,7 @@ class TabbarController: UITabBarController {
         super.init(nibName: nil, bundle: nil)
         object_setClass(self.tabBar, MainTabbar.self)
         delegate = self
+        setupNotificationObserver()
     }
     
     required init?(coder: NSCoder) {
@@ -157,5 +158,18 @@ extension TabbarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController,
                           didSelect viewController: UIViewController) {
         self.selectedViewController = viewController
+    }
+}
+
+extension TabbarController {
+    func setupNotificationObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleNotification(_:)),
+                                               name: .moveToChatSection,
+                                               object: nil)
+    }
+
+    @objc func handleNotification(_ notification: Notification) {
+        selectPage(.chat)
     }
 }

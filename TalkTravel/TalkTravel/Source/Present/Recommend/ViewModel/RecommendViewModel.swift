@@ -7,8 +7,8 @@ final class RecommendViewModel {
     private var recommendationRepository: RecommendationRepository
     private var placeRepository: PlaceRepository
     
-    private var themePlaceUpdateRelay = PublishRelay<Void>()
-    private var recommendPlaceUpdateRelay = PublishRelay<Void>()
+    var themePlaceUpdateRelay = PublishRelay<Void>()
+    var recommendPlaceUpdateRelay = PublishRelay<Void>()
     
     init(recommendationRepository: RecommendationRepository,
          placeRepository: PlaceRepository) {
@@ -16,67 +16,58 @@ final class RecommendViewModel {
         self.placeRepository = placeRepository
     }
     
-    var themePlaceDatas: [RecommendCellViewData] = [.init(placeId: 0,
-                                                          placeImagePath: "https://dimg.donga.com/wps/NEWS/IMAGE/2020/07/18/102027105.1.jpg",
-                                                          placeTitle: "협재 해수욕장",
-                                                          localeTitle: "제주도"),
-                                                    .init(placeId: 0,
-                                                          placeImagePath: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD1mxhx538Jzi2MLDOMqOZ0udvBxs5FvpnJA&s",
-                                                          placeTitle: "사계해변",
-                                                          localeTitle: "제주도"),
-                                                    .init(placeId: 0,
-                                                          placeImagePath: "https://dimg.donga.com/wps/NEWS/IMAGE/2020/07/18/102027105.1.jpg",
-                                                          placeTitle: "협재 해수욕장",
-                                                          localeTitle: "제주도"),
-                                                    .init(placeId: 0,
-                                                          placeImagePath: "https://dimg.donga.com/wps/NEWS/IMAGE/2020/07/18/102027105.1.jpg",
-                                                          placeTitle: "협재 해수욕장",
-                                                          localeTitle: "제주도"),
-                                                    .init(placeId: 0,
-                                                          placeImagePath: "https://dimg.donga.com/wps/NEWS/IMAGE/2020/07/18/102027105.1.jpg",
-                                                          placeTitle: "협재 해수욕장",
-                                                          localeTitle: "제주도"),]
+    var themePlaceDatas: [RecommendCellViewData] = []
+    var recommendPlaceDatas: [RecommendCellViewData] = []
     
-    var recommendPlaceDatas: [RecommendCellViewData] = [.init(placeId: 0,
-                                                              placeImagePath: "https://dimg.donga.com/wps/NEWS/IMAGE/2020/07/18/102027105.1.jpg",
-                                                              placeTitle: "협재 해수욕장",
-                                                              localeTitle: "제주도"),
-                                                        .init(placeId: 0,
-                                                              placeImagePath: "https://dimg.donga.com/wps/NEWS/IMAGE/2020/07/18/102027105.1.jpg",
-                                                              placeTitle: "협재 해수욕장",
-                                                              localeTitle: "제주도"),
-                                                        .init(placeId: 0,
-                                                              placeImagePath: "https://dimg.donga.com/wps/NEWS/IMAGE/2020/07/18/102027105.1.jpg",
-                                                              placeTitle: "협재 해수욕장",
-                                                              localeTitle: "제주도"),
-                                                        .init(placeId: 0,
-                                                              placeImagePath: "https://dimg.donga.com/wps/NEWS/IMAGE/2020/07/18/102027105.1.jpg",
-                                                              placeTitle: "협재 해수욕장",
-                                                              localeTitle: "제주도"),
-                                                        .init(placeId: 0,
-                                                              placeImagePath: "https://dimg.donga.com/wps/NEWS/IMAGE/2020/07/18/102027105.1.jpg",
-                                                              placeTitle: "협재 해수욕장",
-                                                              localeTitle: "제주도"),]
+    private func setSearchText() -> String {
+        let type1 = UserDefaults.crowded && UserDefaults.resort && UserDefaults.famous
+        let type2 = UserDefaults.crowded && UserDefaults.resort && !UserDefaults.famous
+        let type3 = UserDefaults.crowded && !UserDefaults.resort && UserDefaults.famous
+        let type4 = !UserDefaults.crowded && UserDefaults.resort && UserDefaults.famous
+        let type5 = UserDefaults.crowded && !UserDefaults.resort && !UserDefaults.famous
+        let type6 = !UserDefaults.crowded && !UserDefaults.resort && !UserDefaults.famous
+        
+        if type1 {
+            return "호텔"
+        } else if type2 {
+            return "게스트"
+        } else if type3 {
+            return "영화"
+        } else if type4 {
+            return "연극"
+        } else if type5 {
+            return "대규모"
+        } else if type6 {
+            return "소규모"
+        } else {
+            return "여행"
+        }
+    }
     
-//    func getThemePlaceData() {
-//        recommendationRepository
-//            .getReadRecommendationRecords(userId: 1,
-//                                          completion: { [weak self] data in
-//                guard let self else { return }
-//                self.themePlaceDatas = data.recommendationRecords.map { .init(placeId: $0.placeID,
-//                                                                              placeImagePath: "https://dimg.donga.com/wps/NEWS/IMAGE/2020/07/18/102027105.1.jpg",
-//                                                                              placeTitle: $0.recommendationName,
-//                                                                              localeTitle: $0.)}
-//                self.themePlaceUpdateRelay.accept(())
-//            })
-//    }
-//    
-//    func getPlaceData(placeId: [Int]) {
-//        placeRepository
-//            .getSearchPlace(placeId: <#T##Int#>,
-//                            completion: {
-//                
-//            })
-//    }
-//    
+    func getThemePlaceData() {
+        placeRepository
+            .getSearchPlace(unifiedSearchTerm: setSearchText(),
+                            completion: { [weak self] data in
+                guard let self else { return }
+                self.themePlaceDatas = data.places.map { .init(placeId: $0.id,
+                                                               placeImagePath: $0.imgURL,
+                                                               placeTitle: $0.placeName,
+                                                               localeTitle: $0.roadAddressName)}
+                self.themePlaceUpdateRelay.accept(())
+            })
+    }
+    
+    func getRecommendationData() {
+        recommendationRepository
+            .getReadRecommendationRecords(userId: 1,
+                                          completion: { [weak self] data in
+                guard let self else { return }
+                self.recommendPlaceDatas = data.recommendationRecordsDetail.map { .init(placeId: $0.placeID,
+                                                                                    placeImagePath: $0.place.imgURL,
+                                                                                    placeTitle: $0.place.placeName,
+                                                                                    localeTitle: $0.place.roadAddressName)}
+                self.recommendPlaceUpdateRelay.accept(())
+            })
+    }
+    
 }

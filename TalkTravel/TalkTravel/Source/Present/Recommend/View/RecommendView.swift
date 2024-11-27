@@ -86,6 +86,7 @@ final class RecommendView: UIView {
     }
     let themePlaceCollectionView = UICollectionView(frame: .zero,
                                                     collectionViewLayout: .init()).then {
+        $0.backgroundColor = .clear
         $0.tag = 0
         $0.showsHorizontalScrollIndicator = false
         var layout = UICollectionViewFlowLayout()
@@ -101,10 +102,11 @@ final class RecommendView: UIView {
     let recommendPlaceCollectionViewHeader = UILabel().then {
         $0.font = Pretendard.pretendardSemibold(size: 16).font
         $0.textColor = .black
-        $0.text = "요즘 뜨는 테마 여행지"
+        $0.text = "추천 여행지"
     }
     let recommendPlaceCollectionView = UICollectionView(frame: .zero,
                                                         collectionViewLayout: .init()).then {
+        $0.backgroundColor = .clear
         $0.tag = 1
         $0.showsHorizontalScrollIndicator = false
         var layout = UICollectionViewFlowLayout()
