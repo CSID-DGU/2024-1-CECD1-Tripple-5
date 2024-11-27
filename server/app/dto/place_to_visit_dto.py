@@ -18,6 +18,7 @@ class PlaceToVisit(PlaceToVisitBase):
     id: int  # 방문할 장소 ID
     travel_schedule_id: int  # 여행 일정 ID
     place_id: int  # 장소 ID
+    order_index: int # 여행스케쥴-PlaceToVisit리스트 내에서의 순서
     created_at: datetime  # 방문할 장소 생성 시간
 
     class Config:
@@ -34,6 +35,13 @@ class PlaceToVisitDetailResponse(PlaceToVisit):
 class PlacesToVisitDetailResponse(BaseModel):
     places_to_visit: List[PlaceToVisitDetailResponse]
     
+class PlaceToVisitOrderIndexUpdate(BaseModel):
+    place_to_visit_id: int
+    order_index: int
+
+class PlacesToVisitOrderIndexUpdate(BaseModel):
+    places_to_visit: List[PlaceToVisitOrderIndexUpdate]
+
 
 # 순환 참조 해결을 위한 update_forward_refs() 호출
 PlaceToVisit.update_forward_refs()  # PlaceToVisit 모델의 참조 해결
