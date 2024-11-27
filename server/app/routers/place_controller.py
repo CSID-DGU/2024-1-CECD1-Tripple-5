@@ -38,7 +38,7 @@ async def search_place(unified_search_term: str="", place_name_search_term: str=
     # 장소 검색
     places = await place_service.search_places(db=db, unified_search_term=unified_search_term, place_name=place_name_search_term, road_address_name=road_address_name_search_term, visitor_characteristics=visitor_characteristics_search_term)
     # 검색된 장소 목록 반환
-    places = [_place.__dict__ for _place in places]
+    places = [_place.__dict__ for _place in places[:100]]
     return {"places":places}
 
 # 장소 삭제 엔드포인트
