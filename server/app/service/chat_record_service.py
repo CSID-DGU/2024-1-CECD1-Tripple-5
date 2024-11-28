@@ -4,7 +4,7 @@ from sqlalchemy.future import select
 
 from ..dto import chat_record_dto
 from ..entity.model import chat_record_model
-from .chatbot.chat import get_response_from_chatgpt
+from .chatbot.chat import get_chatbot_response_about_user_input_async
 from sqlalchemy.orm import selectinload
 
 
@@ -18,12 +18,16 @@ async def create_chat_record(db: AsyncSession, chat_record: chat_record_dto.Chat
     # chatgpt로부터 response 받기
     # print("@@@@@@@@@@@@@@@@@@@@", db_chat_record)
     # print("@@@@@@@@@@@@@@@@@@@@", chat_record.message)
-    # chatbot_response = await get_response_from_chatgpt(chat_record.message)
+    # chatbot_response = await get_chatbot_response_about_user_input(chat_record.message)
+    chatbot_response = await get_chatbot_response_about_user_input_async(chat_record.message)
     # print("@@@@@@@@@@@@@@@@@@@@", chatbot_response)
+
+    # chat_record_model.ChatRecord()
+
     db_chat_record_response = chat_record_model.ChatRecord(
         **chat_record_dto.ChatRecordCreate(
-            # message=chatbot_response,
-            message="현재 챗봇이 잠자고 있습니다.",
+            message=chatbot_response,
+            # message="현재 챗봇이 잠자고 있습니다.",
             is_chatbot=True
         ).dict(),
         chat_room_id=chat_room_id

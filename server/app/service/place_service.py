@@ -4,7 +4,6 @@ from sqlalchemy.future import select
 
 from ..dto import place_dto
 from ..entity.model import place_model
-from .chatbot.chat import get_response_from_chatgpt
 from sqlalchemy.orm import selectinload
 
 # CRUD 함수 정의
