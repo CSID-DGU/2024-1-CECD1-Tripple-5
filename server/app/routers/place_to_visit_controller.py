@@ -14,9 +14,9 @@ router = APIRouter()
 # PlaceToVisit 엔드포인트
 # 방문할 장소 생성 엔드포인트
 @router.post("/travel_schedules/{travel_schedule_id}/places_to_visit/", response_model=place_to_visit_dto.PlaceToVisit)
-async def create_place_to_visit(travel_schedule_id: int, place_to_visit: place_to_visit_dto.PlaceToVisitCreateRequest, db: AsyncSession = Depends(get_db)):
+async def create_place_to_visit(travel_schedule_id: int, place_to_visit: place_to_visit_dto.PlaceToVisitCreate, db: AsyncSession = Depends(get_db)):
     # CRUD 함수로 방문할 장소 생성
-    response = await place_to_visit_service.create_place_to_visit(db=db, place_to_visit_create_request=place_to_visit, travel_schedule_id=travel_schedule_id)
+    response = await place_to_visit_service.create_place_to_visit(db=db, place_to_visit=place_to_visit, travel_schedule_id=travel_schedule_id)
     return response.__dict__
 
 # 특정 여행 일정의 방문할 장소 조회 엔드포인트

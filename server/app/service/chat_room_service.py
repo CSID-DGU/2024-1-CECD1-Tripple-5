@@ -79,6 +79,7 @@ def entity_to_dto(entity: chat_room_model.ChatRoom) -> chat_room_dto.ChatRoomDet
                 message=chat_record.message,  # 채팅 메시지
                 is_chatbot=chat_record.is_chatbot,  # 챗봇 여부
                 chat_room_id=chat_record.chat_room_id,  # 채팅방 ID
+                place_ids_str=chat_record.place_ids_str,
                 created_at=chat_record.created_at,  # 채팅 기록 생성 시간
             ) for chat_record in entity.chat_records  
         ]

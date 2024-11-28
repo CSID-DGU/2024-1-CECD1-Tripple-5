@@ -9,25 +9,11 @@ from sqlalchemy.orm import selectinload
 
 from ..dto import place_dto
 
-from ..entity.model import place_model
-
 # CRUD 함수 정의
 
 # PlaceToVisit CRUD
 # 새로운 방문할 장소 생성
-async def create_place_to_visit(db: AsyncSession, place_to_visit_create_request: place_to_visit_dto.PlaceToVisitCreateRequest, travel_schedule_id: int):
-    # 검색 쿼리 실행
-    result_01 = await db.execute(
-        select(place_model.Place).where(place_model.Place.place_name == place_to_visit_create_request.place_name)
-    )
-    place = result_01.scalars().first()  # 결과 가져오기 (없으면 None 반환)
-
-    if not place:
-        raise HTTPException(status_code=404, detail=f"No Place found with name '{place_to_visit_create_request.place_name}'")
-
-    place_id = place.id
-
-    place_to_visit = place_to_visit_dto.PlaceToVisitCreate(place_id=place_id,user_memo=place_to_visit_create_request.user_memo)
+async def create_place_to_visit(db: AsyncSession, place_to_visit: place_to_visit_dto.PlaceToVisitCreate, travel_schedule_id: int):
 
     # 동일한 travel_schedule_id 와 연관 관계에 있는 PlaceToVisit을 탐색하여, 그중 가장 큰 order_index 필드값을 구하여라. next_order은 그 값보다 1 더 큰 값이다.
     result = await db.execute(

@@ -10,7 +10,11 @@ from dotenv import load_dotenv
 import json
 import os
 import asyncio
+
+from sqlalchemy import select
 from ..google_maps_platform_service import get_reverse_geocoding
+from ...entity.model import place_model
+from sqlalchemy.ext.asyncio import AsyncSession
 
 # 환경 변수 로드 (OPENAI_API_KEY 등)
 load_dotenv()
@@ -58,7 +62,7 @@ for _, row in places_df.iterrows():
 
 def create_qa_chain(documents):
     prompt_template = """당신은 서울의 장소를 추천해주는 여행 가이드입니다.
-사용자의 질문에 친절하게 답변하고, 주어진 정보를 바탕으로 추천 장소를 JSON 형식으로 구조화하여 응답해주세요.
+사용자의 질문에 친절하게 답변하고, 주어진 정보를 바탕으로 추천 장소를 JSON 형식으로 순서대로 구조화하여 응답해주세요.
 무조건 JSON 형식으로 응답해주세요. JSON은 ```json``` 코드 블록 안에 작성해주세요.
 
 참고할 장소 정보:
@@ -104,7 +108,8 @@ def create_qa_chain(documents):
         # 이미 저장된 임베딩이 있으면 로드
         vector_store = Chroma(
             persist_directory=persist_directory,
-            embedding_function=embeddings
+            embedding_function=embeddings,
+            collection_name="seoul_places"
         )
     else:
         # 임베딩 생성 및 저장
@@ -146,19 +151,53 @@ def create_qa_chain(documents):
 # QA 체인 초기화
 qa_chain = create_qa_chain(documents)
 
+# 개별 문서를 처리하는 함수 추가
+def process_retrieved_documents(retrieved_docs): 
+    processed_docs = []  
+    for doc in retrieved_docs: 
+        original_content = doc.page_content  
+        try: 
+            doc_json = json.loads(original_content)  
+            doc_json['additional_info'] = "This is processed data"  
+            processed_docs.append(doc_json) 
+        except json.JSONDecodeError:  
+            processed_docs.append({"raw_content": original_content, "error": "Failed to parse JSON"})  
+    return processed_docs 
 
 # get_recommendation 함수를 비동기로 변환
-async def get_recommendation_async(qa_chain, query, location_str, user_characteristic):
+async def get_recommendation_async(db: AsyncSession, qa_chain, query, location_str, user_characteristic):
     try:
+        return_dict = {"content":None, "place_id_list": None}
         # ConversationalRetrievalChain의 __call__은 동기적으로 작동하므로, asyncio의 run_in_executor를 사용하여 비동기 호출
         question = f"여행자의 현재 위치: {location_str} \n\n여행자 현재 특성: {user_characteristic} \n\n사용자 질문: {query}"
-        # print(f"@@@@@@@@@@ {question}")
 
         result = await asyncio.get_event_loop().run_in_executor(None, qa_chain, {"question": question})
         answer_text = result["answer"]
-        
-        # 디버깅을 위해 모델의 응답 출력
-        # print("Raw Answer Text:", answer_text)  # 디버깅용 출력
+
+        source_documents = result.get("source_documents", [])  # [수정됨]
+        processed_documents = process_retrieved_documents(source_documents)  # [수정됨]
+        # print(processed_documents)
+
+        place_ids = []
+        for processed_document in processed_documents:
+            place_url = processed_document.get('place_url')
+            result_02 = await db.execute(
+                select(place_model.Place)
+                .where(place_model.Place.place_url==place_url)
+            )
+            place = result_02.scalar_one_or_none()
+            if not place:
+                raise HTTPException(status_code=404, detail=f"place with place_url {place_url} not found.")
+            place_ids.append(place.id)
+            
+        place_ids_str = None
+        if len(place_ids)==3:
+            place_ids_str=f"{place_ids[0]},{place_ids[1]},{place_ids[2]}"
+        else:
+            raise HTTPException(status_code=404, detail=f"RAG place cnt not 3")
+
+        return_dict['place_ids_str'] = place_ids_str
+        print(f"@@@@@@@ {place_ids_str}")
 
         # JSON 부분 찾기
         json_start = answer_text.find('```json')
@@ -173,44 +212,23 @@ async def get_recommendation_async(qa_chain, query, location_str, user_character
         
         try:
             answer_json = json.loads(json_str)
-            return {
+            return_dict['content'] = {
                 "status": "success",
                 "message": answer_text[:json_start].strip() if json_start != -1 else "",
                 "data": answer_json
             }
+            return return_dict
         except json.JSONDecodeError:
             raise HTTPException(status_code=404, detail="JSON 파싱 실패")
-            # return {
-            #     "status": "error",
-            #     "message": "JSON 파싱 실패",
-            #     "raw_response": answer_text
-            # }
     except Exception as e:
         raise HTTPException(status_code=404, detail=f"str({e})")
-        # return {
-        #     "status": "error",
-        #     "message": str(e)
-        # }
     
-async def get_chatbot_response_about_user_input_async(input_text: str, x: float, y: float, user_characteristic: str):
+async def get_chatbot_response_about_user_input_async(db: AsyncSession,input_text: str, x: float, y: float, user_characteristic: str):
     location_str = await get_reverse_geocoding(x=x, y=y)
 
-    # 위치 정보 받아오기
-    # print(f"(x, y) -> {location_str}")
-
-    location_str
-
-    # 추천 받기
-    # print("get_recommendation_async 실행 전")
-
-    result = await get_recommendation_async(qa_chain, input_text, location_str, user_characteristic)
-    
-    # print(f"get_recommendation_async 실행 후: {result}")
-
-    response = json.dumps(result, ensure_ascii=False, indent=2)
-
-    # JSON 출력
-    # print(response)
-    # print("json.dumps 실행 후: "+response)
-
-    return response
+    result = await get_recommendation_async(db, qa_chain, input_text, location_str, user_characteristic)
+    result_content = result['content']
+    response = json.dumps(result_content, ensure_ascii=False, indent=2)
+    result['content'] = response
+    print(result)
+    return result

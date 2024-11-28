@@ -20,14 +20,18 @@ async def create_chat_record(db: AsyncSession, chat_record: chat_record_dto.Chat
 
     user_characteristic = await get_user_characteristic_by_chat_room_id(db=db, chat_room_id=chat_room_id)
 
-    chatbot_response = await get_chatbot_response_about_user_input_async(input_text=db_chat_record.message, x=x, y=y, user_characteristic=user_characteristic)
+    result = await get_chatbot_response_about_user_input_async(db=db, input_text=db_chat_record.message, x=x, y=y, user_characteristic=user_characteristic)
+    chatbot_response = result['content']
+    place_ids_str = result['place_ids_str']
+
     db_chat_record_response = chat_record_model.ChatRecord(
         **chat_record_dto.ChatRecordCreate(
             message=chatbot_response,
             # message="현재 챗봇이 잠자고 있습니다.",
             is_chatbot=True
         ).dict(),
-        chat_room_id=chat_room_id
+        chat_room_id=chat_room_id,
+        place_ids_str=place_ids_str
     )
     db.add(db_chat_record_response)
     await db.commit()
