@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from ..dto import chat_record_dto
@@ -16,9 +16,9 @@ router = APIRouter()
 
 # 채팅 기록 생성 엔드포인트
 @router.post("/chat_rooms/{chat_room_id}/records/", response_model=chat_record_dto.ChatRecord)
-async def create_chat_record(chat_room_id: int, chat_record: chat_record_dto.ChatRecordCreate, db: AsyncSession = Depends(get_db)):
+async def create_chat_record(chat_room_id: int, chat_record: chat_record_dto.ChatRecordCreate, x: float=126.988230622132, y: float=37.5513049702718, db: AsyncSession = Depends(get_db)):
     # CRUD 함수로 채팅 기록 생성
-    response =  await chat_record_service.create_chat_record(db=db, chat_record=chat_record, chat_room_id=chat_room_id)
+    response =  await chat_record_service.create_chat_record(db=db, chat_record=chat_record, chat_room_id=chat_room_id, x=x, y=y)
     return response.__dict__
 
 # 특정 채팅방의 모든 채팅 기록 조회 엔드포인트
