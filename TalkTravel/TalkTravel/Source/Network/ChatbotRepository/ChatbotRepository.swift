@@ -61,6 +61,8 @@ final class ChatbotRepository {
     }
     
     func postCreateChatRecords(chatRoomId: String,
+                               x: Double,
+                               y: Double,
                                message: String,
                                isChatbot: Bool,
                                completion: @escaping ((PostCreateChatRecordsDTO) -> Void)) {

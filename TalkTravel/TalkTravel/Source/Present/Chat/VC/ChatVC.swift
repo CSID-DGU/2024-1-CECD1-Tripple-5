@@ -5,7 +5,8 @@ import Then
 import RxSwift
 
 final class ChatVC: BaseVC {
-    var viewModel = ChatViewModel()
+    var viewModel = ChatViewModel(chatRepository: .init(),
+                                  travelRepository: .init())
     
     override func loadView() {
         super.loadView()
@@ -39,7 +40,6 @@ final class ChatVC: BaseVC {
                 let cell = ReceivedCell(style: .default, reuseIdentifier: nil)
                 cell.bindData(data: item)
                 
-                print(item.singleText)
                 cell.urlLabelActionCompletion = { [weak self] _ in
                     guard let self else { return }
                     guard let newUrl = URL(string: self.decodeKakaoLink(viewModel.chatDataDict[identifier]?.link ?? "")) else { return }
@@ -111,6 +111,14 @@ final class ChatVC: BaseVC {
                 
             })
             .disposed(by: disposeBag)
+        
+        chattingView.makePlanButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                                                action: #selector(makePlanButtonTap)))
+    }
+    
+    @objc
+    private func makePlanButtonTap() {
+        viewModel.postMakePlan()
     }
     
     private func tableViewMoveToBottom() {

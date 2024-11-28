@@ -20,8 +20,8 @@ struct ChattingCellItemData: Hashable {
 }
 
 struct ChatLocationData: Hashable {
-    let long: String
-    let lat: String
+    let long: Float
+    let lat: Float
 }
 
 enum ChattingSection: Equatable {

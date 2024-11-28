@@ -1,22 +1,65 @@
 import UIKit
+import CoreLocation
 
 import RxSwift
 import RxCocoa
 
-final class ChatViewModel {
+final class ChatViewModel: NSObject {
     var chatDataDict = [UUID: ChattingCellItemData]()
     var chatData: ChattingDataModel = .init(chatBotItem: [.init(isUserCell: false,
                                                                 singleText: "어떤 서비스를 원하시나요?\n(맛집 추천/숙소 추천/관광지 추천)")])
-    private var chatRepository = ChatbotRepository()
+    
+    var locationManager = CLLocationManager()
+
+    private var chatRepository: ChatbotRepository
+    private var travelRepository: TravelRepository
+    
+    private var userLon: Double = 0
+    private var userLat: Double = 0
     
     var datasource: UITableViewDiffableDataSource<ChattingSection, UUID>!
     var updateChatData = PublishRelay<Void>()
     
     //Property
     private var roomId: String = ""
+    private var roomTitle: String = ""
     var isFirstSelectBehaviorRelay = BehaviorSubject<Bool>(value: false)
     var addPlanCountRelay = PublishRelay<Int>()
     
+    init(chatRepository: ChatbotRepository,
+         travelRepository: TravelRepository) {
+        self.chatRepository = chatRepository
+        self.travelRepository = travelRepository
+        super.init()
+        checkAuthorizationStatus()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+    }
+    
+    func checkAuthorizationStatus() {
+        if #available(iOS 14.0, *) {
+            if locationManager.authorizationStatus == .authorizedAlways
+                || locationManager.authorizationStatus == .authorizedWhenInUse {
+                print("==> 위치 서비스 On 상태")
+                locationManager.startUpdatingLocation() //위치 정보 받아오기 시작 - 사용자의 현재 위치를 보고하는 업데이트 생성을 시작
+            } else if locationManager.authorizationStatus == .notDetermined {
+                print("==> 위치 서비스 Off 상태")
+                locationManager.requestWhenInUseAuthorization()
+            } else if locationManager.authorizationStatus == .denied {
+                print("==> 위치 서비스 Deny 상태")
+            }
+        } else {
+            if CLLocationManager.locationServicesEnabled() {
+                print("위치 서비스 On 상태")
+                locationManager.startUpdatingLocation() //위치 정보 받아오기 시작 - 사용자의 현재 위치를 보고하는 업데이트 생성을 시작
+                print("LocationViewController >> checkPermission() - \(locationManager.location?.coordinate)")
+            } else {
+                print("위치 서비스 Off 상태")
+                locationManager.requestWhenInUseAuthorization()
+            }
+        }
+    }
     
     func resetData(roomId: String) {
         chatDataDict = [:]
@@ -38,7 +81,6 @@ final class ChatViewModel {
                 count += 1
             }
         }
-        print(count)
         addPlanCountRelay.accept(count)
     }
     
@@ -82,49 +124,49 @@ final class ChatViewModel {
     }
     
     private func removeEscapeWord(text: String) -> String {
-        let originString = text.replacingOccurrences(of: "\\", with: "")
-                               .replacingOccurrences(of: "\n", with: "")
-        print("originString: ", originString)
+        let originString = text.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\\", with: "")
         return originString
     }
 
     private func parseMessageToStruct(data: String) -> ChatDetailMessageItemDTO? {
         let cleanedData = removeEscapeWord(text: data)
         guard let jsonData = cleanedData.data(using: .utf8, allowLossyConversion: false) else { return nil }
-        print(jsonData)
-        guard let message = try? JSONDecoder().decode(ChatDetailMessageItemDTO.self, from: jsonData) else { return nil }
-        print("message: ", message)
-        return message
+        guard let message = try? JSONDecoder().decode(ChatDetailMessageDTO.self, from: jsonData) else { return nil }
+        return message.data
     }
     //MARK: - Network
     func createRoom(name: String,
                     prompt: String) {
+        locationManager.startUpdatingLocation()
         chatRepository.postCreateChatRoom(userId: 1,
                                           chatRoomName: name,
                                           completion: { [weak self] result in
             guard let self else { return }
             self.roomId = String(result.id)
+            self.roomTitle = name
             startChat(prompt: prompt)
         })
     }
     
     func startChat(prompt: String) {
         chatRepository.postCreateChatRecords(chatRoomId: self.roomId,
+                                             x: userLon,
+                                             y: userLat,
                                              message: prompt,
                                              isChatbot: false,
                                              completion: { [weak self] result in
             guard let self else { return }
             if let messageData = parseMessageToStruct(data: removeEscapeWord(text: result.message)) {
-                messageData.places.forEach { [weak self] places in
+                messageData.recommendations.forEach { [weak self] places in
                     guard let self else { return }
                     self.chatData.chatBotItem.append(.init(isUserCell: !result.isChatbot,
                                                            singleText: "",
-                                                           placeName: "이름: " + places.name,
-                                                           loacation: "위치: " + places.location,
-                                                           detailLocation: .init(long: places.longitude,
-                                                                                 lat: places.latitude),
-                                                           link: "link: " + places.url,
-                                                           detail: "상세 설명: " + places.description,
+                                                           placeName: "이름: " + places.placeName,
+                                                           loacation: "위치: " + places.roadAddressName,
+                                                           detailLocation: .init(long: places.coordinates.x,
+                                                                                 lat: places.coordinates.y),
+                                                           link: "link: " + places.placeURL,
+                                                           detail: "상세 설명: " + places.recommendationReason,
                                                            placeImagePath: nil,
                                                            isAddPlan: false))
                 }
@@ -139,22 +181,22 @@ final class ChatViewModel {
     
     func getChatHistoryData() {
         self.chatData.chatBotItem.removeAll()
-        chatRepository.getReadChatRecords(chatRoomId: self.roomId,
-                                          completion: { [weak self] result in
+        chatRepository.getReadChatRoom(chatRoomId: self.roomId,
+                                       completion: { [weak self] result in
             guard let self else { return }
             result.chatRecords.forEach { [weak self] chatRecord in
                 guard let self else { return }
                 if let messageData = parseMessageToStruct(data: removeEscapeWord(text: chatRecord.message)) {
-                    messageData.places.forEach { [weak self] places in
+                    messageData.recommendations.forEach { [weak self] places in
                         guard let self else { return }
                         self.chatData.chatBotItem.append(.init(isUserCell: !chatRecord.isChatbot,
                                                                singleText: "",
-                                                               placeName: "이름: " + places.name,
-                                                               loacation: "위치: " + places.location,
-                                                               detailLocation: .init(long: places.longitude,
-                                                                                     lat: places.latitude),
-                                                               link: "link: " + places.url,
-                                                               detail: "상세 설명: " + places.description,
+                                                               placeName: "이름: " + places.placeName,
+                                                               loacation: "위치: " + places.roadAddressName,
+                                                               detailLocation: .init(long: places.coordinates.x,
+                                                                                     lat: places.coordinates.y),
+                                                               link: "link: " + places.placeURL,
+                                                               detail: "상세 설명: " + places.recommendationReason,
                                                                placeImagePath: nil,
                                                                isAddPlan: false))
                     }
@@ -173,6 +215,49 @@ final class ChatViewModel {
         })
     }
     
+    func getRoomDatas() {
+        chatRepository.getReadChatRoom(chatRoomId: self.roomId,
+                                       completion: { [weak self] result in
+            guard let self else { return }
+            self.roomId = result.chatRoomName
+        })
+    }
+    
+    func postMakePlan() {
+        travelRepository.postTravelSchedule(userId: "1",
+                                            tripName: roomTitle,
+                                            startDate: Date().getDateString(),
+                                            endDate: Date().getNextDateString(value: 1),
+                                            completion: { [weak self] result in
+            guard let self else { return }
+        })
+    }
     
 }
-
+extension ChatViewModel: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var longitude = CLLocationDegrees()
+        var latitude = CLLocationDegrees()
+         
+        if let location = locations.first {
+            print("위도: \(location.coordinate.latitude)")
+            print("경도: \(location.coordinate.longitude)")
+            userLon = location.coordinate.latitude
+            userLat = location.coordinate.longitude
+        }
+        
+        locationManager.stopUpdatingLocation()
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("locationManager >> didChangeAuthorization 🐥 ")
+        locationManager.startUpdatingLocation()  //위치 정보 받아오기 start
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("locationManager >> didFailWithError 🐥 ")
+    }
+    
+}

@@ -114,6 +114,7 @@
 		36C06DDD2CA69CC8008D4EFA /* TravelThemeItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C06DDC2CA69CC8008D4EFA /* TravelThemeItemSection.swift */; };
 		36CCA83E2CF792AE003BE2D7 /* UserDefault+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCA83D2CF792AE003BE2D7 /* UserDefault+.swift */; };
 		36CCA8742CF79DF2003BE2D7 /* Notification_Name+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCA8732CF79DF2003BE2D7 /* Notification_Name+.swift */; };
+		36CCA8872CF8CD84003BE2D7 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCA8862CF8CD84003BE2D7 /* Date+.swift */; };
 		36E1D4BF2CA5CE03008962EC /* RecommendPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E1D4BE2CA5CE03008962EC /* RecommendPlaceCell.swift */; };
 		36E1D4C22CA5D198008962EC /* RecommendCellViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E1D4C12CA5D198008962EC /* RecommendCellViewData.swift */; };
 /* End PBXBuildFile section */
@@ -218,6 +219,7 @@
 		36C06DDC2CA69CC8008D4EFA /* TravelThemeItemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelThemeItemSection.swift; sourceTree = "<group>"; };
 		36CCA83D2CF792AE003BE2D7 /* UserDefault+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+.swift"; sourceTree = "<group>"; };
 		36CCA8732CF79DF2003BE2D7 /* Notification_Name+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification_Name+.swift"; sourceTree = "<group>"; };
+		36CCA8862CF8CD84003BE2D7 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		36E1D4BC2CA5CCB8008962EC /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		36E1D4BE2CA5CE03008962EC /* RecommendPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendPlaceCell.swift; sourceTree = "<group>"; };
 		36E1D4C12CA5D198008962EC /* RecommendCellViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCellViewData.swift; sourceTree = "<group>"; };
@@ -493,6 +495,7 @@
 				367426402C24340200E122C9 /* CALayer+.swift */,
 				36CCA83D2CF792AE003BE2D7 /* UserDefault+.swift */,
 				36CCA8732CF79DF2003BE2D7 /* Notification_Name+.swift */,
+				36CCA8862CF8CD84003BE2D7 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1025,6 +1028,7 @@
 				367426222C24107300E122C9 /* NetworkResult.swift in Sources */,
 				367425F62C12A80500E122C9 /* ReceivedCell.swift in Sources */,
 				36C06DC32CA6741D008D4EFA /* TravelPlanView.swift in Sources */,
+				36CCA8872CF8CD84003BE2D7 /* Date+.swift in Sources */,
 				36C06DCF2CA67C15008D4EFA /* BudgetItemView.swift in Sources */,
 				367425FC2C232DA700E122C9 /* ChattingHistoryView.swift in Sources */,
 				367426412C24340200E122C9 /* CALayer+.swift in Sources */,
@@ -1187,6 +1191,9 @@
 				DEVELOPMENT_TEAM = U24ZACT97M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TalkTravel/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 권한을 허용해주세요";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 권한을 허용해주세요";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 권한을 허용해주세요";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1217,6 +1224,9 @@
 				DEVELOPMENT_TEAM = U24ZACT97M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TalkTravel/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "위치 권한을 허용해주세요";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "위치 권한을 허용해주세요";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 권한을 허용해주세요";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

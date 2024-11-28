@@ -10,7 +10,7 @@ struct GetReadChatRoomDTO: Codable {
     let chatRoomName: String
     let id, userID: Int
     let createdAt, updatedAt: String
-    let chatRecords: [String]
+    let chatRecords: [GetReadChatRoomData]
 
     enum CodingKeys: String, CodingKey {
         case chatRoomName = "chat_room_name"
@@ -19,5 +19,20 @@ struct GetReadChatRoomDTO: Codable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case chatRecords = "chat_records"
+    }
+}
+
+struct GetReadChatRoomData: Codable {
+    let message: String
+    let isChatbot: Bool
+    let id, chatRoomID: Int
+    let createdAt: String
+
+    enum CodingKeys: String, CodingKey {
+        case message
+        case isChatbot = "is_chatbot"
+        case id
+        case chatRoomID = "chat_room_id"
+        case createdAt = "created_at"
     }
 }
