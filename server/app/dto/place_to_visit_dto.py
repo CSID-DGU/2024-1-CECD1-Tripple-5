@@ -42,6 +42,12 @@ class PlaceToVisitOrderIndexUpdate(BaseModel):
 class PlacesToVisitOrderIndexUpdate(BaseModel):
     places_to_visit: List[PlaceToVisitOrderIndexUpdate]
 
+# 장소 이름을 사용하여 방문할 장소 생성 시 사용하는 스키마
+class PlaceToVisitCreateRequest(BaseModel):
+    user_memo: str
+    place_name: str  # 장소 이름
+
+
 
 # 순환 참조 해결을 위한 update_forward_refs() 호출
 PlaceToVisit.update_forward_refs()  # PlaceToVisit 모델의 참조 해결
