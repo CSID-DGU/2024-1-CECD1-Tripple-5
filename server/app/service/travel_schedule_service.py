@@ -5,7 +5,6 @@ from sqlalchemy.future import select
 
 from ..dto import travel_schedule_dto
 from ..entity.model import travel_schedule_model, place_to_visit_model
-from .chatbot.chat import get_response_from_chatgpt
 from sqlalchemy.orm import selectinload
 
 from ..dto import place_dto

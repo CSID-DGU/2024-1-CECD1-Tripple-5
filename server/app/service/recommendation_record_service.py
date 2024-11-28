@@ -5,7 +5,6 @@ from sqlalchemy.future import select
 
 from ..dto import recommendation_record_dto
 from ..entity.model import recommendation_record_model
-from .chatbot.chat import get_response_from_chatgpt
 from sqlalchemy.orm import selectinload
 from sqlalchemy.orm import joinedload
 # CRUD 함수 정의

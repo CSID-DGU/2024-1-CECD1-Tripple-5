@@ -4,7 +4,6 @@ from sqlalchemy.future import select
 
 from ..dto import chat_room_dto
 from ..entity.model import chat_room_model
-from .chatbot.chat import get_response_from_chatgpt
 from sqlalchemy.orm import selectinload
 
 from ..dto import chat_record_dto
