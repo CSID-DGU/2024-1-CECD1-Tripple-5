@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 import pandas as pd
 from langchain.vectorstores import Chroma
 from langchain.chat_models import ChatOpenAI
@@ -8,6 +9,7 @@ from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 import json
 import os
+import asyncio
 
 # 환경 변수 로드 (OPENAI_API_KEY 등)
 load_dotenv()
@@ -121,7 +123,7 @@ def create_qa_chain(documents):
 
     llm = ChatOpenAI(
         temperature=0.7,
-        model_name="gpt-4"  # 올바른 모델 이름으로 수정
+        model_name="gpt-4o"  # 올바른 모델 이름으로 수정
     )
 
     qa_chain = ConversationalRetrievalChain.from_llm(
@@ -139,9 +141,80 @@ def create_qa_chain(documents):
 
     return qa_chain
 
-def get_recommendation(qa_chain, query):
+# def get_recommendation(qa_chain, query):
+#     try:
+#         result = qa_chain({"question": query})
+#         answer_text = result["answer"]
+        
+#         # 디버깅을 위해 모델의 응답 출력
+#         print("Raw Answer Text:", answer_text)  # 디버깅용 출력
+
+#         # JSON 부분 찾기
+#         json_start = answer_text.find('```json')
+#         json_end = answer_text.rfind('```')
+        
+#         if json_start != -1 and json_end != -1:
+#             # JSON 문자열 추출 및 파싱
+#             json_str = answer_text[json_start + 7:json_end].strip()
+#         else:
+#             # 코드 블록이 없을 경우 전체 텍스트를 JSON으로 시도
+#             json_str = answer_text.strip()
+        
+#         try:
+#             answer_json = json.loads(json_str)
+#             return {
+#                 "status": "success",
+#                 "message": answer_text[:json_start].strip() if json_start != -1 else "",
+#                 "data": answer_json
+#             }
+#         except json.JSONDecodeError:
+#             return {
+#                 "status": "error",
+#                 "message": "JSON 파싱 실패",
+#                 "raw_response": answer_text
+#             }
+#     except Exception as e:
+#         return {
+#             "status": "error",
+#             "message": str(e)
+#         }
+
+# QA 체인 초기화
+qa_chain = create_qa_chain(documents)
+
+# # 입력 및 출력
+# if __name__ == "__main__":
+#     print("서울 여행 추천 챗봇입니다. '종료'를 입력하시면 대화가 종료됩니다.")
+#     print("어떤 장소를 추천해드릴까요?\n")
+    
+#     while True:
+#         # 사용자 입력 받기
+#         user_input = input("사용자: ")
+        
+#         # 종료 조건 확인
+#         if user_input.lower() in ['종료', 'quit', 'exit']:
+#             response = {
+#                 "status": "terminated",
+#                 "message": "대화를 종료합니다. 좋은 하루 되세요!",
+#                 "data": None
+#             }
+#             print(json.dumps(response, ensure_ascii=False, indent=2))
+#             break
+        
+#         # 추천 받기
+#         result = get_recommendation(qa_chain, user_input)
+        
+#         # JSON 출력
+#         print(json.dumps(result, ensure_ascii=False, indent=2))
+        
+#         print("\n" + "="*50 + "\n")
+
+
+# get_recommendation 함수를 비동기로 변환
+async def get_recommendation_async(qa_chain, query):
     try:
-        result = qa_chain({"question": query})
+        # ConversationalRetrievalChain의 __call__은 동기적으로 작동하므로, asyncio의 run_in_executor를 사용하여 비동기 호출
+        result = await asyncio.get_event_loop().run_in_executor(None, qa_chain, {"question": query})
         answer_text = result["answer"]
         
         # 디버깅을 위해 모델의 응답 출력
@@ -166,43 +239,31 @@ def get_recommendation(qa_chain, query):
                 "data": answer_json
             }
         except json.JSONDecodeError:
-            return {
-                "status": "error",
-                "message": "JSON 파싱 실패",
-                "raw_response": answer_text
-            }
+            raise HTTPException(status_code=404, detail="JSON 파싱 실패")
+            # return {
+            #     "status": "error",
+            #     "message": "JSON 파싱 실패",
+            #     "raw_response": answer_text
+            # }
     except Exception as e:
-        return {
-            "status": "error",
-            "message": str(e)
-        }
-
-# QA 체인 초기화
-qa_chain = create_qa_chain(documents)
-
-# 입력 및 출력
-if __name__ == "__main__":
-    print("서울 여행 추천 챗봇입니다. '종료'를 입력하시면 대화가 종료됩니다.")
-    print("어떤 장소를 추천해드릴까요?\n")
+        raise HTTPException(status_code=404, detail=f"str({e})")
+        # return {
+        #     "status": "error",
+        #     "message": str(e)
+        # }
     
-    while True:
-        # 사용자 입력 받기
-        user_input = input("사용자: ")
-        
-        # 종료 조건 확인
-        if user_input.lower() in ['종료', 'quit', 'exit']:
-            response = {
-                "status": "terminated",
-                "message": "대화를 종료합니다. 좋은 하루 되세요!",
-                "data": None
-            }
-            print(json.dumps(response, ensure_ascii=False, indent=2))
-            break
-        
-        # 추천 받기
-        result = get_recommendation(qa_chain, user_input)
-        
-        # JSON 출력
-        print(json.dumps(result, ensure_ascii=False, indent=2))
-        
-        print("\n" + "="*50 + "\n")
+async def get_chatbot_response_about_user_input_async(input_text):
+    # 추천 받기
+    print("get_recommendation_async 실행 전")
+
+    result = await get_recommendation_async(qa_chain, input_text)
+    
+    print(f"get_recommendation_async 실행 후: {result}")
+
+    response = json.dumps(result, ensure_ascii=False, indent=2)
+
+    # JSON 출력
+    print(response)
+    print("json.dumps 실행 후: "+response)
+
+    return response
