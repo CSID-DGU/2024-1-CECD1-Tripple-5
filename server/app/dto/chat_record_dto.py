@@ -17,6 +17,7 @@ class ChatRecordCreate(ChatRecordBase):
 class ChatRecord(ChatRecordBase):
     id: int  # 채팅 기록 ID
     chat_room_id: int  # 채팅방 ID
+    place_ids_str: str
     created_at: datetime  # 채팅 기록 생성 시간
 
     class Config:
