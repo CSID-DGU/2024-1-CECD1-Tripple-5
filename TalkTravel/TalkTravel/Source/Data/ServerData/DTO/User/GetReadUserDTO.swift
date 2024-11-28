@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - Welcome
 struct GetReadUserDTO: Codable {
-    let accommodationBudget, foodBudget, sightseeingBudget: Int
+    let accommodationBudget, foodBudget, sightseeingBudget: Float
     let travelTheme: String
     let id: Int
     let createdAt, updatedAt: String

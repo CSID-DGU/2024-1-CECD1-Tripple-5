@@ -55,12 +55,13 @@ final class BudgetItemView: UIView {
     private let titleContentView = UIStackView().then {
         $0.distribution = .fill
         $0.axis = .horizontal
+        $0.spacing = 8
     }
     private let titleIconImageView = UIImageView().then {
         $0.image = .icWallet
         $0.contentMode = .scaleAspectFill
     }
-    private let titleLabel = UILabel().then {
+    let titleLabel = UILabel().then {
         $0.font = Pretendard.pretendardSemibold(size: 20).font
         $0.textColor = .gray700
     }

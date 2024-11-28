@@ -1,7 +1,15 @@
 import UIKit
 
+import RxSwift
+import RxRelay
+import RxCocoa
+
 class ProfileVC: UIViewController {
-    var viewModel = ProfileViewModel()
+    private var disposeBag: DisposeBag = .init()
+    var viewModel = ProfileViewModel(userRepository: .init())
+    
+    let minValue: Float = 10
+    let maxValue: Float = 100
     
     override func loadView() {
         super.loadView()
@@ -11,14 +19,61 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        setData()
-        updateToggleState()
+        bindAction()
+        viewModel.getProfileData(completion: { [weak self] in
+            guard let self else { return }
+            self.setData()
+            self.setTotalBudget()
+            self.updateToggleState()
+        })
+    }
+    
+    private func bindAction() {
+        profileView.budgetSliderSectionItem.foodExpenseSliderView.slider.addTarget(self,
+                                                                                   action: #selector(sliderTouchEnded(_:)), for: [.touchUpInside, .touchUpOutside])
+        profileView.budgetSliderSectionItem.foodExpenseSliderView.slider.addTarget(self,
+                                                                                   action: #selector(sliderValueChanged(_:)), for: .valueChanged)
+        profileView.budgetSliderSectionItem.hotelSliderView.slider.addTarget(self,
+                                                                             action: #selector(sliderTouchEnded(_:)), for: [.touchUpInside, .touchUpOutside])
+        profileView.budgetSliderSectionItem.hotelSliderView.slider.addTarget(self,
+                                                                             action: #selector(sliderValueChanged(_:)), for: .valueChanged)
+        
+        profileView.budgetSliderSectionItem.travelBudgetSliderView.slider.addTarget(self,
+                                                                                    action: #selector(sliderTouchEnded(_:)), for: [.touchUpInside, .touchUpOutside])
+        profileView.budgetSliderSectionItem.travelBudgetSliderView.slider.addTarget(self,
+                                                                                    action: #selector(sliderValueChanged(_:)), for: .valueChanged)
+    }
+    
+    @objc func sliderValueChanged(_ sender: UISlider) {
+        if sender == profileView.budgetSliderSectionItem.foodExpenseSliderView.slider {
+            viewModel.profileViewData.foodBudget = Float(minValue + (sender.value * (maxValue - minValue)))
+        } else if sender == profileView.budgetSliderSectionItem.hotelSliderView.slider {
+            viewModel.profileViewData.placeBudget = Float(minValue + (sender.value * (maxValue - minValue)))
+        } else if sender == profileView.budgetSliderSectionItem.travelBudgetSliderView.slider {
+            viewModel.profileViewData.travelBudget = Float(minValue + (sender.value * (maxValue - minValue)))
+        }
+        setTotalBudget()
+    }
+    
+    @objc func sliderTouchEnded(_ sender: UISlider) {
+        setTotalBudget()
+        viewModel.updateProfileData(placeBudget: viewModel.profileViewData.placeBudget,
+                                    foodBudget: viewModel.profileViewData.foodBudget,
+                                    travelBudget: viewModel.profileViewData.travelBudget)
+    }
+    
+    private func setTotalBudget() {
+        let budget = Int(viewModel.profileViewData.foodBudget) + Int(viewModel.profileViewData.travelBudget) + Int(viewModel.profileViewData.placeBudget)
+        self.profileView.budgetSliderSectionItem.titleLabel.text = "\(Int(budget))만원"
     }
     
     private func setData() {
         profileView.themeSectionItem.bindData(section1: viewModel.profileViewData.themeSection1Data,
-                                  section2: viewModel.profileViewData.themeSection2Data,
-                                  section3: viewModel.profileViewData.themeSection3Data)
+                                              section2: viewModel.profileViewData.themeSection2Data,
+                                              section3: viewModel.profileViewData.themeSection3Data)
+        profileView.budgetSliderSectionItem.hotelSliderView.bindData(data: (viewModel.profileViewData.placeBudget - 10) / (90))
+        profileView.budgetSliderSectionItem.foodExpenseSliderView.bindData(data: (viewModel.profileViewData.foodBudget - 10) / (90))
+        profileView.budgetSliderSectionItem.travelBudgetSliderView.bindData(data: (viewModel.profileViewData.travelBudget - 10) / (90))
     }
     
     

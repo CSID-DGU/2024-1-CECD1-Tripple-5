@@ -19,6 +19,11 @@ final class CustomSlider: UIView {
         bottomRightLabel.text = bottomRight
     }
     
+    func bindData(data: Float) {
+        self.slider.setValue(data,
+                             animated: false)
+    }
+    
     private func setLayout() {
         self.addSubviews(titleLabel,
                          bottomLeftLabel,

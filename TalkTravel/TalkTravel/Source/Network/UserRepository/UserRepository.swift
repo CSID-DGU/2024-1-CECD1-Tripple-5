@@ -32,10 +32,8 @@ class UserRepository {
     
     func getReadUser(userId: String,
                      completion: @escaping ((GetReadUserDTO) -> Void)) {
-        let body: [String : Any] = ["user_id": userId]
-        PostService.shared.postService(with: body,
-                                       from: AppConstants.baseURL + "/api/v1/users/\(userId)",
-                                       callback: { (data: GetReadUserDTO?, error) in
+        GETService.shared.getService(from: AppConstants.baseURL + "/api/v1/users/\(userId)",
+                                     callback: { (data: GetReadUserDTO?, error) in
             guard let data = data else {
                 return
             }

@@ -1,7 +1,9 @@
 import Foundation
 
 final class ProfileViewModel {
-    
+    private var userRepository: UserRepository
+    private let minValue: Float = 10
+    private let maxValue: Float = 100
     var profileViewData = ProfileViewData(placeBudget: 0.5,
                                           foodBudget: 0.5,
                                           travelBudget: 0.5,
@@ -15,8 +17,36 @@ final class ProfileViewModel {
                                                               .init(type: .local,
                                                                     isSelected: false)])
     
-    init() {
-        setProfileData()
+    init(userRepository: UserRepository) {
+        self.userRepository = userRepository
+    }
+    
+    func getProfileData(completion: (() -> Void)?) {
+        self.userRepository.getReadUser(userId: "1",
+                                        completion: { [weak self] data in
+            guard let self else { return }
+            self.profileViewData = .init(placeBudget: data.accommodationBudget,
+                                         foodBudget: data.foodBudget,
+                                         travelBudget: data.sightseeingBudget,
+                                         themeSection1Data: [],
+                                         themeSection2Data: [],
+                                         themeSection3Data: [])
+            print(self.profileViewData)
+            self.setProfileData()
+            completion?()
+        })
+    }
+    
+    func updateProfileData(placeBudget: Float,
+                           foodBudget: Float,
+                           travelBudget: Float) {
+        self.userRepository.putUpdateUser(userId: "1",
+                                          accommodationBudget: Int(placeBudget),
+                                          foodBudget: Int(foodBudget),
+                                          sightseeingBudget: Int(travelBudget),
+                                          travelTheme: "영화",
+                                          completion: { [weak self] _ in
+        })
     }
     
     private func setProfileData() {

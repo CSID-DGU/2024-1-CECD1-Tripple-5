@@ -1,7 +1,7 @@
 struct ProfileViewData {
-    let placeBudget: Float
-    let foodBudget: Float
-    let travelBudget: Float
+    var placeBudget: Float
+    var foodBudget: Float
+    var travelBudget: Float
     
     var themeSection1Data: [TravelThemeData]
     var themeSection2Data: [TravelThemeData]
