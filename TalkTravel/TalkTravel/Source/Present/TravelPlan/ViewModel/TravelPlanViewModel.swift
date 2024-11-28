@@ -1,26 +1,22 @@
 import Foundation
 
 final class TravelPlanViewModel {
-    var travelPlanHistoryData: [TravelPlanCellData] = [.init(travelId: "",
-                                                             createdAt: "2023.09.27",
-                                                             chatTitle: "제주도 여행지 추천"),
-                                                       .init(travelId: "",
-                                                             createdAt: "2023.09.27",
-                                                             chatTitle: "제주도 여행지 추천"),
-                                                       .init(travelId: "",
-                                                             createdAt: "2023.09.27",
-                                                             chatTitle: "제주도 여행지 추천"),
-                                                       .init(travelId: "",
-                                                             createdAt: "2023.09.27",
-                                                             chatTitle: "제주도 여행지 추천"),
-                                                       .init(travelId: "",
-                                                             createdAt: "2023.09.27",
-                                                             chatTitle: "제주도 여행지 추천"),
-                                                       .init(travelId: "",
-                                                             createdAt: "2023.09.27",
-                                                             chatTitle: "제주도 여행지 추천"),]
+    private var travelRepository: TravelRepository
     
-    init() {
-        
+    var travelPlanHistoryData: [TravelPlanCellData] = []
+    
+    init(travelRepository: TravelRepository) {
+        self.travelRepository = travelRepository
+    }
+    
+    func getTravelData(completion: (() -> Void)?) {
+        travelRepository.getReadTravelSchedules(userId: "1",
+                                                completion: { [weak self] result in
+            guard let self else { return }
+            travelPlanHistoryData = result.travelSchedules.map { .init(travelId: $0.id,
+                                                                       createdAt: String($0.createdAt.split(separator: "T").first ?? ""),
+                                                                       chatTitle: $0.tripName) }
+            completion?()
+        })
     }
 }

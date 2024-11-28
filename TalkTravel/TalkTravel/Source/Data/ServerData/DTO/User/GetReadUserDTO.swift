@@ -2,11 +2,10 @@ import Foundation
 
 // MARK: - Welcome
 struct GetReadUserDTO: Codable {
-    let accommodationBudget, foodBudget, sightseeingBudget: Float
+    let accommodationBudget, foodBudget, sightseeingBudget: String
     let travelTheme: String
     let id: Int
     let createdAt, updatedAt: String
-    let recommendationRecords, chatRooms, travelSchedules: [String]
 
     enum CodingKeys: String, CodingKey {
         case accommodationBudget = "accommodation_budget"
@@ -16,8 +15,5 @@ struct GetReadUserDTO: Codable {
         case id
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case recommendationRecords = "recommendation_records"
-        case chatRooms = "chat_rooms"
-        case travelSchedules = "travel_schedules"
     }
 }

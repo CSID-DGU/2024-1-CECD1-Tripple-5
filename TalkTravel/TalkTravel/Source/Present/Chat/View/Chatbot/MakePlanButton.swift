@@ -29,7 +29,7 @@ final class MakePlanButton: UIView {
         }
     }
     
-    private let button = UIButton().then {
+    let button = UIButton().then {
         $0.tintColor = .clear
         var config = UIButton.Configuration.plain()
         config.background.backgroundColor = .white

@@ -75,6 +75,7 @@ final class ChatbotView: UIView {
     let inputTextField = ChatTextField()
     let makePlanButton = MakePlanButton().then {
         $0.isHidden = true
+        $0.isUserInteractionEnabled = true
     }
     
 }

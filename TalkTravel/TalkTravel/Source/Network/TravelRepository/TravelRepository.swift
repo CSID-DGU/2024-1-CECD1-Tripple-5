@@ -53,7 +53,7 @@ class TravelRepository {
                                      
     }
     
-    func getReadPlacesToVisit(travelScheduleId: String,
+    func getReadPlacesToVisit(travelScheduleId: Int,
                               completion: @escaping ((GetReadPlacesToVisitDTO) -> Void)) {
         GETService.shared.getService(from: AppConstants.baseURL + "/api/v1/travel_schedules/\(travelScheduleId)/places_to_visit",
                                      callback: { (data: GetReadPlacesToVisitDTO?, error) in
@@ -64,12 +64,12 @@ class TravelRepository {
         })
     }
     
-    func postCreatePlaceToVisit(travelScheduleId: String,
+    func postCreatePlaceToVisit(travelScheduleId: Int,
                                 userMemo: String,
-                                placeId: Int,
+                                placeName: String,
                                 completion: @escaping ((PostCreatePlaceToVisitDTO) -> Void)) {
         let body: [String: Any] = ["user_memo": userMemo,
-                                   "place_id": placeId]
+                                   "place_name": placeName]
         PostService.shared.postService(with: body,
                                        from: AppConstants.baseURL + "/api/v1/travel_schedules/\(travelScheduleId)/places_to_visit",
                                        callback: { (data: PostCreatePlaceToVisitDTO?, error) in

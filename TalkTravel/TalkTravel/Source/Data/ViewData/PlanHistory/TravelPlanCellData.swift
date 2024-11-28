@@ -1,5 +1,5 @@
 struct TravelPlanCellData {
-    let travelId: String
+    let travelId: Int
     let createdAt: String
     let chatTitle: String
 }

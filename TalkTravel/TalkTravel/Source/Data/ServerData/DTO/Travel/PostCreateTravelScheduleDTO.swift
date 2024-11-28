@@ -5,7 +5,6 @@ struct PostCreateTravelScheduleDTO: Codable {
     let tripName, startDate, endDate: String
     let id, userID: Int
     let createdAt, updatedAt: String
-    let placesToVisit: [String]
 
     enum CodingKeys: String, CodingKey {
         case tripName = "trip_name"
@@ -15,6 +14,5 @@ struct PostCreateTravelScheduleDTO: Codable {
         case userID = "user_id"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case placesToVisit = "places_to_visit"
     }
 }

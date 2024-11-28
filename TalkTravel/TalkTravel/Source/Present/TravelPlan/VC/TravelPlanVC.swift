@@ -5,7 +5,7 @@ import RxCocoa
 
 class TravelPlanVC: UIViewController {
     private var disposeBag = DisposeBag()
-    var viewModel = TravelPlanViewModel()
+    var viewModel = TravelPlanViewModel(travelRepository: .init())
     
     override func loadView() {
         super.loadView()
@@ -16,9 +16,17 @@ class TravelPlanVC: UIViewController {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         travelPlanView.planHistoryCollectionView.dataSource = self
-        
         bindCollectionViewAction()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.getTravelData(completion: { [weak self] in
+            guard let self else { return }
+            self.travelPlanView.planHistoryCollectionView.reloadData()
+        })
+    }
+    
     
     func bindCollectionViewAction() {
         travelPlanView.planHistoryCollectionView.rx.itemSelected.asObservable()
@@ -26,6 +34,7 @@ class TravelPlanVC: UIViewController {
                 guard let self else { return }
                 let planDetailView = PlanDetailVC()
                 planDetailView.bindNavigationTitle(title: viewModel.travelPlanHistoryData[indexPath.row].chatTitle)
+                planDetailView.viewModel.travelScheduleId = viewModel.travelPlanHistoryData[indexPath.row].travelId
                 planDetailView.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(planDetailView, animated: true)
             })

@@ -25,9 +25,9 @@ final class ProfileViewModel {
         self.userRepository.getReadUser(userId: "1",
                                         completion: { [weak self] data in
             guard let self else { return }
-            self.profileViewData = .init(placeBudget: data.accommodationBudget,
-                                         foodBudget: data.foodBudget,
-                                         travelBudget: data.sightseeingBudget,
+            self.profileViewData = .init(placeBudget: (Float(data.accommodationBudget) ?? 0) / 10000,
+                                         foodBudget: (Float(data.foodBudget) ?? 0) / 10000,
+                                         travelBudget: (Float(data.sightseeingBudget) ?? 0) / 10000,
                                          themeSection1Data: [],
                                          themeSection2Data: [],
                                          themeSection3Data: [])

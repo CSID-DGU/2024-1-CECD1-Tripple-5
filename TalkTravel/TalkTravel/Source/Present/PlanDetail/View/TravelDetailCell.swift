@@ -32,12 +32,20 @@ final class TravelDetailCell: UICollectionViewCell {
     private func setMap(location: PlaceLocateData) {
         let center = CLLocationCoordinate2D(latitude: location.lat,
                                             longitude: location.lon)
-        let span = MKCoordinateSpan(latitudeDelta: 1.0,
-                                    longitudeDelta: 1.0)
+        let span = MKCoordinateSpan(latitudeDelta: 0.005,
+                                    longitudeDelta: 0.005)
         let region = MKCoordinateRegion(center: center,
                                         span: span)
         mapView.setRegion(region,
                           animated: false)
+        createAnnotaion(location: location)
+    }
+    
+    func createAnnotaion(location: PlaceLocateData) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat,
+                                                       longitude: location.lon)
+        mapView.addAnnotation(annotation)
     }
     
     private func setLayout() {
@@ -99,6 +107,7 @@ final class TravelDetailCell: UICollectionViewCell {
     private lazy var mapView = MKMapView().then {
         $0.layer.cornerRadius = 30
         $0.clipsToBounds = true
+        $0.delegate = self
     }
     
     private let budgetTitleLabel = UILabel().then {
@@ -121,5 +130,20 @@ final class TravelDetailCell: UICollectionViewCell {
     private let openScheduleContentLabel = UILabel().then {
         $0.font = Pretendard.pretendardSemibold(size: 14).font
         $0.textColor = .gray600
+    }
+}
+extension TravelDetailCell: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: any MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else { return nil }
+        let identifier = "custom_place"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = false
+            annotationView?.image = .icMap
+        }
+        
+        return annotationView
     }
 }

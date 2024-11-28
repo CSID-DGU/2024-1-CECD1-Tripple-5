@@ -8,6 +8,7 @@ struct ChattingDataModel: Hashable {
 
 struct ChattingCellItemData: Hashable {
     var identifier: UUID = .init()
+    var placeId: Int = 0
     var isUserCell: Bool
     var singleText: String?
     var placeName: String?

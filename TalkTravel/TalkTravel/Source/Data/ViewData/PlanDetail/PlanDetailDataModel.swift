@@ -1,5 +1,5 @@
 struct PlanDetailDataModel {
-    let summaryData: PlanDetailSummaryData
+    var summaryData: PlanDetailSummaryData
     var detailData: [PlanDetailItemData]
 }
 

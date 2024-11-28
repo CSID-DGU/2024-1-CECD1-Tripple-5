@@ -1,17 +1,30 @@
 import UIKit
 
 final class PlanDetailVC: UIViewController {
-    private var viewModel = PlanDetailViewModel()
+    var viewModel = PlanDetailViewModel(travelRepository: .init())
     
     override func loadView() {
         super.loadView()
         self.view = planDetailView
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.getDetailData(completion: { [weak self] in
+            guard let self else { return }
+            planDetailView.collectionView.reloadData()
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
         bindButtonAction()
+        viewModel.getDetailData(completion: { [weak self] in
+            guard let self else { return }
+            planDetailView.collectionView.reloadData()
+        })
     }
     
     private func setDelegate() {

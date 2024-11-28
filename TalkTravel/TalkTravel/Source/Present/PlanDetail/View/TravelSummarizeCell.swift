@@ -22,7 +22,7 @@ final class TravelSummarizeCell: UICollectionViewCell {
     
     func bindData(data: PlanDetailSummaryData) {
         allPlanContentLabel.text = data.allPlan
-        allBudgetContentLabel.text = data.allBudget
+        allBudgetContentLabel.text = data.allBudget + "만원"
         
         setMap(location: data.allPlaceLocation)
         
@@ -34,16 +34,27 @@ final class TravelSummarizeCell: UICollectionViewCell {
         }
     }
     
+    func createAnnotaion(location: PlaceLocateData) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat,
+                                                       longitude: location.lon)
+        mapView.addAnnotation(annotation)
+    }
+    
     private func setMap(location: [PlaceLocateData]) {
         guard let firstLocation = location.first else { return }
         let center = CLLocationCoordinate2D(latitude: firstLocation.lat,
                                             longitude: firstLocation.lon)
-        let span = MKCoordinateSpan(latitudeDelta: 1.0,
-                                    longitudeDelta: 1.0)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05,
+                                    longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: center,
                                         span: span)
         mapView.setRegion(region,
                           animated: false)
+        location.forEach {
+            createAnnotaion(location: .init(lat: $0.lat,
+                                            lon: $0.lon))
+        }
     }
     
     private func setLayout() {
@@ -108,6 +119,7 @@ final class TravelSummarizeCell: UICollectionViewCell {
     private lazy var mapView = MKMapView().then {
         $0.layer.cornerRadius = 30
         $0.clipsToBounds = true
+        $0.delegate = self
     }
     
     private let allPlanTitleLabel = UILabel().then {
@@ -140,5 +152,20 @@ final class TravelSummarizeCell: UICollectionViewCell {
     
     private let bottomLineView = UIView().then {
         $0.backgroundColor = .gray200
+    }
+}
+extension TravelSummarizeCell: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: any MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKUserLocation) else { return nil }
+        let identifier = "custom_place"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = false
+            annotationView?.image = .icMap
+        }
+        
+        return annotationView
     }
 }

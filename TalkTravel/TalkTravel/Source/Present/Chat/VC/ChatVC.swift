@@ -112,14 +112,15 @@ final class ChatVC: BaseVC {
             })
             .disposed(by: disposeBag)
         
-        chattingView.makePlanButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
-                                                                                action: #selector(makePlanButtonTap)))
+        chattingView.makePlanButton.button.rx.tap.asObservable()
+            .withUnretained(self)
+            .subscribe(onNext: { (vc, _) in
+                vc.viewModel.postMakePlan()
+
+            })
+            .disposed(by: disposeBag)
     }
-    
-    @objc
-    private func makePlanButtonTap() {
-        viewModel.postMakePlan()
-    }
+
     
     private func tableViewMoveToBottom() {
         viewModel.updateChatData
