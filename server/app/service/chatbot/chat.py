@@ -45,8 +45,8 @@ for _, row in places_df.iterrows():
         "category_group_name": row['category_group_name'],
         "category_name": row['category_name'],
         "coordinates": {
-            "x": row['x'],
-            "y": row['y']
+            "x": float(row['x']),
+            "y": float(row['y'])
         },
         "road_address_name": row['road_address_name'],
         "place_url": row['place_url'],
@@ -75,7 +75,7 @@ def create_qa_chain(documents):
   - type (장소 유형: restaurant/accommodation/attraction)
   - category_group_name (카테고리 그룹)
   - category_name (상세 카테고리)
-  - coordinates (위치 정보: x, y)
+  - coordinates (위치 정보 x: float, y: float 필드 포함)
   - road_address_name (도로명 주소)
   - place_url (장소 URL)
   - estimated_cost (예상 비용)
