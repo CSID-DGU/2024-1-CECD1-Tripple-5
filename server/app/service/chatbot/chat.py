@@ -18,7 +18,7 @@ load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 # 데이터 로드
-restaurants_df = pd.read_csv('data/restaurants-test.csv')
+restaurants_df = pd.read_csv('data/restaurants.csv')
 accommodations_df = pd.read_csv('data/accommodations.csv')
 attractions_df = pd.read_csv('data/tourist_attractions.csv')
 
