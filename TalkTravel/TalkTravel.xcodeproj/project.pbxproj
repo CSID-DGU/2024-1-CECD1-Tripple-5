@@ -226,6 +226,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		365113C72D027F3100A07FEE /* Search */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Search; sourceTree = "<group>"; };
+		365113D62D029AEF00A07FEE /* Search */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Search; sourceTree = "<group>"; };
 		368DA5B22CC1E76000AE7F43 /* UserRepository */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = UserRepository; sourceTree = "<group>"; };
 		368DA5B52CC1E78E00AE7F43 /* User */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = User; sourceTree = "<group>"; };
 		36A5B90D2CE4C40D00A36A69 /* TravelRepository */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TravelRepository; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 		367425792C12065300E122C9 /* Present */ = {
 			isa = PBXGroup;
 			children = (
+				365113C72D027F3100A07FEE /* Search */,
 				36CCA8752CF79EC3003BE2D7 /* Detail */,
 				36AFC2A42CAED9F100EFAC70 /* PlanDetail */,
 				36C06DB92CA56894008D4EFA /* Global */,
@@ -561,6 +564,7 @@
 		367425EE2C12313700E122C9 /* ViewData */ = {
 			isa = PBXGroup;
 			children = (
+				365113D62D029AEF00A07FEE /* Search */,
 				36CCA8812CF7A481003BE2D7 /* Detail */,
 				36AFC2AF2CAEE78E00EFAC70 /* PlanDetail */,
 				36E1D4C02CA5D18B008962EC /* Recommend */,
@@ -858,6 +862,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				365113C72D027F3100A07FEE /* Search */,
+				365113D62D029AEF00A07FEE /* Search */,
 				368DA5B22CC1E76000AE7F43 /* UserRepository */,
 				368DA5B52CC1E78E00AE7F43 /* User */,
 				36A5B90D2CE4C40D00A36A69 /* TravelRepository */,

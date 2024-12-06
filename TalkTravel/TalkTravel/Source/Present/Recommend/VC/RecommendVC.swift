@@ -49,11 +49,18 @@ class RecommendVC: UIViewController {
                 vc.recommendView.themePlaceCollectionView.reloadData()
             })
             .disposed(by: disposeBag)
+        
     }
     
     private func bindButtonAction() {
         recommendView.gotoChatButton.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                                  action: #selector(goToChatButtonTapped)))
+        recommendView.navigationView.rightViewAction = { [weak self] in
+            guard let self else { return }
+            let vc = SearchVC()
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc
