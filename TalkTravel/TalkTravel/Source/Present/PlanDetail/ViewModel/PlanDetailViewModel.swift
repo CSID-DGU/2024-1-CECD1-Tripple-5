@@ -48,7 +48,7 @@ final class PlanDetailViewModel {
             print(result)
             
             detailData.detailData = result.placesToVisit.map { .init(placeName: $0.place.placeName,
-                                                                     meanBudget: $0.place.estimatedCost,
+                                                                     meanBudget: String(Int(Float($0.place.estimatedCost) ?? 0)),
                                                                      openingTime: "정보 없음",
                                                                      location: .init(lat: min($0.place.x, $0.place.y),
                                                                                      lon: max($0.place.x, $0.place.y)))}

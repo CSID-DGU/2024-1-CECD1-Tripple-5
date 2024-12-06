@@ -42,9 +42,9 @@ struct Recommendations: Codable {
     let coordinates: Coordinates
     let roadAddressName: String
     let placeURL: String
-    let estimatedCost: Int
-    let estimatedDuration, visitorCharacteristics, recommendationReason: String
-
+    let estimatedCost, estimatedDuration: Int
+    let visitorCharacteristics, recommendationReason: String
+    
     enum CodingKeys: String, CodingKey {
         case placeName = "place_name"
         case type

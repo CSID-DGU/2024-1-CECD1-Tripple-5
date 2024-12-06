@@ -149,6 +149,7 @@ final class ChatViewModel: NSObject {
     }
     
     func startChat(prompt: String) {
+        var index = 0
         chatRepository.postCreateChatRecords(chatRoomId: self.roomId,
                                              x: userLon,
                                              y: userLat,
@@ -159,16 +160,19 @@ final class ChatViewModel: NSObject {
             if let messageData = parseMessageToStruct(data: removeEscapeWord(text: result.message)) {
                 messageData.recommendations.forEach { [weak self] places in
                     guard let self else { return }
-                    self.chatData.chatBotItem.append(.init(isUserCell: !result.isChatbot,
+                    let placeId: Int = Int(String(result.placeIDSStr.split(separator: ",")[index] ?? "")) ?? 0
+                    self.chatData.chatBotItem.append(.init(placeId: placeId,
+                                                           isUserCell: !result.isChatbot,
                                                            singleText: "",
                                                            placeName: "이름: " + places.placeName,
                                                            loacation: "위치: " + places.roadAddressName,
-                                                           detailLocation: .init(long: min(places.coordinates.y, places.coordinates.x),
-                                                                                 lat: max(places.coordinates.y, places.coordinates.x)),
+                                                           detailLocation: .init(long: max(places.coordinates.y, places.coordinates.x),
+                                                                                 lat: min(places.coordinates.y, places.coordinates.x)),
                                                            link: "link: " + places.placeURL,
                                                            detail: "상세 설명: " + places.recommendationReason,
                                                            placeImagePath: nil,
                                                            isAddPlan: false))
+                    index += 1
                 }
             } else {
                 self.chatData.chatBotItem.append(.init(isUserCell: false,
@@ -193,8 +197,8 @@ final class ChatViewModel: NSObject {
                                                                singleText: "",
                                                                placeName: "이름: " + places.placeName,
                                                                loacation: "위치: " + places.roadAddressName,
-                                                               detailLocation: .init(long: min(places.coordinates.y, places.coordinates.x),
-                                                                                     lat: max(places.coordinates.y, places.coordinates.x)),
+                                                               detailLocation: .init(long: max(places.coordinates.y, places.coordinates.x),
+                                                                                     lat: min(places.coordinates.y, places.coordinates.x)),
                                                                link: "link: " + places.placeURL,
                                                                detail: "상세 설명: " + places.recommendationReason,
                                                                placeImagePath: nil,
@@ -227,7 +231,7 @@ final class ChatViewModel: NSObject {
                 if let isAddPlan = item.isAddPlan {
                     if isAddPlan {
                         postPlaceToVisit(travelScheduleId: result.id,
-                                         placeName: item.placeName ?? "")
+                                         placeId: item.placeId)
                     }
                 }
             }
@@ -236,10 +240,10 @@ final class ChatViewModel: NSObject {
     }
     
     func postPlaceToVisit(travelScheduleId: Int,
-                          placeName: String) {
+                          placeId: Int) {
         travelRepository.postCreatePlaceToVisit(travelScheduleId: travelScheduleId,
                                                 userMemo: "",
-                                                placeName: placeName,
+                                                placeId: placeId,
                                                 completion: { [weak self] result in
             guard let self else { return }
         })

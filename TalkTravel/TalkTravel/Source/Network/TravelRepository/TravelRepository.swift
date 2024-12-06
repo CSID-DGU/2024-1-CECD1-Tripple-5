@@ -66,10 +66,10 @@ class TravelRepository {
     
     func postCreatePlaceToVisit(travelScheduleId: Int,
                                 userMemo: String,
-                                placeName: String,
+                                placeId: Int,
                                 completion: @escaping ((PostCreatePlaceToVisitDTO) -> Void)) {
         let body: [String: Any] = ["user_memo": userMemo,
-                                   "place_name": placeName]
+                                   "place_id": placeId]
         PostService.shared.postService(with: body,
                                        from: AppConstants.baseURL + "/api/v1/travel_schedules/\(travelScheduleId)/places_to_visit",
                                        callback: { (data: PostCreatePlaceToVisitDTO?, error) in

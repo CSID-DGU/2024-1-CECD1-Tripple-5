@@ -3,8 +3,7 @@ struct GetReadPlaceDTO: Codable {
     let x, y: Double
     let roadAddressName: String
     let placeURL: String
-    let visitorCharacteristics: String
-    let estimatedCost, estimatedDuration: Int
+    let visitorCharacteristics, estimatedCost, estimatedDuration: String
     let imgURL: String?
     let id: Int
     let createdAt: String

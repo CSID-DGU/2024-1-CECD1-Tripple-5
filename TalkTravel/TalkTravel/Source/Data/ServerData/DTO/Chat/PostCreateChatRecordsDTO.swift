@@ -10,13 +10,14 @@ struct PostCreateChatRecordsDTO: Codable {
     let message: String
     let isChatbot: Bool
     let id, chatRoomID: Int
-    let createdAt: String
+    let placeIDSStr, createdAt: String
 
     enum CodingKeys: String, CodingKey {
         case message
         case isChatbot = "is_chatbot"
         case id
         case chatRoomID = "chat_room_id"
+        case placeIDSStr = "place_ids_str"
         case createdAt = "created_at"
     }
 }
