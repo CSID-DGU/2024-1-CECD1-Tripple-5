@@ -1,6 +1,5 @@
 import UIKit
 import MapKit
-
 import SnapKit
 import Then
 
@@ -17,6 +16,8 @@ final class TravelSummarizeCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.budgetContentView.removeAllSubViews()
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.removeOverlays(mapView.overlays)
         mapView.region = MKCoordinateRegion()
     }
     
@@ -43,18 +44,20 @@ final class TravelSummarizeCell: UICollectionViewCell {
     
     private func setMap(location: [PlaceLocateData]) {
         guard let firstLocation = location.first else { return }
-        let center = CLLocationCoordinate2D(latitude: firstLocation.lat,
-                                            longitude: firstLocation.lon)
-        let span = MKCoordinateSpan(latitudeDelta: 0.05,
-                                    longitudeDelta: 0.05)
-        let region = MKCoordinateRegion(center: center,
-                                        span: span)
-        mapView.setRegion(region,
-                          animated: false)
+        let center = CLLocationCoordinate2D(latitude: firstLocation.lat, longitude: firstLocation.lon)
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: center, span: span)
+        mapView.setRegion(region, animated: false)
+
+        // 모든 좌표를 순회하며 Annotation 생성
         location.forEach {
-            createAnnotaion(location: .init(lat: $0.lat,
-                                            lon: $0.lon))
+            createAnnotaion(location: .init(lat: $0.lat, lon: $0.lon))
         }
+
+        // Polyline 추가
+        let coordinates = location.map { CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.lon) }
+        let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
+        mapView.addOverlay(polyline)
     }
     
     private func setLayout() {
@@ -109,7 +112,6 @@ final class TravelSummarizeCell: UICollectionViewCell {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(20)
         }
-        
     }
     
     private let cellContentView = UIView().then {
@@ -154,6 +156,7 @@ final class TravelSummarizeCell: UICollectionViewCell {
         $0.backgroundColor = .gray200
     }
 }
+
 extension TravelSummarizeCell: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: any MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else { return nil }
@@ -167,5 +170,15 @@ extension TravelSummarizeCell: MKMapViewDelegate {
         }
         
         return annotationView
+    }
+
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let polyline = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(polyline: polyline)
+            renderer.strokeColor = .mainBlue
+            renderer.lineWidth = 5
+            return renderer
+        }
+        return MKOverlayRenderer(overlay: overlay)
     }
 }
