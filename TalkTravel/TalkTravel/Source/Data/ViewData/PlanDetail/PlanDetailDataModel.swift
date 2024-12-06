@@ -4,10 +4,10 @@ struct PlanDetailDataModel {
 }
 
 struct PlanDetailSummaryData {
-    let allPlaceLocation: [PlaceLocateData]
+    var allPlaceLocation: [PlaceLocateData]
     let allPlan: String
     let allBudget: String
-    let budgetDetail: [PlanDetailBudgetItemData]
+    var budgetDetail: [PlanDetailBudgetItemData]
 }
 
 struct PlanDetailBudgetItemData {

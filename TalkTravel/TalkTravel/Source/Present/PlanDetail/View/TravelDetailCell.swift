@@ -6,6 +6,9 @@ import Then
 
 
 final class TravelDetailCell: UICollectionViewCell {
+    var upButtonCompletion: (() -> Void)?
+    var downButtonCompletion: (() -> Void)?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()
@@ -27,6 +30,7 @@ final class TravelDetailCell: UICollectionViewCell {
         openScheduleContentLabel.text = data.openingTime
         
         setMap(location: data.location)
+        setButtonAction()
     }
     
     private func setMap(location: PlaceLocateData) {
@@ -48,6 +52,28 @@ final class TravelDetailCell: UICollectionViewCell {
         mapView.addAnnotation(annotation)
     }
     
+    private func setButtonAction() {
+        upButton.addTarget(self,
+                           action: #selector(upButtonTapAction),
+                           for: .touchUpInside)
+        downButton.addTarget(self,
+                             action: #selector(downButtonTapAction),
+                             for: .touchUpInside)
+    }
+
+    @objc
+    private func upButtonTapAction() {
+        guard let upButtonCompletion else { return }
+        upButtonCompletion()
+    }
+    
+    @objc
+    private func downButtonTapAction() {
+        guard let downButtonCompletion else { return }
+        downButtonCompletion()
+    }
+    
+    
     private func setLayout() {
         self.contentView.addSubview(cellContentView)
         cellContentView.snp.makeConstraints {
@@ -56,6 +82,8 @@ final class TravelDetailCell: UICollectionViewCell {
         }
         
         cellContentView.addSubviews(titleLabel,
+                                    upButton,
+                                    downButton,
                                     mapView,
                                     budgetTitleLabel,
                                     budgetContentLabel,
@@ -64,6 +92,19 @@ final class TravelDetailCell: UICollectionViewCell {
         
         titleLabel.snp.makeConstraints {
             $0.top.leading.equalToSuperview()
+        }
+        
+        upButton.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel.snp.trailing).offset(6)
+            $0.size.equalTo(32)
+            $0.centerY.equalTo(titleLabel)
+        }
+        
+        downButton.snp.makeConstraints {
+            $0.leading.equalTo(upButton.snp.trailing).offset(6)
+            $0.size.equalTo(32)
+            $0.centerY.equalTo(titleLabel)
+            $0.trailing.equalToSuperview().offset(6)
         }
         
         mapView.snp.makeConstraints {
@@ -130,6 +171,14 @@ final class TravelDetailCell: UICollectionViewCell {
     private let openScheduleContentLabel = UILabel().then {
         $0.font = Pretendard.pretendardSemibold(size: 14).font
         $0.textColor = .gray600
+    }
+    
+    private let upButton = UIButton().then {
+        $0.setImage(.icUpButton, for: .normal)
+    }
+    
+    private let downButton = UIButton().then {
+        $0.setImage(.icDownButton, for: .normal)
     }
 }
 extension TravelDetailCell: MKMapViewDelegate {
